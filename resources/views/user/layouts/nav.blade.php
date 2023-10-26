@@ -1,45 +1,72 @@
-<div class="container-fluid bg-faded fh5co_padd_mediya padding_786">
-    <div class="container padding_786">
-        <nav class="navbar navbar-toggleable-md navbar-light ">
-            <button class="navbar-toggler navbar-toggler-right mt-3" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
-            <a class="navbar-brand" href="#"><img src="images/logo.png" alt="img" class="mobile_logo_width"/></a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton3" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">Dashboard<span class="sr-only">(current)</span></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
-                            <a class="dropdown-item" href="#">Lich Su Chau A</a>
-                            <a class="dropdown-item" href="#">Lich Su Chau Au</a>
-                            <a class="dropdown-item" href="#">Lich Su Chau Phi</a>
-                        </div>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="blog.html">Blog <span class="sr-only">(current)</span></a>
-                    </li>
-{{--                    <li class="nav-item ">--}}
-{{--                        <a class="nav-link" href="single.html">Single <span class="sr-only">(current)</span></a>--}}
-{{--                    </li>--}}
-                    <li class="nav-item ">
-                        <a class="nav-link" href="single.html">Event <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="single.html">About Us <span class="sr-only">(current)</span></a>
-                    </li>
+@php
+    $categories = \App\Models\Category::all();
+    $posts_trending = \App\Models\Post::orderByDesc("created_at")->limit(5)->get();
+@endphp
 
-                    <li class="nav-item ">
-                        <a class="nav-link" href="Contact_us.html">Contact <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="blog.html">Create Blog <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
+<div class="header-bottom header-sticky">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-8 col-lg-8 col-md-12 header-flex">
+                <!-- sticky -->
+                <div class="sticky-logo">
+                    <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                </div>
+                <!-- Main-menu -->
+                <div class="main-menu d-none d-md-block">
+                    <nav>
+                        <ul id="navigation">
+                            <li><a href="{{ url("/") }}">Home</a></li>
+                            <li><a href="{{ url("category") }}">Category</a>
+                                <ul class="submenu">
+                                    @foreach($categories as $item)
+                                        <li><a href="{{ url("category",['category'=>$item->slug]) }}">{{ $item->name }}</a></li>
+                                    @endforeach
+
+                                </ul>
+                            </li>
+{{--                            <li><a href="{{ url("blog") }}">Blog</a></li>--}}
+                            <li><a href="{{ url("event") }}">Event</a></li>
+                            <li><a href="{{ url("about_us") }}">About</a></li>
+                            <li><a href="{{ url("contact") }}">Contact</a></li>
+                            <li><a href="{{ url("create_blog") }}">Create Blog</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        </nav>
+            <div class="col-xl-4 col-lg-4 col-md-4">
+                <div class="header-right f-right d-none d-lg-block">
+                    <!-- Heder social -->
+                    <ul class="header-social">
+                        <li><a href="https://www.fb.com/sai4ull"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li> <a href="#"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                    <!-- Search Nav -->
+                    <div class="nav-search search-switch">
+                        <i class="fa fa-search"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl col-lg-4 col-md-4 header-flex">
+                @auth()
+                    <a href="#"><i class="fa fa-user"></i> {{ auth()->user()->name }}</a>
+                    <form id="form-logout" action="{{ route("logout") }}" method="post">
+                        @csrf
+                    </form>
+                    <a href="javascript:void(0);" onclick="$('#form-logout').submit();">
+                        <i class="fa fa-align-right"></i>Logout</a>
+                @endauth
+                @guest()
+                    <a href={{ route("login") }}><i class="fa fa-user"></i> Login</a>
+                    <a href={{ route("register") }}><i class="fa fa-user"></i> Register</a>
+
+                @endguest
+            </div>
+            <!-- Mobile Menu -->
+            <div class="col-12">
+                <div class="mobile_menu d-block d-md-none"></div>
+            </div>
+        </div>
     </div>
 </div>

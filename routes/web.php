@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminController;
+use \App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +14,25 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/',[HomeController::class,"home"]);
+Route::get('/',[HomeController::class,"index"]);
 
-Route::get('/',[HomeController::class,"home"]);
+
+Route::get('/blog',[HomeController::class,"blog"]);
+Route::get('/category',[HomeController::class,"categoryList"]);
+Route::get('/category/{category:slug}',[HomeController::class,"categoryChild"]);
+Route::get('/single/{post:slug}',[HomeController::class,"blogDetail"]);
+
+Route::get('/event',[HomeController::class,"event"]);
+Route::get('/blog_event',[HomeController::class,"blogEvent"]);
+Route::get('/about_us',[HomeController::class,"aboutUs"]);
+Route::get('/contact',[HomeController::class,"contact"]);
+
+
+
+Route::get('/create_blog',[PostController::class,"create"]);
+Route::post('/create_blog',[PostController::class,"store"]);
+
+
 
 Route::middleware(["auth","is_admin"])->prefix("admin")->group(function (){
     include_once "admin.php";

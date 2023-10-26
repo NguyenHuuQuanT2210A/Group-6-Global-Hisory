@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-
+                    <h3 class="card-title"><a href="{{url("admin/category/create")}}">Create New Category</a> </h3>
                     <div class="card-tools">
                         <form action="{{url("/admin/user")}}" method="get">
                             <div class="input-group input-group-sm" style="width: 150px;float:left">
@@ -25,29 +25,31 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Email</th>
+                            <th>Slug</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $item)
+                        @foreach($categories as $item)
                             <tr>
                                 <td>#{{$loop->index+1}}</td>
                                 <td>{{$item->name}}</td>
-                                <td>{{$item->email}}</td>
-                                {{--                                <td>--}}
-                                {{--                                    <a href="{{url("admin/product/edit",['product'=>$item->id])}}" class="btn btn-outline-info">Sửa</a>--}}
-                                {{--                                    <form action="{{url("admin/product/delete",['product'=>$item->id])}}" method="POST">--}}
-                                {{--                                        @csrf--}}
-                                {{--                                        @method("DELETE")--}}
-                                {{--                                        <button onclick="return confirm('Chắc chắn muốn xoá sản phẩm: {{$item->name}}')" class="btn btn-outline-danger" type="submit">Delete</button>--}}
-                                {{--                                    </form>--}}
-                                {{--                                </td>--}}
+                                <td>{{$item->slug}}</td>
+                                <td>
+                                    <a href="{{url("admin/category/edit",['category'=>$item->id])}}" class="btn btn-outline-info">Sửa</a>
+                                    <form action="{{url("admin/category/delete",['category'=>$item->id])}}" method="POST">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button onclick="return confirm('Chắc chắn muốn xoá Category này?: {{$item->name}}')" class="btn btn-outline-danger" type="submit">Delete</button>
+                                    </form>
+{{--                                    <a href="{{url("admin/category/child_category",['category'=>$item->id])}}" class="btn btn-outline-info">Create New Child Category</a>--}}
+                                </td>
+
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                    {!! $users->links("pagination::bootstrap-5") !!}
+                    {!! $categories->links("pagination::bootstrap-5") !!}
                 </div>
                 <!-- /.card-body -->
             </div>

@@ -1,64 +1,45 @@
-{{--<div class="container-fluid fh5co_header_bg">--}}
-{{--    <div class="container">--}}
-{{--        <div class="row">--}}
-{{--            <div class="col-12 fh5co_mediya_center"><a href="#" class="color_fff fh5co_mediya_setting"><i--}}
-{{--                        class="fa fa-clock-o"></i>&nbsp;&nbsp;&nbsp;Friday, 5 January 2018</a>--}}
-{{--                <div class="d-inline-block fh5co_trading_posotion_relative"><a href="#" class="treding_btn">Trending</a>--}}
-{{--                    <div class="fh5co_treding_position_absolute"></div>--}}
-{{--                </div>--}}
-{{--                <a href="#" class="color_fff fh5co_mediya_setting">Instagram’s big redesign goes live with black-and-white app</a>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
-{{--<div class="container-fluid">--}}
-{{--    <div class="container">--}}
-{{--        <div class="row">--}}
-{{--            <div class="col-12 col-md-3 fh5co_padding_menu">--}}
-{{--                <img src="images/logo.png" alt="img" class="fh5co_logo_width"/>--}}
-{{--            </div>--}}
-{{--            <div class="col-12 col-md-7 align-self-center fh5co_mediya_right">--}}
-{{--                <div class="text-center d-inline-block">--}}
-{{--                    <a class="fh5co_display_table"><div class="fh5co_verticle_middle"><i class="fa fa-search"></i></div></a>--}}
-{{--                </div>--}}
-{{--                <div class="text-center d-inline-block">--}}
-{{--                    <a class="fh5co_display_table"><div class="fh5co_verticle_middle"><i class="fa fa-linkedin"></i></div></a>--}}
-{{--                </div>--}}
-{{--                <div class="text-center d-inline-block">--}}
-{{--                    <a class="fh5co_display_table"><div class="fh5co_verticle_middle"><i class="fa fa-google-plus"></i></div></a>--}}
-{{--                </div>--}}
-{{--                <div class="text-center d-inline-block">--}}
-{{--                    <a href="https://twitter.com/fh5co" target="_blank" class="fh5co_display_table"><div class="fh5co_verticle_middle"><i class="fa fa-twitter"></i></div></a>--}}
-{{--                </div>--}}
-{{--                <div class="text-center d-inline-block">--}}
-{{--                    <a href="https://fb.com/fh5co" target="_blank" class="fh5co_display_table"><div class="fh5co_verticle_middle"><i class="fa fa-facebook"></i></div></a>--}}
-{{--                </div>--}}
-{{--                <!--<div class="d-inline-block text-center"><img src="images/country.png" alt="img" class="fh5co_country_width"/></div>-->--}}
-{{--                <div class="d-inline-block text-center dd_position_relative ">--}}
-{{--                    <select class="form-control fh5co_text_select_option">--}}
-{{--                        <option>English </option>--}}
-{{--                        <option>French </option>--}}
-{{--                        <option>German </option>--}}
-{{--                        <option>Spanish </option>--}}
-{{--                    </select>--}}
-{{--                </div>--}}
-{{--                <div class="clearfix"></div>--}}
-{{--            </div>--}}
-{{--            <div class="col-12 col-md-3">--}}
-{{--                @auth()--}}
-{{--                    <a href="#"><i class="fa fa-user"></i> {{ auth()->user()->name }}</a>--}}
-{{--                    <form id="form-logout" action="{{ route("logout") }}" method="post">--}}
-{{--                        @csrf--}}
-{{--                    </form>--}}
-{{--                    <a href="javascript:void(0);" onclick="$('#form-logout').submit();">--}}
-{{--                        <i class="fa fa-align-right"></i>Logout</a>--}}
-{{--                @endauth--}}
-{{--                @guest()--}}
-{{--                    <a href={{ route("login") }}><i class="fa fa-user"></i> Login</a>--}}
-{{--                    <a href={{ route("register") }}><i class="fa fa-user"></i> Register</a>--}}
-
-{{--                @endguest--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
+<header>
+    <!-- Header Start -->
+    <div class="header-area">
+        <div class="main-header ">
+            <div class="header-top black-bg d-none d-sm-block">
+                <div class="container">
+                    <div class="col-xl-12">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="header-info-left">
+                                <ul>
+                                    <li class="title"><span class="flaticon-energy"></span> trending-title</li>
+                                    <li>Class property employ ancho red multi level mansion</li>
+                                </ul>
+                            </div>
+                            <div class="header-info-right">
+                                <ul class="header-date">
+                                    <li><span class="flaticon-calendar"></span> +880166 253 232</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-mid gray-bg">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-3 col-lg-3 col-md-3 d-none d-md-block">
+                            <div class="logo">
+                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9">
+                            <div class="header-banner f-right ">
+                                <img src="assets/img/gallery/header_card.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @include("user.layouts.nav")
+        </div>
+    </div>
+    <!-- Header End -->
+</header>

@@ -54,13 +54,23 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url("admin/category")}}" class="nav-link">
+                    <a href="{{url("admin/category/")}}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Category
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{url("admin/post/")}}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Category
+                        </p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

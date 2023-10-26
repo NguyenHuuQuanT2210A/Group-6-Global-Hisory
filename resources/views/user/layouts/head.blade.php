@@ -1,12 +1,35 @@
-<link href="css/media_query.css" rel="stylesheet" type="text/css"/>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link href="css/animate.css" rel="stylesheet" type="text/css"/>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<link href="css/owl.carousel.css" rel="stylesheet" type="text/css"/>
-<link href="css/owl.theme.default.css" rel="stylesheet" type="text/css"/>
-<!-- Bootstrap CSS -->
-<link href="css/style_1.css" rel="stylesheet" type="text/css"/>
-<!-- Modernizr JS -->
-<script src="js/modernizr-3.5.0.min.js"></script>
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/css/ticker-style.css">
+<link rel="stylesheet" href="assets/css/flaticon.css">
+<link rel="stylesheet" href="assets/css/slicknav.css">
+<link rel="stylesheet" href="assets/css/animate.min.css">
+<link rel="stylesheet" href="assets/css/magnific-popup.css">
+<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="assets/css/themify-icons.css">
+<link rel="stylesheet" href="assets/css/slick.css">
+<link rel="stylesheet" href="assets/css/nice-select.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+
+
+
+{{--<link href="css/nav.css" rel="stylesheet" type="text/css"/>--}}
+{{--<style>--}}
+{{--    body a{--}}
+{{--        /*color: #fff;*/--}}
+{{--        text-decoration: none--}}
+{{--    }--}}
+{{--    .login a{--}}
+{{--        float:right;--}}
+{{--        text-decoration: none;--}}
+{{--        color: black;--}}
+{{--        padding-left: 20px;--}}
+{{--        font-size: 15px;--}}
+{{--    }--}}
+
+{{--</style>--}}
+
+{{--<link href="css/event.css" rel="stylesheet" type="text/css"/>--}}
+
+{{--<link href="css/about.css" rel="stylesheet" type="text/css"/>--}}
