@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -11,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -54,6 +56,22 @@ class User extends Authenticatable
         return $query;
     }
 
+    public function scopeFromPrice($query, $request){
+        if($request->has("price_from")&& $request->get("price_from") != 0){
+            $price_from = $request->get("price_from");
+            $query->where("price_from",">=",$price_from);
+        }
+        return $query;
+    }
+
+    public function scopeToPrice($query, $request){
+        if($request->has("price_to")&& $request->get("price_to") != 0){
+            $price_to = $request->get("price_to");
+            $query->where("price_to","<=",$price_to);
+        }
+        return $query;
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
@@ -64,5 +82,25 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function like()
+    {
+        return $this->hasMany(Like::class);
+    }
+    public function blog()
+    {
+        return $this->hasMany(Blog::class);
+    }
+    public function event()
+    {
+        return $this->hasMany(User::class);
+    }
+    public function likeEvent()
+    {
+        return $this->hasMany(LikeEvent::class);
+    }
+    public function user_event()
+    {
+        return $this->belongsTo(User_Event::class);
+    }
 
 }

@@ -16,50 +16,64 @@
     <div class="page-content fade-in-up">
         <div class="ibox">
             <div class="ibox-head">
-                <div class="ibox-title"><a href="{{ url("admin/category/create") }}">Create New Category</a></div>
+                <div class="ibox-title">Data Table</div>
             </div>
             <div class="ibox-body">
                 <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-{{--                        <th>ID</th>--}}
                         <th>Name</th>
-                        <th>Slug</th>
+                        <th>Thumbnail</th>
+                        <th>Date From</th>
+                        <th>Date To</th>
+                        <th>Views</th>
+                        <th>Qty Register</th>
+                        <th>Qty Registered</th>
+                        <th>Status</th>
+                        <th>Address</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
-{{--                        <th>ID</th>--}}
                         <th>Name</th>
-                        <th>Slug</th>
+                        <th>Thumbnail</th>
+                        <th>Date From</th>
+                        <th>Date To</th>
+                        <th>Views</th>
+                        <th>Qty Register</th>
+                        <th>Qty Registered</th>
+                        <th>Status</th>
+                        <th>Address</th>
                         <th>Action</th>
                     </tr>
                     </tfoot>
                     <tbody>
-                    @foreach($categories as $item)
+                    @foreach($events as $item)
                         <tr>
-{{--                            <td>#{{$loop->index+1}}</td>--}}
                             <td>{{$item->name}}</td>
-                            <td>{{$item->slug}}</td>
+                            <td><img width="100" src="{{$item->thumbnail}}" /></td>
+                            <td>{{$item->date_from}}</td>
+                            <td>{{$item->date_to}}</td>
+                            <td>{{$item->view_count}}</td>
+                            <td>{{$item->qty}}</td>
+                            <td>{{ $item->qty_registered }}</td>
+                            <td>{!! $item->getStatus() !!}</td>
+                            <td>{{$item->address}}</td>
                             <td>
-                                <a href="{{url("admin/category/edit",['category'=>$item->id])}}" class="btn btn-outline-info">Sửa</a>
-                                <form action="{{url("admin/category/delete",['category'=>$item->id])}}" method="POST">
+                                <a href="{{url("admin/event/edit",['event'=>$item->id])}}" class="btn btn-outline-info">Sửa</a>
+                                <form action="{{url("admin/event/delete",['event'=>$item->id])}}" method="POST">
                                     @csrf
                                     @method("DELETE")
-                                    <button onclick="return confirm('Chắc chắn muốn xoá Category này? ' +
-                                         'Nếu bạn xóa sẽ bị mất hết dữ liệu liên quan đến Category này, bạn vẫn đồng ý chứ?' +
-                                          ' {{$item->name}}')" class="btn btn-outline-danger" type="submit">
-                                        Delete</button>
+                                    <button onclick="return confirm('Chắc chắn muốn xoá Event này?: {{$item->name}}')" class="btn btn-outline-danger" type="submit">Delete</button>
                                 </form>
-                                {{--                                    <a href="{{url("admin/category/child_category",['category'=>$item->id])}}" class="btn btn-outline-info">Create New Child Category</a>--}}
                             </td>
 
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-                {{ $categories->links("pagination::bootstrap-5") }}
+                {{ $events->links("pagination::bootstrap-5") }}
             </div>
         </div>
     </div>

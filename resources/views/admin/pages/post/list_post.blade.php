@@ -16,50 +16,61 @@
     <div class="page-content fade-in-up">
         <div class="ibox">
             <div class="ibox-head">
-                <div class="ibox-title"><a href="{{ url("admin/category/create") }}">Create New Category</a></div>
+                <div class="ibox-title">Data Table</div>
             </div>
             <div class="ibox-body">
                 <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
                     <thead>
                     <tr>
 {{--                        <th>ID</th>--}}
-                        <th>Name</th>
-                        <th>Slug</th>
+                        <th>Title</th>
+                        <th>User Name</th>
+                        <th>View</th>
+                        <th>Like</th>
+                        <th>Comment</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
 {{--                        <th>ID</th>--}}
-                        <th>Name</th>
-                        <th>Slug</th>
+                        <th>Title</th>
+                        <th>User Name</th>
+                        <th>View</th>
+                        <th>Like</th>
+                        <th>Comment</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </tfoot>
                     <tbody>
-                    @foreach($categories as $item)
+                    @foreach($posts as $item)
                         <tr>
 {{--                            <td>#{{$loop->index+1}}</td>--}}
-                            <td>{{$item->name}}</td>
-                            <td>{{$item->slug}}</td>
+                            <td>{{$item->title}}</td>
+                            <td>{{$item->User->name}}</td>
+                            <td>{{$item->view_count}}</td>
+                            @php
+                                $comments = \App\Models\Comment::where("post_id",$item->id)->get();
+                                $likes = \App\Models\Like::where("post_id",$item->id)->get();
+                            @endphp
+                            <td>{{ count($likes) }}</td>
+                            <td>{{ count($comments) }}</td>
+                            <td>{!! $item->getApprove() !!}</td>
                             <td>
-                                <a href="{{url("admin/category/edit",['category'=>$item->id])}}" class="btn btn-outline-info">Sửa</a>
-                                <form action="{{url("admin/category/delete",['category'=>$item->id])}}" method="POST">
-                                    @csrf
-                                    @method("DELETE")
-                                    <button onclick="return confirm('Chắc chắn muốn xoá Category này? ' +
-                                         'Nếu bạn xóa sẽ bị mất hết dữ liệu liên quan đến Category này, bạn vẫn đồng ý chứ?' +
-                                          ' {{$item->name}}')" class="btn btn-outline-danger" type="submit">
-                                        Delete</button>
-                                </form>
-                                {{--                                    <a href="{{url("admin/category/child_category",['category'=>$item->id])}}" class="btn btn-outline-info">Create New Child Category</a>--}}
+                                <a href="{{url("admin/post/post_detail",['post'=>$item->slug])}}" class="btn btn-outline-info">Xem Chi Tiết</a>
+                                {{--                                    <form action="{{url("admin/post/unapproved_list",['post'=>$item->id])}}" method="POST">--}}
+                                {{--                                        @csrf--}}
+                                {{--                                        <button onclick="return confirm('Chắc chắn không muốn duyệt Blog này?: {{$item->name}}')" class="btn btn-outline-danger" type="submit">Unapproved</button>--}}
+                                {{--                                    </form>--}}
                             </td>
 
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-                {{ $categories->links("pagination::bootstrap-5") }}
+                {{ $posts->links("pagination::bootstrap-5") }}
             </div>
         </div>
     </div>

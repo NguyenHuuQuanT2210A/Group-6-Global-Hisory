@@ -1,53 +1,72 @@
 @extends("user.layouts.app")
+@section("before_css")
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+@endsection
 @section ("content")
 
-    <div class="about-area2 gray-bg pt-60 pb-60">
+<section class="section-intro">
+    <!-- Title Page -->
+    <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(https://www.nea.org/sites/default/files/styles/1920wide/public/legacy/2018/06/ap_world_history-1-e1529948595658.jpeg?itok=1BQ4XgqU);">
+        <h2 class="tit6 t-center">
+            Events history
+        </h2>
+    </section>
+
+    <div class="content-intro bg-white p-t-77 p-b-133">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
-                    <div class="whats-news-wrapper">
-                        <!-- Heading & Nav Button -->
-                        <div class="row justify-content-between align-items-end mb-15">
-                            <div class="col-xl">
-                                <div class="section-tittle mb-30">
-                                    <h3>Event </h3>
-                                </div>
-                            </div>
+                @foreach($events as $item)
+                <div class="col-md-4 p-t-30">
+                    <!-- Block1 -->
+
+                    <div class="blo1">
+                        <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
+                            <a href="{{ url("event/single",['event'=>$item->slug]) }}"><img src="{{ $item->thumbnail }}" alt="IMG-INTRO"></a>
                         </div>
-                        <!-- Tab content -->
-                        <div class="row">
-                            <div class="col-12">
-                                <!-- Nav Card -->
-                                <div class="tab-content" id="nav-tabContent">
-                                    <!-- card one -->
-                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                        <div class="row" style="display: block">
-                                            @foreach($posts as $item)
-                                                <div >
-                                                    <div class="whats-news-single mb-40 mb-40" style="display: flex; margin-bottom: 18px">
-                                                        <div class="whates-img" style="overflow: unset">
-                                                            <img src="{{ $item->thumbnail }}" style="width: 250px; height: 180px; border-radius: 4px" alt="">
-                                                        </div>
-                                                        <div class="whates-caption whates-caption2"  style="margin-left: 20px">
-                                                            <h4><a href="{{ url("single",['post'=>$item->slug]) }}">{{ $item->title }}</a></h4>
-                                                            <span>by {{ $item->User->name }}   -   {{ $item->created_at->toDateString() }}</span>
-                                                            <p>{{\Illuminate\Support\Str::limit($item->body , 100 ,'...') }}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Nav Card -->
-                            </div>
+
+                        <div class="wrap-text-blo1 p-t-35">
+
+                            <a href="{{ url("event/single",['event'=>$item->slug]) }}">
+                                <h4 class="txt5 color0-hov trans-0-4 m-b-13">
+                                    {{ $item->name }}
+                                </h4></a>
+                            <p>
+                                Date : {{$item->date_from}} - {{$item->date_to}}
+                            </p>
+                            <p>
+                                Number of people participated: {{ $item->qty_registered }}/{{ $item->qty }}
+                            </p>
+                            <br>
+
+                            <p class="m-b-20">
+                                {{\Illuminate\Support\Str::limit($item->description , 100 ,'...') }}
+                            </p>
+
+                            <a href="{{ url("event/single",['event'=>$item->slug]) }}" class="txt4">
+                                Learn More
+                                <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                            </a>
                         </div>
                     </div>
-                    {!! $posts->links("pagination::bootstrap-5") !!}
                 </div>
-                @include("user.layouts.sidebar")
+                @endforeach
+                    {!! $events->links("pagination::bootstrap-4") !!}
+
             </div>
+
         </div>
     </div>
-@endsection
 
+</section>
+
+
+
+
+
+
+
+
+
+@endsection

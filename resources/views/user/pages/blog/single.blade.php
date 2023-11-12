@@ -1,250 +1,438 @@
 @extends("user.layouts.app")
-@section("before_css")
-    <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-    <!-- Place favicon.ico in the root directory -->
+@section("after_css")
+    <style>
+        .social-icons li{
+            margin: 0 8px;
+        }
+        .cmt-btn{
+            float: right;padding: 10px 35px;background-color: white;color: #ccc;margin: 12px 10px 0 0;border-radius: 3px;border: 1px solid #ccc;
+        }
+        .cmt-btn:hover{
+            background-color: red;
+            color: #f1f1f1;
+        }
+    </style>
 @endsection
+
 @section ("content")
+    <!-- Title Page -->
+    <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url({{ $blog->thumbnail }});">
+        <h2 class="tit6 t-center">
+            Blog
+        </h2>
+    </section>
 
-    <section class="blog_area single-post-area section-padding">
+
+    <!-- Content page -->
+    <section>
+        <div class="bread-crumb bo5-b p-t-17 p-b-17">
+            <div class="container">
+                <a href="{{ url("/") }}" class="txt27">
+                    Home
+                </a>
+
+                <span class="txt29 m-l-10 m-r-10">/</span>
+
+                <a href="{{ url("blog/") }}" class="txt27">
+                    Blog
+                </a>
+
+                <span class="txt29 m-l-10 m-r-10">/</span>
+                <span class="txt29">
+					{{ $blog->title }}
+				</span>
+            </div>
+        </div>
+
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 posts-list">
-
-                    <div class="single-post">
-                        <div class="feature-img">
-                            <img class="img-fluid" src="{{ $post->thumbnail }}" style="width: 750px;height: 375px" alt="">
-                        </div>
-                        <div class="blog_details">
-                            <h2>{{ $post->title }}.
-                            </h2>
-                            <ul class="blog-info-link mt-3 mb-4">
-                                <li><a href="#"><i class="fa fa-user"></i> {{ $post->Category->name }}</a></li>
-                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                            </ul>
-                            <p class="excert">
-                                {{ $post->body }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="navigation-top">
-                        <div class="d-sm-flex justify-content-between text-center">
-                            <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
-                                people like this</p>
-                            <div class="col-sm-4 text-center my-2 my-sm-0">
-                                <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
-                            </div>
-                            <ul class="social-icons">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="navigation-area">
-                            <div class="row">
-                                <div
-                                    class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                                    <div class="thumb">
-                                        <a href="#">
-                                            <img class="img-fluid" src="assets/img/post/preview.png" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="arrow">
-                                        <a href="#">
-                                            <span class="lnr text-white ti-arrow-left"></span>
-                                        </a>
-                                    </div>
-                                    <div class="detials">
-                                        <p>Prev Post</p>
-                                        <a href="#">
-                                            <h4>Space The Final Frontier</h4>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div
-                                    class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                                    <div class="detials">
-                                        <p>Next Post</p>
-                                        <a href="#">
-                                            <h4>Telescopes 101</h4>
-                                        </a>
-                                    </div>
-                                    <div class="arrow">
-                                        <a href="#">
-                                            <span class="lnr text-white ti-arrow-right"></span>
-                                        </a>
-                                    </div>
-                                    <div class="thumb">
-                                        <a href="#">
-                                            <img class="img-fluid" src="assets/img/post/next.png" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="blog-author">
-                        <div class="media align-items-center">
-                            <img src="assets/img/blog/author.png" alt="">
-                            <div class="media-body">
-                                <a href="#">
-                                    <h4>Harvard milan</h4>
+            <div class="row ">
+                <div class="col-md-8 col-lg-9">
+                    <div class="p-t-80 p-b-124 bo5-r p-r-50 h-full p-r-0-md bo-none-md">
+                        <!-- Block4 -->
+                        <div class="blo4 p-b-63">
+                            <!-- - -->
+                            <div class="pic-blo4 hov-img-zoom bo-rad-10 pos-relative">
+                                <a href="{{ url("blog/single",["blog"=>$blog->slug]) }}">
+                                    <img src="{{ $blog->thumbnail }}" alt="IMG-BLOG">
                                 </a>
-                                <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-                                    our dominion twon Second divided from</p>
+
+                                <div class="date-blo4 flex-col-c-m">
+									<span class="txt30 m-b-4">
+										28
+									</span>
+
+                                    <span class="txt31">
+										Dec, 2018
+									</span>
+                                </div>
+                            </div>
+
+                            <!-- - -->
+                            <div class="text-blo4 p-t-33">
+                                <h4 class="p-b-16">
+                                    <a href="{{ url("blog/single",["blog"=>$blog->slug]) }}" class="tit9">{{ $blog->title }}</a>
+                                </h4>
+
+                                <div class="txt32 flex-w p-b-24">
+									<span>
+										by Admin
+										<span class="m-r-6 m-l-4">|</span>
+									</span>
+
+                                    <span>
+										{{ date('m D, Y', strtotime($blog->user->created_at)) }}
+										<span class="m-r-6 m-l-4">|</span>
+									</span>
+
+                                    <span>
+										{{ $blog->category->name }}, {{ $blog->tag->name }}
+										<span class="m-r-6 m-l-4">|</span>
+									</span>
+
+                                    <span>
+										8 Comments
+									</span>
+                                </div>
+
+                                <p>
+                                    {{ $blog->body }}
+                                </p>
                             </div>
                         </div>
+
+                        <div class="navigation-top">
+                            <div class="d-sm-flex justify-content-between text-center">
+                                <p class="like-info"><span class="align-middle">
+
+                                    @php
+                                        $you_like = false;
+                                    @endphp
+
+                                        @foreach($like_blogs as $item)
+                                            @if(\Illuminate\Support\Facades\Auth::check() &&  \Illuminate\Support\Facades\Auth::user()->id == $item->user_id)
+                                                @php
+                                                    $you_like = true;
+                                                @endphp
+                                            @endif
+                                        @endforeach
+
+                                        @if(count($like_blogs) == 1)
+                                            @if($you_like)
+                                                <a href="{{ url("blog/like",[$blog->id]) }}">
+                                        <i style="color: red" class="fa fa-heart"></i>
+                                         </a>
+                                                You liked
+                                            @else
+                                                <a href="{{ url("blog/like",[$blog->id]) }}">
+                                        <i style="color: #c5c5c5" class="fa fa-heart"></i>
+                                         </a>
+                                                {{$like_blogs[0]->user->name}} liked
+                                            @endif
+                                        @elseif(count($like_blogs) > 1)
+                                            @if($you_like)
+                                                <a href="{{ url("blog/like",[$blog->id]) }}">
+                                        <i style="color: red" class="fa fa-heart"></i>
+                                         </a>
+                                                You and {{ count($like_blogs) -1}} people like this
+                                            @else
+                                                <a href="{{ url("blog/like",[$blog->id]) }}">
+                                        <i style="color: #c5c5c5" class="fa fa-heart"></i>
+                                         </a>
+                                                {{$like_blogs[0]->user->name}} and {{ count($like_blogs) -1}} people like this
+                                            @endif
+                                        @else
+                                            <a href="{{ url("blog/like",[$blog->id]) }}">
+                                        <i style="color: #c5c5c5" class="fa fa-heart"></i>
+                                         </a>
+                                            No one has liked this yet.
+                                        @endif
+                                    </span>
+
+                                </p>
+                                <div class="col-sm-4 text-center my-2 my-sm-0">
+                                    <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
+                                </div>
+                                <ul class="social-icons" style="display: flex">
+                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="cmt" style="margin-top: 10px">
+                            <form action="{{ url('blog/post/comment',[$blog->id]) }}" method="post">
+                                @csrf
+                                <h4 style="padding: 5px 0 7px 0;"><b>Comment</b></h4>
+                                <div><textarea name="comment" id="editor" class="form-control" rows="5"></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="cmt-btn" >Submit</button>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        @if(count($cmts) > 0)
+                            <div style="margin-top: 100px"><h4 style="padding: 0 0 2px 10px;"><b>{{ count($cmts) }} Comment</b></h4></div>
+                            <div style="border-top:1px solid rgba(0,0,0,.15) !important;border-radius:.25rem;">
+                                @foreach($cmts as $cmt)
+                                    <div class="comment-container" style="padding: 20px 0 0 10px">
+                                        <div class="media forum-item">
+                                            <a href="javascript:void(0)" class="card-link">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
+                                                <small class="d-block text-center text-muted">Newbie</small>
+                                            </a>
+                                            <div class="media-body ml-3">
+                                                <a href="javascript:void(0)" class="text-secondary">{{ $cmt->user->name }}</a>
+                                                <small class="text-muted ml-2">{{ $blog->user->created_at }}</small>
+                                                <div class="mt-2 font-size-sm">
+                                                    {{ $cmt->comment }}
+                                                </div>
+
+                                                <div class="text-muted small" style="margin: 5px 0">
+                                                    <span style="margin: 0 5px"><i class="fa-solid fa-heart" style="color: #868e96;"></i> 10</span>
+                                                    <span><i class="far fa-comment ml-2"></i> 3</span>
+                                                    <span class="btn-reply" style="margin-left: 10px;cursor: pointer">Reply</span>
+                                                    <div class="comment-reply-div" style="position: relative;right: 45px;width: 790px;">
+                                                        <div  style="display: flex;padding-left: 10px;margin-top: 5px" >
+                                                            <a href="javascript:void(0)" class="card-link">
+                                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
+                                                                <small class="d-block text-center text-muted">Newbie</small>
+                                                            </a>
+                                                            <div class="media-body ml-3">
+                                                                <div class="form-group">
+                                                                    <form action="{{ url('blog/comment/reply',[$cmt->id,$blog->id]) }}" method="post">
+                                                                        @csrf
+                                                                        <textarea name="comment" id="comment" class="form-control" cols="20"
+                                                                                  rows="3" placeholder="Enter reply here..."></textarea>
+                                                                        <button type="submit" class="cmt-btn" style="float: right; margin-bottom: 10px">
+                                                                            Reply
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+
+                                        @if($cmt->parent_id == 0)
+                                            @php
+                                                $cmt_reply = \App\Models\CommentBlog::where("parent_id",$cmt->id)->get();
+                                            @endphp
+                                            @foreach($cmt_reply as $reply)
+                                                <div class="media forum-item" style="margin-top: 10px;padding-left: 30px">
+                                                    <a href="javascript:void(0)" class="card-link">
+                                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
+                                                        <small class="d-block text-center text-muted">Newbie</small>
+                                                    </a>
+                                                    <div class="media-body ml-3">
+                                                        <a href="javascript:void(0)" class="text-secondary">{{ $reply->user->name }}</a>
+                                                        <small class="text-muted ml-2">{{ $reply->user->created_at }}</small>
+                                                        <div class="mt-2 font-size-sm">
+                                                            {{ $reply->comment }}
+                                                        </div>
+
+                                                        <div class="text-muted small" style="margin: 5px 0">
+                                                            <span style="margin: 0 5px"><i class="fa-solid fa-heart" style="color: #868e96;"></i> 10</span>
+                                                            <span><i class="far fa-comment ml-2"></i> 3</span>
+                                                            <span class="btn-reply"  style="margin-left: 10px;cursor: pointer">Reply</span>
+                                                            <div class="comment-reply-div" style="position: relative;right: 55px;width: 770px;">
+                                                                <div  style="display: flex;padding-left: 20px;margin-top: 5px" >
+                                                                    <a href="javascript:void(0)" class="card-link">
+                                                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
+                                                                        <small class="d-block text-center text-muted">Newbie</small>
+                                                                    </a>
+                                                                    <div class="media-body ml-3">
+                                                                        <div class="form-group">
+                                                                            <form action="{{ url('blog/comment/reply/reply',[$reply->id,$blog->id]) }}" method="post">
+                                                                                @csrf
+                                                                                <textarea name="comment" id="comment" class="form-control" cols="20"
+                                                                                          rows="3" placeholder="Enter reply here..."></textarea>
+                                                                                <button type="submit" class="cmt-btn" style="float: right; margin-bottom: 10px">
+                                                                                    Reply
+                                                                                </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                @if($reply->parent_id > 0)
+                                                    @php
+                                                        $cmt_reply_reply = \App\Models\CommentBlog::where("parent_id",$reply->id)->get();
+                                                    @endphp
+                                                    @foreach($cmt_reply_reply as $reply_reply)
+                                                        <div class="media forum-item" style="margin-top: 10px;padding-left: 60px">
+                                                            <a href="javascript:void(0)" class="card-link">
+                                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
+                                                                <small class="d-block text-center text-muted">Newbie</small>
+                                                            </a>
+                                                            <div class="media-body ml-3">
+                                                                <a href="javascript:void(0)" class="text-secondary">{{ $reply_reply->user->name }}</a>
+                                                                <small class="text-muted ml-2">{{ $blog->user->created_at }}</small>
+                                                                <div class="mt-2 font-size-sm">
+                                                                    {{$reply_reply->comment}}
+                                                                </div>
+
+                                                                <div class="text-muted small" style="margin: 5px 0">
+                                                                    <span style="margin: 0 5px"><i class="fa-solid fa-heart" style="color: #868e96;"></i> 10</span>
+                                                                    <span><i class="far fa-comment ml-2"></i> 3</span>
+                                                                    <span class="btn-reply"  style="margin-left: 10px;cursor: pointer;">Reply</span>
+                                                                    <div class="comment-reply-div" style="position: relative;right: 85px;width: 770px;">
+                                                                        <div  style="display: flex;padding-left: 20px;margin-top: 5px" >
+                                                                            <a href="javascript:void(0)" class="card-link">
+                                                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
+                                                                                <small class="d-block text-center text-muted">Newbie</small>
+                                                                            </a>
+                                                                            <div class="media-body ml-3">
+                                                                                <div class="form-group">
+                                                                                    <form action="{{ url('blog/comment/reply/reply',[$reply->id,$blog->id]) }}" method="post">
+                                                                                        @csrf
+                                                                                        <textarea name="comment" id="comment" class="form-control" cols="20"
+                                                                                                  rows="3" placeholder="Enter reply here..."></textarea>
+                                                                                        <button type="submit" class="cmt-btn" style="float: right; margin-bottom: 10px">
+                                                                                            Reply
+                                                                                        </button>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    @endforeach
+                                                @endif
+
+
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        @else
+                            <h5 style="position: relative; top: 65px">Be the first to comment!</h5>
+                        @endif
                     </div>
-                    <div class="comments-area">
-                        <h4>05 Comments</h4>
-                        <div class="comment-list">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="assets/img/comment/comment_1.png" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <p class="comment">
-                                            Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                            Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                        </p>
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <h5>
-                                                    <a href="#">Emilly Blunt</a>
-                                                </h5>
-                                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                            </div>
-                                            <div class="reply-btn">
-                                                <a href="#" class="btn-reply text-uppercase">reply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                </div>
+
+
+
+                  {{--       sidebar         --}}
+                <div class="col-md-4 col-lg-3">
+                    <div class="sidebar2 p-t-80 p-b-80 p-l-20 p-l-0-md p-t-0-md">
+                        <!-- Search -->
+                        <div class="search-sidebar2 size12 bo2 pos-relative">
+                            <input class="input-search-sidebar2 txt10 p-l-20 p-r-55" type="text" name="search" placeholder="Search">
+                            <button class="btn-search-sidebar2 flex-c-m ti-search trans-0-4"></button>
                         </div>
-                        <div class="comment-list">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="assets/img/comment/comment_2.png" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <p class="comment">
-                                            Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                            Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                        </p>
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <h5>
-                                                    <a href="#">Emilly Blunt</a>
-                                                </h5>
-                                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                            </div>
-                                            <div class="reply-btn">
-                                                <a href="#" class="btn-reply text-uppercase">reply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                        <!-- Categories -->
+                        <div class="categories">
+                            <h4 class="txt33 bo5-b p-b-35 p-t-58">
+                                Categories
+                            </h4>
+
+                            <ul>
+                                @foreach($categories as $item)
+                                <li class="bo5-b p-t-8 p-b-8">
+                                    <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="txt27">
+                                        {{ $item->name }}
+                                    </a>
+                                </li>
+                                @endforeach
+
+                            </ul>
                         </div>
-                        <div class="comment-list">
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="assets/img/comment/comment_3.png" alt="">
+
+                        <!-- Most Popular -->
+                        <div class="popular">
+                            <h4 class="txt33 p-b-35 p-t-58">
+                                Most popular
+                            </h4>
+
+                            <ul>
+                                @foreach($blog_popular as $item)
+                                <li class="flex-w m-b-25">
+                                    <div class="size16 bo-rad-10 wrap-pic-w of-hidden m-r-18">
+                                        <a href="{{ url("blog/single",["blog"=>$item->slug]) }}">
+                                            <img src="{{ $item->thumbnail }}" style="width: 70px;height: 70px" alt="IMG-BLOG">
+                                        </a>
                                     </div>
-                                    <div class="desc">
-                                        <p class="comment">
-                                            Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                            Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                        </p>
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <h5>
-                                                    <a href="#">Emilly Blunt</a>
-                                                </h5>
-                                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                            </div>
-                                            <div class="reply-btn">
-                                                <a href="#" class="btn-reply text-uppercase">reply</a>
-                                            </div>
-                                        </div>
+
+                                    <div class="size28">
+                                        <a href="{{ url("blog/single",["blog"=>$item->slug]) }}" class="dis-block txt28 m-b-8">
+                                            {{ $item->title }}
+                                        </a>
+
+                                        <span class="txt14">
+											{{ date('m D, Y', strtotime($item->user->created_at)) }}
+										</span>
                                     </div>
-                                </div>
-                            </div>
+                                </li>
+                                @endforeach
+                            </ul>
                         </div>
-                    </div>
-                    <div class="comment-form">
-                        <h4>Leave a Reply</h4>
-                        <form class="form-contact comment_form" action="#" id="commentForm">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-                                        placeholder="Write Comment"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control" name="name" id="name" type="text" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control" name="email" id="email" type="email" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input class="form-control" name="website" id="website" type="text" placeholder="Website">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
-                            </div>
-                        </form>
+
+                        <!-- Archive -->
+                        <div class="archive">
+                            <h4 class="txt33 p-b-20 p-t-43">
+                                Tags
+                            </h4>
+
+                            <ul>
+                                @foreach($tags as $item)
+                                <li class="flex-sb-m p-t-8 p-b-8">
+                                    <a href="{{ url("blog/tag",["tag"=>$item->slug]) }}" class="txt27">
+                                        {{ $item->name }}
+                                    </a>
+
+                                    <span class="txt29">
+										({{ count($item->blog) }})
+									</span>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                @include("user.layouts.sidebar")
+                  {{--       endsidebar         --}}
             </div>
         </div>
     </section>
+@endsection
 
-    <div class="weekly3-news-area pt-80 pb-130">
-        <div class="container">
-            <div class="weekly3-wrapper">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="slider-wrapper">
-                            <!-- Slider -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="weekly3-news-active dot-style d-flex">
-                                        @foreach($posts_trending as $item)
-                                            <div class="weekly3-single">
-                                                <div class="weekly3-img">
-                                                    <img src="{{ $item->thumbnail }}" style="width: 270px;height: 173px" alt="">
-                                                </div>
-                                                <div class="weekly3-caption">
-                                                    <h4><a href="latest_news.html">{{ $item->title }}</a></h4>
-                                                    <p>{{ $item->created_at->toDateString() }}</p>
-                                                </div>
-                                            </div>
-                                        @endforeach
+@section("after_js")
+    <script>
+        $('.comment-reply-div').hide();
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+        $(document).ready(function () {
+            $('.btn-reply').click(function () {
+                $(this).siblings('.comment-reply-div').toggle('swing');
+                // $('.comment-reply-div').toggle('swing');
+            });
+        });
+    </script>
+    <script>
+        $('html, body').animate({
+            scrollTop: $("#comment-section").offset().top
+        }, 2000);
+    </script>
 @endsection

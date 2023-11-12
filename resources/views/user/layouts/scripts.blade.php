@@ -1,40 +1,28 @@
-<!-- All JS Custom Plugins Link Here here -->
-<script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
-<!-- Jquery, Popper, Bootstrap -->
-<script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<!-- Jquery Mobile Menu -->
-<script src="assets/js/jquery.slicknav.min.js"></script>
-
-<!-- Jquery Slick , Owl-Carousel Plugins -->
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/slick.min.js"></script>
-<!-- Date Picker -->
-<script src="assets/js/gijgo.min.js"></script>
-<!-- One Page, Animated-HeadLin -->
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/animated.headline.js"></script>
-<script src="assets/js/jquery.magnific-popup.js"></script>
-
-<!-- Breaking New Pluging -->
-<script src="assets/js/jquery.ticker.js"></script>
-<script src="assets/js/site.js"></script>
-
-<!-- Scrollup, nice-select, sticky -->
-<script src="assets/js/jquery.scrollUp.min.js"></script>
-<script src="assets/js/jquery.nice-select.min.js"></script>
-<script src="assets/js/jquery.sticky.js"></script>
-
-<!-- contact js -->
-<script src="assets/js/contact.js"></script>
-<script src="assets/js/jquery.form.js"></script>
-<script src="assets/js/jquery.validate.min.js"></script>
-<script src="assets/js/mail-script.js"></script>
-<script src="assets/js/jquery.ajaxchimp.min.js"></script>
-
-<!-- Jquery Plugins, main Jquery -->
-<script src="./assets/js/plugins.js"></script>
-<script src="./assets/js/main.js"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!--===============================================================================================-->
+<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="vendor/bootstrap/js/popper.min.js"></script>
+<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="vendor/slick/slick.min.js"></script>
+<script type="text/javascript" src="js/slick-custom.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="vendor/parallax100/parallax100.js"></script>
+<script type="text/javascript">
+    $('.parallax100').parallax100();
+</script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="vendor/lightbox2/js/lightbox.min.js"></script>
+<!--===============================================================================================-->
+<script src="js/main.js"></script>
 

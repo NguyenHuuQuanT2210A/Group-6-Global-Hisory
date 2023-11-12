@@ -1,35 +1,28 @@
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="assets/css/ticker-style.css">
-<link rel="stylesheet" href="assets/css/flaticon.css">
-<link rel="stylesheet" href="assets/css/slicknav.css">
-<link rel="stylesheet" href="assets/css/animate.min.css">
-<link rel="stylesheet" href="assets/css/magnific-popup.css">
-<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-<link rel="stylesheet" href="assets/css/themify-icons.css">
-<link rel="stylesheet" href="assets/css/slick.css">
-<link rel="stylesheet" href="assets/css/nice-select.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/responsive.css">
-
-
-
-{{--<link href="css/nav.css" rel="stylesheet" type="text/css"/>--}}
-{{--<style>--}}
-{{--    body a{--}}
-{{--        /*color: #fff;*/--}}
-{{--        text-decoration: none--}}
-{{--    }--}}
-{{--    .login a{--}}
-{{--        float:right;--}}
-{{--        text-decoration: none;--}}
-{{--        color: black;--}}
-{{--        padding-left: 20px;--}}
-{{--        font-size: 15px;--}}
-{{--    }--}}
-
-{{--</style>--}}
-
-{{--<link href="css/event.css" rel="stylesheet" type="text/css"/>--}}
-
-{{--<link href="css/about.css" rel="stylesheet" type="text/css"/>--}}
+<!--===============================================================================================-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="fonts/themify/themify-icons.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/lightbox2/css/lightbox.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->

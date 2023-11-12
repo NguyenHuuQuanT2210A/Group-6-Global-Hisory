@@ -1,79 +1,204 @@
-<!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href={{ url("admin/homeadmin") }} class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+<!-- START SIDEBAR-->
+<nav class="page-sidebar" id="sidebar">
+    <div id="sidebar-collapse">
+        <div class="admin-block d-flex">
+            <div>
+                <img src="./assets/img/admin-avatar.png" width="45px" />
             </div>
-            <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
-            </div>
+            <div class="admin-info">
+                <div class="font-strong">James Brown</div><small>Administrator</small></div>
         </div>
+        <ul class="side-menu metismenu">
+            <li>
+                <a href="index.html"><i class="sidebar-item-icon fa fa-th-large"></i>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+            </li>
+            <li class="heading">FEATURES</li>
+            <li class="active">
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
+                    <span class="nav-label">Basic UI</span><i class="fa fa-angle-left arrow"></i></a>
+                <ul class="nav-2-level collapse in">
+                    <li>
+                        <a href="html.dist.colors.html">Colors</a>
+                    </li>
+                    <li>
+                        <a href="typography.html">Typography</a>
+                    </li>
+                    <li>
+                        <a href="panels.html">Panels</a>
+                    </li>
+                    <li>
+                        <a href="buttons.html">Buttons</a>
+                    </li>
+                    <li>
+                        <a href="tabs.html">Tabs</a>
+                    </li>
+                    <li>
+                        <a href="alerts_tooltips.html">Alerts &amp; Tooltips</a>
+                    </li>
+                    <li>
+                        <a href="badges_progress.html">Badges &amp; Progress</a>
+                    </li>
+                    <li>
+                        <a href="lists.html">List</a>
+                    </li>
+                    <li>
+                        <a class="active" href="cards.html">Card</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-edit"></i>
+                    <span class="nav-label">Forms</span><i class="fa fa-angle-left arrow"></i></a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="form_basic.html">Basic Forms</a>
+                    </li>
+                    <li>
+                        <a href="form_advanced.html">Advanced Plugins</a>
+                    </li>
+                    <li>
+                        <a href="form_masks.html">Form input masks</a>
+                    </li>
+                    <li>
+                        <a href="form_validation.html">Form Validation</a>
+                    </li>
+                    <li>
+                        <a href="text_editors.html">Text Editors</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-table"></i>
+                    <span class="nav-label">Tables</span><i class="fa fa-angle-left arrow"></i></a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="table_basic.html">Basic Tables</a>
+                    </li>
+                    <li>
+                        <a href="{{ url("admin/category/") }}">Category</a>
+                    </li>
+                    <li>
+                        <a href="{{ url("admin/tag/") }}">Tag</a>
+                    </li>
+                    <li>
+                        <a href="{{ url("admin/post/") }}">Post</a>
+                    </li>
+                    <li>
+                        <a href="{{ url("admin/blog/") }}">Blog</a>
+                    </li>
+                    <li>
+                        <a href="{{ url("admin/event/") }}">Event</a>
+                    </li>
 
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open">
-                    <a href="{{url("/admin/dashboard")}}" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-
-                </li>
-                <li class="nav-item">
-                    <a href="{{url("admin/user")}}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Users
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url("admin/category/")}}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Category
-                        </p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{{url("admin/post/")}}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Category
-                        </p>
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-bar-chart"></i>
+                    <span class="nav-label">Charts</span><i class="fa fa-angle-left arrow"></i></a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="charts_flot.html">Flot Charts</a>
+                    </li>
+                    <li>
+                        <a href="charts_morris.html">Morris Charts</a>
+                    </li>
+                    <li>
+                        <a href="chartjs.html">Chart.js</a>
+                    </li>
+                    <li>
+                        <a href="charts_sparkline.html">Sparkline Charts</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-map"></i>
+                    <span class="nav-label">Maps</span><i class="fa fa-angle-left arrow"></i></a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="maps_vector.html">Vector maps</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="icons.html"><i class="sidebar-item-icon fa fa-smile-o"></i>
+                    <span class="nav-label">Icons</span>
+                </a>
+            </li>
+            <li class="heading">PAGES</li>
+            <li>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-envelope"></i>
+                    <span class="nav-label">Mailbox</span><i class="fa fa-angle-left arrow"></i></a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="mailbox.html">Inbox</a>
+                    </li>
+                    <li>
+                        <a href="mail_view.html">Mail view</a>
+                    </li>
+                    <li>
+                        <a href="mail_compose.html">Compose mail</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="calendar.html"><i class="sidebar-item-icon fa fa-calendar"></i>
+                    <span class="nav-label">Calendar</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-file-text"></i>
+                    <span class="nav-label">Pages</span><i class="fa fa-angle-left arrow"></i></a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="invoice.html">Invoice</a>
+                    </li>
+                    <li>
+                        <a href="profile.html">Profile</a>
+                    </li>
+                    <li>
+                        <a href="login.html">Login</a>
+                    </li>
+                    <li>
+                        <a href="register.html">Register</a>
+                    </li>
+                    <li>
+                        <a href="lockscreen.html">Lockscreen</a>
+                    </li>
+                    <li>
+                        <a href="forgot_password.html">Forgot password</a>
+                    </li>
+                    <li>
+                        <a href="error_404.html">404 error</a>
+                    </li>
+                    <li>
+                        <a href="error_500.html">500 error</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-sitemap"></i>
+                    <span class="nav-label">Menu Levels</span><i class="fa fa-angle-left arrow"></i></a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="javascript:;">Level 2</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <span class="nav-label">Level 2</span><i class="fa fa-angle-left arrow"></i></a>
+                        <ul class="nav-3-level collapse">
+                            <li>
+                                <a href="javascript:;">Level 3</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Level 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
-    <!-- /.sidebar -->
-</aside>
+</nav>
+<!-- END SIDEBAR-->
