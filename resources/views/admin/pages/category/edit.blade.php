@@ -1,25 +1,38 @@
 @extends("admin.layouts.app")
 @section("content")
-    <div class="card card-primary">
-        <div class="card-header">
-            <h3 class="card-title">Quick Example</h3>
+        <div class="page-heading">
+            <h1 class="page-title">DataTables</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="index.html"><i class="la la-home font-20"></i></a>
+                </li>
+                <li class="breadcrumb-item">DataTables</li>
+            </ol>
         </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="{{url("admin/category/edit",['category'=>$category->id])}}" method="post" enctype="multipart/form-data">
-            @csrf
-            @method("PUT")
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="category">Name</label>
-                    <input type="text" name="name" value="{{$category->name}}" class="form-control"  placeholder="Enter Name" required>
+        <div class="page-content fade-in-up">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Edit</div>
                 </div>
+                <div class="ibox-body">
+                    <form action="{{url("admin/category/edit",['category'=>$category->id])}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method("PUT")
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="category">Name</label>
+                                <input type="text" name="name" value="{{$category->name}}" class="form-control"  placeholder="Enter Name" required>
+                            </div>
 
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button style="cursor: pointer" type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Sửa category</button>
-            </div>
-        </form>
-    </div>
+        </div>
+
+
 @endsection
