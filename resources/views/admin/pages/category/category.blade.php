@@ -47,7 +47,7 @@
                                 <form action="{{url("admin/category/delete",['category'=>$item->id])}}" method="POST">
                                     @csrf
                                     @method("DELETE")
-                                    <button onclick="return confirm('Chắc chắn muốn xoá Category này? ' +
+                                    <button style="cursor: pointer" onclick="return confirm('Chắc chắn muốn xoá Category này? ' +
                                          'Nếu bạn xóa sẽ bị mất hết dữ liệu liên quan đến Category này, bạn vẫn đồng ý chứ?' +
                                           ' {{$item->name}}')" class="btn btn-outline-danger" type="submit">
                                         Delete</button>

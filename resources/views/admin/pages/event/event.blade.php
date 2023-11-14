@@ -16,7 +16,7 @@
     <div class="page-content fade-in-up">
         <div class="ibox">
             <div class="ibox-head">
-                <div class="ibox-title">Data Table</div>
+                <div class="ibox-title"><a href="{{ url("admin/event/create") }}">Create New Event</a></div>
             </div>
             <div class="ibox-body">
                 <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
@@ -53,7 +53,7 @@
                         <tr>
                             <td>{{$item->name}}</td>
                             <td><img width="100" src="{{$item->thumbnail}}" /></td>
-                            <td>{{$item->date_from}}</td>
+                            <td>{!! $item->date_from !!}</td>
                             <td>{{$item->date_to}}</td>
                             <td>{{$item->view_count}}</td>
                             <td>{{$item->qty}}</td>
@@ -61,11 +61,11 @@
                             <td>{!! $item->getStatus() !!}</td>
                             <td>{{$item->address}}</td>
                             <td>
-                                <a href="{{url("admin/event/edit",['event'=>$item->id])}}" class="btn btn-outline-info">Sửa</a>
+                                <a href="{{url("admin/event/edit",['event'=>$item->id])}}" class="btn btn-outline-info">Edit</a>
                                 <form action="{{url("admin/event/delete",['event'=>$item->id])}}" method="POST">
                                     @csrf
                                     @method("DELETE")
-                                    <button onclick="return confirm('Chắc chắn muốn xoá Event này?: {{$item->name}}')" class="btn btn-outline-danger" type="submit">Delete</button>
+                                    <button style="cursor: pointer" onclick="return confirm('Chắc chắn muốn xoá Event này?: {{$item->name}}')" class="btn btn-outline-danger" type="submit">Delete</button>
                                 </form>
                             </td>
 
