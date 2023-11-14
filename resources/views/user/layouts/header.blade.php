@@ -1,3 +1,4 @@
+
 <!-- Header -->
 <header>
     <!-- Header desktop -->
@@ -67,6 +68,41 @@
                         <a href="{{ route("login") }}" style="margin-right: 12px;"><i class="fa fa-user" ></i> Login</a>
                         <a href="{{ route("register") }}"><i class="fa fa-user"></i> Register</a>
                     @endguest
+
+{{--                        <img src="images/avatar-01.jpg" class="user-pic" onclick="toggleMenu()">--}}
+{{--                        <div class="sub-menu-wrap" id="subMenu">--}}
+{{--                            <div class="sub-menu">--}}
+{{--                                <div class="user-info">--}}
+{{--                                    <img src="images/avatar-01.jpg">--}}
+{{--                                    <h3> User1 </h3>--}}
+{{--                                </div>--}}
+{{--                                <hr>--}}
+
+{{--                                <a href="#" class="sub-menu-link">--}}
+{{--                                    <img src="images/avatar-01.jpg">--}}
+{{--                                    <p>Edit Profile</p>--}}
+{{--                                    <span> > </span>--}}
+{{--                                </a>--}}
+
+{{--                                <a href="#" class="sub-menu-link">--}}
+{{--                                    <img src="images/setting.png">--}}
+{{--                                    <p>Settings and Privacy</p>--}}
+{{--                                    <span> > </span>--}}
+{{--                                </a>--}}
+
+{{--                                <a href="#" class="sub-menu-link">--}}
+{{--                                    <img src="images/help.png">--}}
+{{--                                    <p>Help & Support</p>--}}
+{{--                                    <span> > </span>--}}
+{{--                                </a>--}}
+
+{{--                                <a href="#" class="sub-menu-link">--}}
+{{--                                    <img src="images/logout.png">--}}
+{{--                                    <p>Logout</p>--}}
+{{--                                    <span> > </span>--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                 </div>
                 <!-- Sidebar -->
                 <aside class="sidebar trans-0-4">
@@ -98,11 +134,8 @@
                         <li class="t-center m-b-33">
                             <a href="contact.html" class="txt19">Contact</a>
                         </li>
-
-
-
-
-
+                    </ul>
+                </aside>
             </div>
 
         </div>

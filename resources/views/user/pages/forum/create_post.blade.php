@@ -24,7 +24,7 @@
         }
     </style>
 
-{{--    <script async charset="utf-8" src="https://cdn.embedly.com/widgets/platform.js"></script>--}}
+    <script async charset="utf-8" src="https://cdn.embedly.com/widgets/platform.js"></script>
 
     <!-- Bootstrap 5 CDN Link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -63,7 +63,7 @@
                                 <div class="input-group-icon mt-10">
 {{--                                    <div class="form-select" id="default-select">--}}
                                         <select name="category_id" class="form-select" id="default-select">
-                                            <option value="">Category</option>
+
                                             @foreach($categories as $item)
                                                 <option @if($item->id==old("category_id")) selected
                                                         @endif value="{{$item->id}}">{{$item->name}}</option>
@@ -79,7 +79,7 @@
                                 <div class="input-group-icon mt-10">
 {{--                                    <div class="form-select" id="default-select">--}}
                                         <select class="select2Tags form-select initial-width" id="default-select" multiple="multiple" name="tag_id[]">
-                                            <option value="">Tag</option>
+
                                             @foreach($tags as $tag)
                                                 <option @if($tag->name==old("tag_id")) selected="selected"
                                                         @endif value="{{$tag->name}}">{{$tag->name}}</option>
@@ -117,10 +117,17 @@
             width: "100%" // just for stack-snippet to show properly
         });
         $(".initial-width").next(".select2-container").find(".select2-selection").css("border-radius", "10px");
+        // $(".initial-width").next(".select2-container").find(".select2-selection").css("width", "750px");
+        //
+        // $(".select2Category").select2({
+        //     tags: true,
+        // });
+        // $(".select2Category").next(".select2-container").find(".select2-selection").css("width", "750px");
+        // $(".select2Category").next(".select2-container").find(".select2-selection").css("height", "30px");
+        // $(".select2Category").next(".select2-container").find(".select2-selection").css("border-radius", "0");
     });
-
 </script>
-
+lllllllllll
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 

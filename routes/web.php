@@ -10,6 +10,7 @@ use \App\Http\Controllers\EventController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LikeBlogController;
 use App\Http\Controllers\CommentBlogController;
+use \App\Http\Controllers\LikeCommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +42,7 @@ Route::prefix("forum")->group(function (){
         Route::post('/comment/reply/reply/{comment}/{post}',[CommentController::class,"postCommentReply"]);
         Route::delete('/comment/reply/delete/{comment}',[CommentController::class,"deleteCommentReply"]);
         Route::get('/post/like/{post}',[LikeController::class,"likePost"]);
+        Route::get('/post/comment/like/{post}/{comment}',[LikeCommentController::class,"likeCommentPost"]);
     });
 });
 
