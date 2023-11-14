@@ -86,14 +86,13 @@
 									</span>
 
                                     <span>
-{{--										{{ $event->category->name }}, {{ $event->tag->name }}--}}
-                                        lalala
+										{{ $event->category->name }}, {{ $event->tag->name }}
 										<span class="m-r-6 m-l-4">|</span>
 									</span>
 
-                                    <span>
-										8 Comments
-									</span>
+{{--                                    <span>--}}
+{{--										8 Comments--}}
+{{--									</span>--}}
                                 </div>
 
                                 <div style="padding-bottom: 20px;margin-bottom: 20px;border-bottom: 1px solid #B9B9B9">

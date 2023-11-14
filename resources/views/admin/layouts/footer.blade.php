@@ -1,7 +1,5 @@
-<footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.2.0
-    </div>
+<footer class="page-footer">
+    <div class="font-13">2018 © <b>AdminCAST</b> - All rights reserved.</div>
+    <a class="px-4" href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589" target="_blank">BUY PREMIUM</a>
+    <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
 </footer>

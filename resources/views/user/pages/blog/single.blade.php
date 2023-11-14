@@ -193,7 +193,7 @@
 
                                                 <div class="text-muted small" style="margin: 5px 0">
                                                     <span style="margin: 0 5px"><i class="fa-solid fa-heart" style="color: #868e96;"></i> 10</span>
-                                                    <span><i class="far fa-comment ml-2"></i> 3</span>
+{{--                                                    <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                     <span class="btn-reply" style="margin-left: 10px;cursor: pointer">Reply</span>
                                                     <div class="comment-reply-div" style="position: relative;right: 45px;width: 790px;">
                                                         <div  style="display: flex;padding-left: 10px;margin-top: 5px" >
@@ -242,7 +242,7 @@
 
                                                         <div class="text-muted small" style="margin: 5px 0">
                                                             <span style="margin: 0 5px"><i class="fa-solid fa-heart" style="color: #868e96;"></i> 10</span>
-                                                            <span><i class="far fa-comment ml-2"></i> 3</span>
+{{--                                                            <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                             <span class="btn-reply"  style="margin-left: 10px;cursor: pointer">Reply</span>
                                                             <div class="comment-reply-div" style="position: relative;right: 55px;width: 770px;">
                                                                 <div  style="display: flex;padding-left: 20px;margin-top: 5px" >
@@ -290,7 +290,7 @@
 
                                                                 <div class="text-muted small" style="margin: 5px 0">
                                                                     <span style="margin: 0 5px"><i class="fa-solid fa-heart" style="color: #868e96;"></i> 10</span>
-                                                                    <span><i class="far fa-comment ml-2"></i> 3</span>
+{{--                                                                    <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                                     <span class="btn-reply"  style="margin-left: 10px;cursor: pointer;">Reply</span>
                                                                     <div class="comment-reply-div" style="position: relative;right: 85px;width: 770px;">
                                                                         <div  style="display: flex;padding-left: 20px;margin-top: 5px" >

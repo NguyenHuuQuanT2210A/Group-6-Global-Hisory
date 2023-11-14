@@ -67,7 +67,6 @@
     </style>
 @endsection
 
-
 @section("content")
 
     <!-- Title Page -->
@@ -80,11 +79,9 @@
     <div class="container" style="margin-top: 100px; margin-bottom: 100px; max-width: 1250px;">
         <div class="main-body p-0">
             <div class="inner-wrapper">
-
                 <div class="single-post" style="width: 820px">
                     <!-- Forum Detail -->
                     <div class="inner-main-body p-2 p-sm-3">
-
                         <div class="card mb-2">
                             <div class="card-body">
                                 <div class="media forum-item">
@@ -111,16 +108,23 @@
                                         <div class="text-muted small" style="position: relative;display: flex">
                                             <div style="position: absolute;left: 0">
                                             <span style="margin: 0 5px">
-
                                                 <a href="{{ url("forum/post/like",["post"=>$post->id]) }}">
+                                                    @php
+                                                        $you_like = false;
+                                                    @endphp
+                                                    @foreach($likes as $item)
+                                                        @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id == $item->user_id)
+                                                            @php
+                                                                $you_like = true;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
                                                     @if(count($likes) > 0)
-                                                    @foreach($likes as $like)
-                                                    @if(\Illuminate\Support\Facades\Auth::check()  && $like->user->id == \Illuminate\Support\Facades\Auth::user()->id)
+                                                        @if($you_like)
                                                             <i class="fa-solid fa-heart" style="color: red;"></i>
                                                         @else
                                                             <i class="fa-solid fa-heart" style="color: #868e96;"></i>
-                                                    @endif
-                                                    @endforeach
+                                                        @endif
                                                     @else
                                                         <i class="fa-solid fa-heart" style="color: #868e96;"></i>
                                                     @endif
@@ -181,8 +185,39 @@
                                                 </div>
 
                                                 <div class="text-muted small" style="margin: 5px 0">
-                                                    <span style="margin: 0 5px"><i class="fa-solid fa-heart" style="color: #868e96;"></i> 10</span>
-                                                    <span><i class="far fa-comment ml-2"></i> 3</span>
+                                                    <span style="margin: 0 5px">
+
+                                                        @php
+                                                            $like_cmts = \App\Models\LikeComment::where('like_cmt_post',1)->where("post_id",$post->id)->where("comment_id",$cmt->id)->get();
+                                                        @endphp
+
+                                                        <a href="{{ url("forum/post/comment/like",["post"=>$post->id,"comment"=>$cmt->id]) }}">
+                                                            @php
+                                                                $you_like_cmt = false;
+                                                            @endphp
+                                                            @foreach($like_cmts as $like_cmt)
+                                                                @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id == $like_cmt->user_id)
+                                                                    @php
+                                                                        $you_like_cmt = true;
+                                                                    @endphp
+                                                                @endif
+                                                            @endforeach
+
+                                                    @if(count($like_cmts) > 0)
+                                                                @if($you_like_cmt)
+                                                                    <i class="fa-solid fa-heart" style="color: red;"></i>
+                                                                @else
+                                                                    <i class="fa-solid fa-heart" style="color: #868e96;"></i>
+                                                                @endif
+                                                            @else
+                                                                <i class="fa-solid fa-heart" style="color: #868e96;"></i>
+                                                            @endif
+                                                </a>
+
+                                                {{ count($like_cmts) }}
+
+                                                    </span>
+{{--                                                    <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                     <span class="btn-reply" style="margin-left: 10px;cursor: pointer">Reply</span>
                                                     <div class="comment-reply-div" style="position: relative;right: 45px;width: 665px;">
                                                         <div  style="display: flex;padding-left: 10px;margin-top: 5px" >
@@ -230,8 +265,36 @@
                                                 </div>
 
                                                 <div class="text-muted small" style="margin: 5px 0">
-                                                    <span style="margin: 0 5px"><i class="fa-solid fa-heart" style="color: #868e96;"></i> 10</span>
-                                                    <span><i class="far fa-comment ml-2"></i> 3</span>
+                                                    <span style="margin: 0 5px">
+                                                        @php
+                                                            $like_cmt_replies = \App\Models\LikeComment::where('like_cmt_post',1)->where("post_id",$post->id)->where("comment_id",$reply->id)->get();
+                                                        @endphp
+
+                                                        <a href="{{ url("forum/post/comment/like",["post"=>$post->id,"comment"=>$reply->id]) }}">
+                                                             @php
+                                                                 $you_like_cmt_reply = false;
+                                                             @endphp
+                                                            @foreach($like_cmt_replies as $like_cmt_reply)
+                                                                @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id == $like_cmt_reply->user_id)
+                                                                    @php
+                                                                        $you_like_cmt_reply = true;
+                                                                    @endphp
+                                                                @endif
+                                                            @endforeach
+                                                            @if(count($like_cmt_replies) > 0)
+                                                                @if($you_like_cmt_reply)
+                                                                    <i class="fa-solid fa-heart" style="color: red;"></i>
+                                                                @else
+                                                                    <i class="fa-solid fa-heart" style="color: #868e96;"></i>
+                                                                @endif
+                                                            @else
+                                                                <i class="fa-solid fa-heart" style="color: #868e96;"></i>
+                                                            @endif
+                                                </a>
+
+                                                {{ count($like_cmt_replies) }}
+                                                    </span>
+{{--                                                    <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                     <span class="btn-reply"  style="margin-left: 10px;cursor: pointer">Reply</span>
                                                     <div class="comment-reply-div" style="position: relative;right: 55px;width: 645px;">
                                                         <div  style="display: flex;padding-left: 20px;margin-top: 5px" >
@@ -278,8 +341,36 @@
                                                 </div>
 
                                                 <div class="text-muted small" style="margin: 5px 0">
-                                                    <span style="margin: 0 5px"><i class="fa-solid fa-heart" style="color: #868e96;"></i> 10</span>
-                                                    <span><i class="far fa-comment ml-2"></i> 3</span>
+                                                    <span style="margin: 0 5px">
+                                                        @php
+                                                            $like_cmt_reply_replies = \App\Models\LikeComment::where('like_cmt_post',1)->where("post_id",$post->id)->where("comment_id",$reply_reply->id)->get();
+                                                        @endphp
+
+                                                        <a href="{{ url("forum/post/comment/like",["post"=>$post->id,"comment"=>$reply_reply->id]) }}">
+                                                            @php
+                                                                $you_like_cmt_reply_reply = false;
+                                                            @endphp
+                                                            @foreach($like_cmt_reply_replies as $like_cmt_reply_reply)
+                                                                @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id == $like_cmt_reply_reply->user_id)
+                                                                    @php
+                                                                        $you_like_cmt_reply_reply = true;
+                                                                    @endphp
+                                                                @endif
+                                                            @endforeach
+                                                            @if(count($like_cmt_reply_replies) > 0)
+                                                                @if($you_like_cmt_reply_reply)
+                                                                    <i class="fa-solid fa-heart" style="color: red;"></i>
+                                                                @else
+                                                                    <i class="fa-solid fa-heart" style="color: #868e96;"></i>
+                                                                @endif
+                                                            @else
+                                                                <i class="fa-solid fa-heart" style="color: #868e96;"></i>
+                                                            @endif
+                                                </a>
+
+                                                {{ count($like_cmt_reply_replies) }}
+                                                    </span>
+{{--                                                    <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                     <span class="btn-reply"  style="margin-left: 10px;cursor: pointer;">Reply</span>
                                                     <div class="comment-reply-div" style="position: relative;right: 55px;width: 615px;">
                                                         <div  style="display: flex;padding-left: 20px;margin-top: 5px" >

@@ -110,35 +110,14 @@
                             </h4>
 
                             <ul>
-                                <li class="bo5-b p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        Cooking recipe
-                                    </a>
-                                </li>
+                                @foreach($categories as $item)
+                                    <li class="bo5-b p-t-8 p-b-8">
+                                        <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="txt27">
+                                            {{ $item->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
 
-                                <li class="bo5-b p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        Delicious foods
-                                    </a>
-                                </li>
-
-                                <li class="bo5-b p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        Events Design
-                                    </a>
-                                </li>
-
-                                <li class="bo5-b p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        Restaurant Place
-                                    </a>
-                                </li>
-
-                                <li class="bo5-b p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        WordPress
-                                    </a>
-                                </li>
                             </ul>
                         </div>
 
@@ -149,95 +128,25 @@
                             </h4>
 
                             <ul>
-                                <li class="flex-w m-b-25">
-                                    <div class="size16 bo-rad-10 wrap-pic-w of-hidden m-r-18">
-                                        <a href="#">
-                                            <img src="images/blog-11.jpg" alt="IMG-BLOG">
-                                        </a>
-                                    </div>
+                                @foreach($blog_popular as $item)
+                                    <li class="flex-w m-b-25">
+                                        <div class="size16 bo-rad-10 wrap-pic-w of-hidden m-r-18">
+                                            <a href="{{ url("blog/single",["blog"=>$item->slug]) }}">
+                                                <img src="{{ $item->thumbnail }}" style="width: 70px;height: 70px" alt="IMG-BLOG">
+                                            </a>
+                                        </div>
 
-                                    <div class="size28">
-                                        <a href="#" class="dis-block txt28 m-b-8">
-                                            Best Places for Wine
-                                        </a>
+                                        <div class="size28">
+                                            <a href="{{ url("blog/single",["blog"=>$item->slug]) }}" class="dis-block txt28 m-b-8">
+                                                {{ $item->title }}
+                                            </a>
 
-                                        <span class="txt14">
-											3 days ago
+                                            <span class="txt14">
+											{{ date('m D, Y', strtotime($item->user->created_at)) }}
 										</span>
-                                    </div>
-                                </li>
-
-                                <li class="flex-w m-b-25">
-                                    <div class="size16 bo-rad-10 wrap-pic-w of-hidden m-r-18">
-                                        <a href="#">
-                                            <img src="images/blog-12.jpg" alt="IMG-BLOG">
-                                        </a>
-                                    </div>
-
-                                    <div class="size28">
-                                        <a href="#" class="dis-block txt28 m-b-8">
-                                            Eggs and Cheese
-                                        </a>
-
-                                        <span class="txt14">
-											July 2, 2017
-										</span>
-                                    </div>
-                                </li>
-
-                                <li class="flex-w m-b-25">
-                                    <div class="size16 bo-rad-10 wrap-pic-w of-hidden m-r-18">
-                                        <a href="#">
-                                            <img src="images/blog-13.jpg" alt="IMG-BLOG">
-                                        </a>
-                                    </div>
-
-                                    <div class="size28">
-                                        <a href="#" class="dis-block txt28 m-b-8">
-                                            Style the Wedding Party
-                                        </a>
-
-                                        <span class="txt14">
-											May 28, 2017
-										</span>
-                                    </div>
-                                </li>
-
-                                <li class="flex-w m-b-25">
-                                    <div class="size16 bo-rad-10 wrap-pic-w of-hidden m-r-18">
-                                        <a href="#">
-                                            <img src="images/blog-14.jpg" alt="IMG-BLOG">
-                                        </a>
-                                    </div>
-
-                                    <div class="size28">
-                                        <a href="#" class="dis-block txt28 m-b-8">
-                                            Cooking recipe Delicious
-                                        </a>
-
-                                        <span class="txt14">
-											May 25, 2017
-										</span>
-                                    </div>
-                                </li>
-
-                                <li class="flex-w m-b-25">
-                                    <div class="size16 bo-rad-10 wrap-pic-w of-hidden m-r-18">
-                                        <a href="#">
-                                            <img src="images/blog-15.jpg" alt="IMG-BLOG">
-                                        </a>
-                                    </div>
-
-                                    <div class="size28">
-                                        <a href="#" class="dis-block txt28 m-b-8">
-                                            Pizza is prepared fresh
-                                        </a>
-
-                                        <span class="txt14">
-											May 2, 2017
-										</span>
-                                    </div>
-                                </li>
+                                        </div>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
 
@@ -245,89 +154,22 @@
                         <!-- Archive -->
                         <div class="archive">
                             <h4 class="txt33 p-b-20 p-t-43">
-                                Archive
+                                Tags
                             </h4>
 
                             <ul>
-                                <li class="flex-sb-m p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        uly 2018
-                                    </a>
+                                @foreach($tags as $item)
+                                    <li class="flex-sb-m p-t-8 p-b-8">
+                                        <a href="{{ url("blog/tag",["tag"=>$item->slug]) }}" class="txt27">
+                                            {{ $item->name }}
+                                        </a>
 
-                                    <span class="txt29">
-										(9)
+                                        <span class="txt29">
+										({{ count($item->blog) }})
 									</span>
-                                </li>
+                                    </li>
+                                @endforeach
 
-                                <li class="flex-sb-m p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        June 2018
-                                    </a>
-
-                                    <span class="txt29">
-										(39)
-									</span>
-                                </li>
-
-                                <li class="flex-sb-m p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        May 2018
-                                    </a>
-
-                                    <span class="txt29">
-										(29)
-									</span>
-                                </li>
-
-                                <li class="flex-sb-m p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        April  2018
-                                    </a>
-
-                                    <span class="txt29">
-										(35)
-									</span>
-                                </li>
-
-                                <li class="flex-sb-m p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        March 2018
-                                    </a>
-
-                                    <span class="txt29">
-										(22)
-									</span>
-                                </li>
-
-                                <li class="flex-sb-m p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        February 2018
-                                    </a>
-
-                                    <span class="txt29">
-										(32)
-									</span>
-                                </li>
-
-                                <li class="flex-sb-m p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        January 2018
-                                    </a>
-
-                                    <span class="txt29">
-										(21)
-									</span>
-                                </li>
-
-                                <li class="flex-sb-m p-t-8 p-b-8">
-                                    <a href="#" class="txt27">
-                                        December 2017
-                                    </a>
-
-                                    <span class="txt29">
-										(26)
-									</span>
-                                </li>
                             </ul>
                         </div>
                     </div>

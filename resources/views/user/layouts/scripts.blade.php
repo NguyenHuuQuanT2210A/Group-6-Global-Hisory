@@ -26,3 +26,11 @@
 <!--===============================================================================================-->
 <script src="js/main.js"></script>
 
+{{-- setting user header--}}
+<script>
+    let subMenu = document.getElementById("subMenu");
+
+    function toggleMenu(){
+        subMenu.classList.toggle("open-menu");
+    }
+</script>

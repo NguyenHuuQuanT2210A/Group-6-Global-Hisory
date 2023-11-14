@@ -102,5 +102,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User_Event::class);
     }
-
+    public function likeComment()
+    {
+        return $this->hasMany(LikeComment::class);
+    }
 }

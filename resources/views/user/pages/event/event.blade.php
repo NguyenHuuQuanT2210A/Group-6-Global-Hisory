@@ -10,7 +10,7 @@
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(https://www.nea.org/sites/default/files/styles/1920wide/public/legacy/2018/06/ap_world_history-1-e1529948595658.jpeg?itok=1BQ4XgqU);">
         <h2 class="tit6 t-center">
-            Events history
+            Events
         </h2>
     </section>
 
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 @endforeach
-                    {!! $events->links("pagination::bootstrap-4") !!}
+                    {!! $events->links("pagination::bootstrap-5") !!}
 
             </div>
 
