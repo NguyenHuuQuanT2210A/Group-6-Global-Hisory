@@ -15,6 +15,26 @@
 
 <body class="animsition">
 
+{{--<div style="position: absolute;width: 400px; top: 85px;left: 1060px;z-index: 10000000000000000000000000000">--}}
+{{--    @if ($errors->any())--}}
+{{--        <div>--}}
+{{--            <ul>--}}
+{{--                @foreach ($errors->all() as $error)--}}
+{{--                    <li class="text-danger">{{ $error }}</li>--}}
+{{--                @endforeach--}}
+{{--            </ul>--}}
+{{--        </div>--}}
+{{--    @endif--}}
+{{--    @if(\Illuminate\Support\Facades\Session::has('success'))--}}
+{{--        <div class="alert alert-success  fade show" style="display: flex" role="alert">--}}
+{{--            <div>--}}
+{{--            <strong>Success!</strong> {{ \Illuminate\Support\Facades\Session::get('success') }}</div>--}}
+{{--            <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
+{{--                <span aria-hidden="true">&times;</span>--}}
+{{--            </button>--}}
+{{--        </div>--}}
+{{--    @endif--}}
+{{--</div>--}}
 
 @include("user.layouts.header")
 

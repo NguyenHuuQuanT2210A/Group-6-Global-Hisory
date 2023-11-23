@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Interact;
 
+use App\Http\Controllers\Controller;
 use App\Models\Like;
 use App\Models\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
@@ -18,11 +18,18 @@ class LikeController extends Controller
                 $item->update([
                     'like' => false
                 ]);
+                $post->update([
+                   'count_like' => $post->decrement('count_like')
+                ]);
                 return back();
             }elseif ($item->user_id == Auth::user()->id && $item->like == 0 && $item->post_id == $post->id){
                 $item->update([
                     'like' => true
                 ]);
+                $post->update([
+                    'count_like' => $post->increment('count_like')
+                ]);
+
                 return back();
             }
         }
@@ -32,7 +39,9 @@ class LikeController extends Controller
            'post_id' => $post->id,
            'like' => true
         ]);
-
+        $post->update([
+            'count_like' => $post->increment('count_like')
+        ]);
 
         return back();
     }

@@ -6,7 +6,8 @@
                 <div class="ibox bg-success color-white widget-stat">
                     <div class="ibox-body">
                         <h2 class="m-b-5 font-strong">201</h2>
-                        <div class="m-b-5">NEW ORDERS</div><i class="ti-shopping-cart widget-stat-icon"></i>
+                        <div class="m-b-5">NEW ORDERS</div>
+                        <i class="ti-shopping-cart widget-stat-icon"></i>
                         <div><i class="fa fa-level-up m-r-5"></i><small>25% higher</small></div>
                     </div>
                 </div>
@@ -15,7 +16,8 @@
                 <div class="ibox bg-info color-white widget-stat">
                     <div class="ibox-body">
                         <h2 class="m-b-5 font-strong">1250</h2>
-                        <div class="m-b-5">UNIQUE VIEWS</div><i class="ti-bar-chart widget-stat-icon"></i>
+                        <div class="m-b-5">UNIQUE VIEWS</div>
+                        <i class="ti-bar-chart widget-stat-icon"></i>
                         <div><i class="fa fa-level-up m-r-5"></i><small>17% higher</small></div>
                     </div>
                 </div>
@@ -24,7 +26,8 @@
                 <div class="ibox bg-warning color-white widget-stat">
                     <div class="ibox-body">
                         <h2 class="m-b-5 font-strong">$1570</h2>
-                        <div class="m-b-5">TOTAL INCOME</div><i class="fa fa-money widget-stat-icon"></i>
+                        <div class="m-b-5">TOTAL INCOME</div>
+                        <i class="fa fa-money widget-stat-icon"></i>
                         <div><i class="fa fa-level-up m-r-5"></i><small>22% higher</small></div>
                     </div>
                 </div>
@@ -33,7 +36,8 @@
                 <div class="ibox bg-danger color-white widget-stat">
                     <div class="ibox-body">
                         <h2 class="m-b-5 font-strong">108</h2>
-                        <div class="m-b-5">NEW USERS</div><i class="ti-user widget-stat-icon"></i>
+                        <div class="m-b-5">NEW USERS</div>
+                        <i class="ti-user widget-stat-icon"></i>
                         <div><i class="fa fa-level-down m-r-5"></i><small>-12% Lower</small></div>
                     </div>
                 </div>
@@ -121,77 +125,98 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <img class="m-r-10" src="./assets/img/flags/us.png" />USA</td>
+                                    <img class="m-r-10" src="./assets/img/flags/us.png"/>USA
+                                </td>
                                 <td>755</td>
                                 <td>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" style="width:52%; height:5px;" aria-valuenow="52" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-success" role="progressbar"
+                                             style="width:52%; height:5px;" aria-valuenow="52" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
                                     </div>
                                     <span class="progress-parcent">52%</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <img class="m-r-10" src="./assets/img/flags/Canada.png" />Canada</td>
+                                    <img class="m-r-10" src="./assets/img/flags/Canada.png"/>Canada
+                                </td>
                                 <td>700</td>
                                 <td>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" style="width:48%; height:5px;" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-warning" role="progressbar"
+                                             style="width:48%; height:5px;" aria-valuenow="48" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
                                     </div>
                                     <span class="progress-parcent">48%</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <img class="m-r-10" src="./assets/img/flags/India.png" />India</td>
+                                    <img class="m-r-10" src="./assets/img/flags/India.png"/>India
+                                </td>
                                 <td>410</td>
                                 <td>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" style="width:37%; height:5px;" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-danger" role="progressbar"
+                                             style="width:37%; height:5px;" aria-valuenow="37" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
                                     </div>
                                     <span class="progress-parcent">37%</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <img class="m-r-10" src="./assets/img/flags/Australia.png" />Australia</td>
+                                    <img class="m-r-10" src="./assets/img/flags/Australia.png"/>Australia
+                                </td>
                                 <td>304</td>
                                 <td>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" style="width:36%; height:5px;" aria-valuenow="36" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-info" role="progressbar"
+                                             style="width:36%; height:5px;" aria-valuenow="36" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
                                     </div>
                                     <span class="progress-parcent">36%</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <img class="m-r-10" src="./assets/img/flags/Singapore.png" />Singapore</td>
+                                    <img class="m-r-10" src="./assets/img/flags/Singapore.png"/>Singapore
+                                </td>
                                 <td>203</td>
                                 <td>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar" role="progressbar" style="width:35%; height:5px;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar" role="progressbar"
+                                             style="width:35%; height:5px;" aria-valuenow="35" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
                                     </div>
                                     <span class="progress-parcent">35%</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <img class="m-r-10" src="./assets/img/flags/uk.png" />UK</td>
+                                    <img class="m-r-10" src="./assets/img/flags/uk.png"/>UK
+                                </td>
                                 <td>202</td>
                                 <td>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" style="width:35%; height:5px;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-info" role="progressbar"
+                                             style="width:35%; height:5px;" aria-valuenow="35" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
                                     </div>
                                     <span class="progress-parcent">35%</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <img class="m-r-10" src="./assets/img/flags/UAE.png" />UAE</td>
+                                    <img class="m-r-10" src="./assets/img/flags/UAE.png"/>UAE
+                                </td>
                                 <td>180</td>
                                 <td>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" style="width:30%; height:5px;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-warning" role="progressbar"
+                                             style="width:30%; height:5px;" aria-valuenow="30" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
                                     </div>
                                     <span class="progress-parcent">30%</span>
                                 </td>
@@ -294,38 +319,50 @@
                         <ul class="media-list media-list-divider m-0">
                             <li class="media">
                                 <a class="media-img" href="javascript:;">
-                                    <img class="img-circle" src="./assets/img/users/u1.jpg" width="40" />
+                                    <img class="img-circle" src="./assets/img/users/u1.jpg" width="40"/>
                                 </a>
                                 <div class="media-body">
-                                    <div class="media-heading">Jeanne Gonzalez <small class="float-right text-muted">12:05</small></div>
-                                    <div class="font-13">Lorem Ipsum is simply dummy text of the printing and typesetting.</div>
+                                    <div class="media-heading">Jeanne Gonzalez <small class="float-right text-muted">12:05</small>
+                                    </div>
+                                    <div class="font-13">Lorem Ipsum is simply dummy text of the printing and
+                                        typesetting.
+                                    </div>
                                 </div>
                             </li>
                             <li class="media">
                                 <a class="media-img" href="javascript:;">
-                                    <img class="img-circle" src="./assets/img/users/u2.jpg" width="40" />
+                                    <img class="img-circle" src="./assets/img/users/u2.jpg" width="40"/>
                                 </a>
                                 <div class="media-body">
-                                    <div class="media-heading">Becky Brooks <small class="float-right text-muted">1 hrs ago</small></div>
-                                    <div class="font-13">Lorem Ipsum is simply dummy text of the printing and typesetting.</div>
+                                    <div class="media-heading">Becky Brooks <small class="float-right text-muted">1 hrs
+                                            ago</small></div>
+                                    <div class="font-13">Lorem Ipsum is simply dummy text of the printing and
+                                        typesetting.
+                                    </div>
                                 </div>
                             </li>
                             <li class="media">
                                 <a class="media-img" href="javascript:;">
-                                    <img class="img-circle" src="./assets/img/users/u3.jpg" width="40" />
+                                    <img class="img-circle" src="./assets/img/users/u3.jpg" width="40"/>
                                 </a>
                                 <div class="media-body">
-                                    <div class="media-heading">Frank Cruz <small class="float-right text-muted">3 hrs ago</small></div>
-                                    <div class="font-13">Lorem Ipsum is simply dummy text of the printing and typesetting.</div>
+                                    <div class="media-heading">Frank Cruz <small class="float-right text-muted">3 hrs
+                                            ago</small></div>
+                                    <div class="font-13">Lorem Ipsum is simply dummy text of the printing and
+                                        typesetting.
+                                    </div>
                                 </div>
                             </li>
                             <li class="media">
                                 <a class="media-img" href="javascript:;">
-                                    <img class="img-circle" src="./assets/img/users/u6.jpg" width="40" />
+                                    <img class="img-circle" src="./assets/img/users/u6.jpg" width="40"/>
                                 </a>
                                 <div class="media-body">
-                                    <div class="media-heading">Connor Perez <small class="float-right text-muted">Today</small></div>
-                                    <div class="font-13">Lorem Ipsum is simply dummy text of the printing and typesetting.</div>
+                                    <div class="media-heading">Connor Perez <small
+                                                class="float-right text-muted">Today</small></div>
+                                    <div class="font-13">Lorem Ipsum is simply dummy text of the printing and
+                                        typesetting.
+                                    </div>
                                 </div>
                             </li>
                         </ul>
@@ -439,7 +476,7 @@
                         <ul class="media-list media-list-divider m-0">
                             <li class="media">
                                 <a class="media-img" href="javascript:;">
-                                    <img src="./assets/img/image.jpg" width="50px;" />
+                                    <img src="./assets/img/image.jpg" width="50px;"/>
                                 </a>
                                 <div class="media-body">
                                     <div class="media-heading">
@@ -451,7 +488,7 @@
                             </li>
                             <li class="media">
                                 <a class="media-img" href="javascript:;">
-                                    <img src="./assets/img/image.jpg" width="50px;" />
+                                    <img src="./assets/img/image.jpg" width="50px;"/>
                                 </a>
                                 <div class="media-body">
                                     <div class="media-heading">
@@ -463,7 +500,7 @@
                             </li>
                             <li class="media">
                                 <a class="media-img" href="javascript:;">
-                                    <img src="./assets/img/image.jpg" width="50px;" />
+                                    <img src="./assets/img/image.jpg" width="50px;"/>
                                 </a>
                                 <div class="media-body">
                                     <div class="media-heading">
@@ -475,7 +512,7 @@
                             </li>
                             <li class="media">
                                 <a class="media-img" href="javascript:;">
-                                    <img src="./assets/img/image.jpg" width="50px;" />
+                                    <img src="./assets/img/image.jpg" width="50px;"/>
                                 </a>
                                 <div class="media-body">
                                     <div class="media-heading">
@@ -514,7 +551,8 @@
                 <div class="wrap-1">
                     <div class="wrap-2">
                         <div>
-                            <img src="./assets/img/adminca-banner/adminca-preview.jpg" style="height:160px;margin-top:50px;" />
+                            <img src="./assets/img/adminca-banner/adminca-preview.jpg"
+                                 style="height:160px;margin-top:50px;"/>
                         </div>
                         <div class="color-white" style="margin-left:40px;">
                             <h1 class="font-bold">ADMINCA</h1>
@@ -523,7 +561,8 @@
                                 <li class="m-b-5"><i class="ti-check m-r-5"></i>High Quality Design</li>
                                 <li class="m-b-5"><i class="ti-check m-r-5"></i>Fully Customizable and Easy Code</li>
                                 <li class="m-b-5"><i class="ti-check m-r-5"></i>Bootstrap 4 and Angular 5+</li>
-                                <li class="m-b-5"><i class="ti-check m-r-5"></i>Best Build Tools: Gulp, SaSS, Pug...</li>
+                                <li class="m-b-5"><i class="ti-check m-r-5"></i>Best Build Tools: Gulp, SaSS, Pug...
+                                </li>
                                 <li><i class="ti-check m-r-5"></i>More layouts, pages, components</li>
                             </ul>
                         </div>
@@ -531,12 +570,16 @@
                     <div style="flex:1;">
                         <div class="d-flex justify-content-end wrap-3">
                             <div class="adminca-banner-b m-r-20">
-                                <img src="./assets/img/adminca-banner/bootstrap.png" style="width:40px;margin-right:10px;" />Bootstrap v4</div>
+                                <img src="./assets/img/adminca-banner/bootstrap.png"
+                                     style="width:40px;margin-right:10px;"/>Bootstrap v4
+                            </div>
                             <div class="adminca-banner-b m-r-10">
-                                <img src="./assets/img/adminca-banner/angular.png" style="width:35px;margin-right:10px;" />Angular v5+</div>
+                                <img src="./assets/img/adminca-banner/angular.png"
+                                     style="width:35px;margin-right:10px;"/>Angular v5+
+                            </div>
                         </div>
                         <div class="dev-img">
-                            <img src="./assets/img/adminca-banner/sprite.png" />
+                            <img src="./assets/img/adminca-banner/sprite.png"/>
                         </div>
                     </div>
                 </div>

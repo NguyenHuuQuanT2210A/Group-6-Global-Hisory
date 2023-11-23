@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Auth;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Post;
 use Illuminate\Http\Request;
 
 class UserController extends Controller

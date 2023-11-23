@@ -1,45 +1,72 @@
 @extends("user.layouts.app")
-
 @section("after_css")
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css" />
-
 @endsection
-
-
 @section("content")
-
     <!-- Title Page -->
+
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(https://assets-global.website-files.com/6048aaba41858510b17e1809/607474d55c073509225d156e_6048aaba418585fbbf7e1d13_forums.jpeg);">
         <h2 class="tit6 t-center">
             Forum
         </h2>
     </section>
-
-    <div class="container" style="margin-top: 100px; margin-bottom: 100px; max-width: 1250px;">
+    <div class="container" style="margin-top: 100px; margin-bottom: 100px; max-width: 1250px;position: relative">
     <div class="main-body p-0">
         <div class="inner-wrapper">
-
             <!-- Inner main -->
             <div class="inner-main">
+
                 <!-- Inner main header -->
                 <div class="inner-main-header">
-                    <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
-                    <select class="custom-select custom-select-sm w-auto mr-1">
-                        <option selected="">Latest</option>
-                        <option value="1">Popular</option>
-                        <option value="3">Solved</option>
-                        <option value="3">Unsolved</option>
-                        <option value="3">No Replies Yet</option>
-                    </select>
-                    <span class="input-icon input-icon-sm ml-auto w-auto">
-                    <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search forum" />
-                </span>
+                    <form action="{{url("/forum/")}}" method="get">
+{{--                    <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>--}}
+                        <div class="input-group input-group-sm mr-2" style="width: 160px; float:left">
+                            <select name="post_id" data-value="post_id" class="form-control">
+                        <option @if(app("request")->input("post_id") == "0") selected="selected" @endif value="0">Latest</option>
+                        <option @if(app("request")->input("post_id") == "1") selected="selected" @endif value="1">Popular</option>
+                        <option @if(app("request")->input("post_id") == "2") selected="selected" @endif value="2">Likest</option>
+                        <option @if(app("request")->input("post_id") == "3") selected="selected" @endif value="3">Most Comment</option>
+                        <option @if(app("request")->input("post_id") == "4") selected="selected" @endif value="4">No Comment</option>
+                            </select>
+                        </div>
+{{--                        <div class="input-group input-group-sm mr-2" style="width: 150px; float:left">--}}
+{{--                            <select name="category_id" data-value="category_id" class="form-control">--}}
+{{--                                <option value="0">Filter by category</option>--}}
+{{--                                @foreach($categories as $item)--}}
+{{--                                    <option @if($item->id==app("request")->input("category_id")) selected="selected" @endif--}}
+{{--                                    value="{{$item->id}}">{{$item->name}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                        <div class="input-group input-group-sm mr-2" style="width: 150px; float:left">--}}
+{{--                            <select  name="tag_id"  class="form-control">--}}
+{{--                                <option value="">Filter by tag</option>--}}
+{{--                                @foreach($tags as $tag)--}}
+{{--                                    <option @if($tag->name==app("request")->input("tag_id")) selected="selected" @endif--}}
+{{--                                    value="{{$tag->name}}">{{$tag->name}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+                        <div class="input-group input-group-sm mr-2" style="width: 200px; float:left; height: 32px">
+                            <input value="{{app("request")->input("date_from")}}" class="form-control" type="date" name="date_from" placeholder="Date"/>
+                        </div>
+                        <div class="input-group input-group-sm mr-2" style="width: 200px; float:left; height: 32px">
+                            <input value="{{app("request")->input("date_to")}}" class="form-control" type="date" name="date_to" placeholder="Date"/>
+                        </div>
+
+                        <div class="input-group input-group-sm" style="width: 200px;float:left; height: 32px">
+                            <input value="{{app("request")->input("search")}}" type="text" name="search" class="form-control float-right" placeholder="Search">
+                            <div class="input-group-append" style="border: 1px solid #ccc; border-top-right-radius: 2px;border-bottom-right-radius: 2px">
+                                <button type="submit" class="btn btn-default" style="padding-bottom: 0">
+                                    <i class="fas fa-search" style="color: #938e8e"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <!-- /Inner main header -->
-
                 <!-- Inner main body -->
-
                 <!-- Forum List -->
                 <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
                     @foreach($posts as $item)
@@ -52,13 +79,17 @@
                                     <p class="text-secondary">
                                         @php
                                             $body = $item->body; // Nội dung body
-                                        // Tìm kiếm vị trí của hình ảnh trong nội dung
-                                        preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $body, $matches, PREG_OFFSET_CAPTURE);
-                                        if ($matches && $matches[0][1] < 100) {
-                                        // Nếu hình ảnh xuất hiện trong 100 ký tự đầu tiên,
-                                            // loại bỏ nó khỏi nội dung trước khi áp dụng giới hạn ký tự
-                                            $body = \Illuminate\Support\Str::replaceFirst($matches[0][0], '', $body);
-                                            }
+// Loại bỏ tất cả các thẻ HTML trừ thẻ <p>
+$body = strip_tags($body, '<p>');
+
+// Thay thế tất cả các dòng trống và khoảng trắng liên tiếp bằng một dòng trống duy nhất
+$body = preg_replace('/\s+/', ' ', $body);
+
+// Thay thế tất cả các dòng trống bằng thẻ <p>
+$body = preg_replace('/\s*$/m', '</p>', $body);
+$body = preg_replace('/^(.*)$/m', '<p>$1</p>', $body);
+// Giới hạn số ký tự của nội dung
+$limitedBody = \Illuminate\Support\Str::limit($body, 100);
                                         @endphp
                                         {!! \Illuminate\Support\Str::limit($body , 100 ,'...') !!}
                                     </p>
@@ -68,7 +99,7 @@
                                             $count_cmt = \App\Models\Comment::where("post_id",$item->id)->where('parent_id',0)->count();
 
                                         @endphp
-                                        <span style="margin: 0 5px"><i class="far fa-heart"></i> {{ $count_cmt }}</span>
+                                        <span style="margin: 0 5px"><i class="far fa-heart"></i> {{ $count_like }}</span>
                                         <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> {{ $item->view_count }}</span>
                                         <span><i class="far fa-comment ml-2"></i> {{ $count_cmt }}</span>
                                         <span class="text-secondary font-weight-bold" style="padding-left: 5px;">{{ $item->created_at }}</span>
@@ -77,20 +108,15 @@
                             </div>
                         </div>
                     </div>
-
-
                     @endforeach
+                    <div style="float: right">
                         {!! $posts->links("pagination::bootstrap-4") !!}
+                    </div>
                 </div>
-
                 <!-- /Forum List -->
-
-
-
                 <!-- /Inner main body -->
             </div>
             <!-- /Inner main -->
-
             <div class="sb-right">
                 <!-- Inner sidebar header -->
                 <div class="inner-sidebar-header" style="padding-bottom: 5px">
@@ -155,10 +181,8 @@
                 </div>
                 <!-- /Inner sidebar body -->
             </div>
-
         </div>
-
-
     </div>
 </div>
 @endsection
+

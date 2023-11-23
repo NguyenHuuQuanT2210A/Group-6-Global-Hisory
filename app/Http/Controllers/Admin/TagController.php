@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -24,21 +25,21 @@ class TagController extends Controller
 
     public function store(Request $request)
     {
-//        dd($request);
         $request->validate([
-            "name"=>"required",
+            "name"=>"required|min:6",
             "description" => "required"
         ]);
-//        try{
+        try{
             Tag::create([
                 "name"=>$request->get("name"),
                 "slug"=> Str::slug($request->get("name")),
                 "description" => $request->get("description")
             ]);
-            return redirect()->to("/admin/tag/")->with("success","Successfully");
-//        }catch (\Exception $e){
-//            return redirect()->back()->withErrors($e->getMessage());
-//        }
+            Toastr::success("Created Tag Successfully!","Success!");
+            return redirect()->to("/admin/tag");
+        }catch (\Exception $e){
+            return redirect()->back()->withErrors($e->getMessage());
+        }
     }
 
 
@@ -50,7 +51,7 @@ class TagController extends Controller
 
     public function update(Tag $tag,Request $request){
         $request->validate([
-            "name"=>"required",
+            "name"=>"required|min:6",
             "description" => "required"
         ]);
         try {
@@ -59,7 +60,8 @@ class TagController extends Controller
                 "slug"=> Str::slug($request->get("name")),
                 "description" => $request->get("description")
             ]);
-            return redirect()->to("/admin/tag/")->with("success","Successfully");
+            Toastr::success("Updated Tag Successfully!","Success!");
+            return redirect()->to("/admin/tag");
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }
@@ -69,7 +71,8 @@ class TagController extends Controller
     public function delete(Tag $tag){
         try {
             $tag->delete();
-            return redirect()->to("/admin/tag/")->with("success","Successfully");
+            Toastr::success("Deleted Tag Successfully!","Success!");
+            return redirect()->to("/admin/tag");
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }

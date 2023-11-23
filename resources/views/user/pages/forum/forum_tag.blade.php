@@ -23,17 +23,32 @@
                 <div class="inner-main">
                     <!-- Inner main header -->
                     <div class="inner-main-header">
-                        <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
-                        <select class="custom-select custom-select-sm w-auto mr-1">
-                            <option selected="">Latest</option>
-                            <option value="1">Popular</option>
-                            <option value="3">Solved</option>
-                            <option value="3">Unsolved</option>
-                            <option value="3">No Replies Yet</option>
-                        </select>
-                        <span class="input-icon input-icon-sm ml-auto w-auto">
-                    <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search forum" />
-                </span>
+                        <form action="{{url("/forum/tag",["tag"=>$tag->slug])}}" method="get">
+                            <div class="input-group input-group-sm mr-2" style="width: 160px; float:left">
+                                <select name="post_id" data-value="post_id" class="form-control">
+                                    <option @if(app("request")->input("post_id") == "0") selected="selected" @endif value="0">Latest</option>
+                                    <option @if(app("request")->input("post_id") == "1") selected="selected" @endif value="1">Popular</option>
+                                    <option @if(app("request")->input("post_id") == "2") selected="selected" @endif value="2">Likest</option>
+                                    <option @if(app("request")->input("post_id") == "3") selected="selected" @endif value="3">Most Comment</option>
+                                    <option @if(app("request")->input("post_id") == "4") selected="selected" @endif value="4">No Comment</option>
+                                </select>
+                            </div>
+                            <div class="input-group input-group-sm mr-2" style="width: 200px; float:left; height: 32px">
+                                <input value="{{app("request")->input("date_from")}}" class="form-control" type="date" name="date_from" placeholder="Date"/>
+                            </div>
+                            <div class="input-group input-group-sm mr-2" style="width: 200px; float:left; height: 32px">
+                                <input value="{{app("request")->input("date_to")}}" class="form-control" type="date" name="date_to" placeholder="Date"/>
+                            </div>
+
+                            <div class="input-group input-group-sm" style="width: 200px;float:left; height: 32px">
+                                <input value="{{app("request")->input("search")}}" type="text" name="search" class="form-control float-right" placeholder="Search">
+                                <div class="input-group-append" style="border-right: 1px solid #ccc;border-top: 1px solid #ccc;border-bottom: 1px solid #ccc; border-top-right-radius: 2px;border-bottom-right-radius: 2px">
+                                    <button type="submit" class="btn btn-default" style="padding-bottom: 0">
+                                        <i class="fas fa-search" style="color: #938e8e"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <!-- /Inner main header -->
 
@@ -51,13 +66,17 @@
                                             <p class="text-secondary">
                                                 @php
                                                     $body = $item->body; // Nội dung body
-                                                // Tìm kiếm vị trí của hình ảnh trong nội dung
-                                                preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $body, $matches, PREG_OFFSET_CAPTURE);
-                                                if ($matches && $matches[0][1] < 100) {
-                                                // Nếu hình ảnh xuất hiện trong 100 ký tự đầu tiên,
-                                                    // loại bỏ nó khỏi nội dung trước khi áp dụng giới hạn ký tự
-                                                    $body = \Illuminate\Support\Str::replaceFirst($matches[0][0], '', $body);
-                                                    }
+        // Loại bỏ tất cả các thẻ HTML trừ thẻ <p>
+        $body = strip_tags($body, '<p>');
+
+        // Thay thế tất cả các dòng trống và khoảng trắng liên tiếp bằng một dòng trống duy nhất
+        $body = preg_replace('/\s+/', ' ', $body);
+
+        // Thay thế tất cả các dòng trống bằng thẻ <p>
+        $body = preg_replace('/\s*$/m', '</p>', $body);
+        $body = preg_replace('/^(.*)$/m', '<p>$1</p>', $body);
+        // Giới hạn số ký tự của nội dung
+        $limitedBody = \Illuminate\Support\Str::limit($body, 100);
                                                 @endphp
                                                 {!! \Illuminate\Support\Str::limit($body , 100 ,'...') !!}
                                             </p>
@@ -79,7 +98,9 @@
 
 
                         @endforeach
+                        <div style="float: right">
                         {!! $posts->links("pagination::bootstrap-4") !!}
+                        </div>
                     </div>
 
                     <!-- /Forum List -->

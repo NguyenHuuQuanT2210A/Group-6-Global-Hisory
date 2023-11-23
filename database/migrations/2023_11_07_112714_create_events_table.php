@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string("name");
             $table->string("slug",255)->unique();
             $table->bigInteger("view_count")->unsigned()->default(0)->index();
-            $table->string("date_from");
-            $table->string("date_to");
+            $table->dateTime("date_from");
+            $table->dateTime("date_to");
             $table->unsignedSmallInteger("qty")->default(0);
             $table->unsignedSmallInteger("qty_registered")->default(0);
             $table->smallInteger("status")->default(0);
@@ -28,6 +28,8 @@ return new class extends Migration
             $table->unsignedBigInteger("category_id");
             $table->unsignedBigInteger("tag_id");
             $table->unsignedBigInteger("user_id")->default(1);
+            $table->bigInteger("count_like")->unsigned()->default(0)->index();
+//            $table->bigInteger("count_comment")->unsigned()->default(0)->index();
             $table->foreign("category_id")->references("id")->on("categories")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign("tag_id")->references("id")->on("tags")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign("user_id")->references("id")->on("users")->cascadeOnUpdate()->cascadeOnDelete();

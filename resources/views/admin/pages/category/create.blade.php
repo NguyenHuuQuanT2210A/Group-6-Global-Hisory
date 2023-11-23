@@ -20,18 +20,12 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="category">Ten Danh Muc</label>
-                            <input type="text" name="name" value="{{old("name")}}" class="form-control"  placeholder="Enter Name" required>
+                            <input type="text" name="name" value="{{old("name")}}" class="form-control"
+                                   placeholder="Enter Name" required>
+                            @error("name")
+                            <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
+                            @enderror
                         </div>
-                        {{--            <div class="form-group">--}}
-                        {{--                <label >Danh Muc</label>--}}
-                        {{--                <select name="parent_id" class="form-control">--}}
-                        {{--                    <option value="0">Choose category Parent</option>--}}
-                        {{--                    @foreach($categories as $item)--}}
-                        {{--                        <option value="{{$item->id}}">{{$item->name}}</option>--}}
-                        {{--                    @endforeach--}}
-                        {{--                </select>--}}
-                        {{--            </div>--}}
-
                     </div>
 
                     <div class="card-footer">

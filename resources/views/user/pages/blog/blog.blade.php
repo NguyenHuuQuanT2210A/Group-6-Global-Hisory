@@ -39,11 +39,11 @@
 
                                 <div class="date-blo4 flex-col-c-m">
 									<span class="txt30 m-b-4">
-										28
+										{{ date('m', strtotime($item->created_at)) }}
 									</span>
 
                                     <span class="txt31">
-										Dec, 2018
+										{{ date('D Y', strtotime($item->created_at)) }}
 									</span>
                                 </div>
                             </div>
@@ -68,10 +68,9 @@
 										{{ $item->category->name }}, {{ $item->tag->name }}
 										<span class="m-r-6 m-l-4">|</span>
 									</span>
-
-                                    <span>
-										8 Comments
-									</span>
+{{--                                    <span>--}}
+{{--										8 Comments--}}
+{{--									</span>--}}
                                 </div>
 
                                 <p>
@@ -85,12 +84,6 @@
                             </div>
                         </div>
                         @endforeach
-
-                        <!-- Pagination -->
-{{--                        <div class="pagination flex-l-m flex-w m-l--6 p-t-25">--}}
-{{--                            <a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>--}}
-{{--                            <a href="#" class="item-pagination flex-c-m trans-0-4">2</a>--}}
-{{--                        </div>--}}
                         {!! $blogs->links("pagination::bootstrap-4") !!}
                     </div>
                 </div>

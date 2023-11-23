@@ -94,9 +94,9 @@
                 </ul>
             </div>
         @endif
-        @if(\Illuminate\Support\Facades\Session::has('alert-success'))
+        @if(\Illuminate\Support\Facades\Session::has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> {{ \Illuminate\Support\Facades\Session::get('alert-success') }}
+                <strong>Success!</strong> {{ \Illuminate\Support\Facades\Session::get('success') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

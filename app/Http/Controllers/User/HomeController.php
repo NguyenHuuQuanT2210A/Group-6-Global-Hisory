@@ -1,24 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Events\CreateNewUserEvent;
+use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Category;
-use App\Models\Comment;
 use App\Models\Event;
-use App\Models\Like;
-use App\Models\LikeEvent;
 use App\Models\Post;
-use App\Models\Tag;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use PHPUnit\Framework\Constraint\Count;
-use function Laravel\Prompts\alert;
 
 class HomeController extends Controller
 {

@@ -4,11 +4,11 @@
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/bg-title-page-03.jpg);">
         <h2 class="tit6 t-center">
-            Blog
+            Register
         </h2>
     </section>
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="margin: 35px 0">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>

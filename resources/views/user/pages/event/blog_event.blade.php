@@ -11,6 +11,10 @@
             line-height: 1.7;
             color: #666666;
         }
+        .input-css{
+            height: 50px;
+            margin-bottom: 30px;
+        }
     </style>
 @endsection
 
@@ -52,18 +56,18 @@
                         <!-- Block4 -->
                         <div class="blo4 p-b-63">
                             <!-- - -->
-                            <div class="pic-blo4 hov-img-zoom bo-rad-10 pos-relative">
-                                <a href="{{ url("event/single",["event"=>$event->slug]) }}">
-                                    <img src="{{ $event->thumbnail }}" alt="IMG-BLOG">
-                                </a>
+                            <div class="bo-rad-10 pos-relative">
+{{--                                <a href="{{ url("event/single",["event"=>$event->slug]) }}">--}}
+                                    <img style="width: 820px;border-radius: 10px;max-height: 600px" src="{{ $event->thumbnail }}" alt="IMG-BLOG">
+{{--                                </a>--}}
 
                                 <div class="date-blo4 flex-col-c-m">
 									<span class="txt30 m-b-4">
-										28
+										{{ date('m', strtotime($event->created_at)) }}
 									</span>
 
                                     <span class="txt31">
-										Dec, 2018
+										{{ date('D Y', strtotime($event->created_at)) }}
 									</span>
                                 </div>
                             </div>
@@ -87,7 +91,7 @@
 
                                     <span>
 										{{ $event->category->name }}, {{ $event->tag->name }}
-										<span class="m-r-6 m-l-4">|</span>
+{{--										<span class="m-r-6 m-l-4">|</span>--}}
 									</span>
 
 {{--                                    <span>--}}
@@ -97,7 +101,8 @@
 
                                 <div style="padding-bottom: 20px;margin-bottom: 20px;border-bottom: 1px solid #B9B9B9">
                                     <ul class="event-details">
-                                        <li><span>Date: {{$event->date_from}} - {{$event->date_to}}</span></li>
+                                        <li><span>Date From: {{ date('d-M-Y H:i:s', strtotime($event->date_from)) }}</span></li>
+                                        <li><span>Date To: {{ date('d-M-Y H:i:s', strtotime($event->date_to)) }}</span></li>
                                         <li>
                                             <span>Number of people participated: {{ $event->qty_registered }}/{{ $event->qty }} </span>
                                         </li>
@@ -180,6 +185,7 @@
                                 Registration is over!
                             </h4>
                         @else
+
                         <form class="leave-comment p-t-10" action="{{ url("event/register",["event"=>$event->id]) }}" method="post">
                             @csrf
                             <h4 class="txt33 p-b-14">
@@ -189,24 +195,36 @@
                                 Your email address will not be published. Required fields are marked *
                             </p>
 
-                            <div class="bo2 bo-rad-10 m-t-3 m-b-20" style="height: 50px">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="name" placeholder="Name *">
+                            <div class="bo2 bo-rad-10 m-t-3 m-b-20 input-css" >
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" value="{{ old("name") }}" name="name"  placeholder="Name *">
+                                @error("name")
+                                <p class="text-danger" style="margin: 3px 0 0 10px"><i>{{ $message }}</i></p>
+                                @enderror
                             </div>
 
-                            <div class="bo2 bo-rad-10 m-t-3 m-b-20" style="height: 50px">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email" placeholder="Email *">
+                            <div class="bo2 bo-rad-10 m-t-3 m-b-20 input-css" >
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" value="{{ old("email") }}" name="email"  placeholder="Email *">
+                                @error("email")
+                                <p class="text-danger" style="margin: 3px 0 0 10px"><i>{{ $message }}</i></p>
+                                @enderror
                             </div>
 
-                            <div class="bo2 bo-rad-10 m-t-3 m-b-20" style="height: 50px">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="tel" placeholder="Phone *">
+                            <div class="bo2 bo-rad-10 m-t-3 m-b-20 input-css" >
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" value="{{ old("tel") }}" name="tel"  placeholder="Phone *">
+                                @error("tel")
+                                <p class="text-danger" style="margin: 3px 0 0 10px"><i>{{ $message }}</i></p>
+                                @enderror
                             </div>
 
-                            <div class="bo2 bo-rad-10 m-t-3 m-b-20" style="height: 50px">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="address" placeholder="Address *">
+                            <div class="bo2 bo-rad-10 m-t-3 m-b-20 input-css" >
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" value="{{ old("address") }}" name="address"  placeholder="Address *">
+                                @error("address")
+                                <p class="text-danger" style="margin: 3px 0 0 10px"><i>{{ $message }}</i></p>
+                                @enderror
                             </div>
 
                             <!-- Button3 -->
-                            <button type="submit" class="btn3 flex-c-m size31 txt11 trans-0-4">
+                            <button type="submit" class="btn3 flex-c-m size31 txt11 trans-0-4" style="margin-top: 5px;float: right">
                                 Register
                             </button>
                         </form>
@@ -298,20 +316,3 @@
     </section>
 @endsection
 
-@section("after_js")
-    <script>
-        $('.comment-reply-div').hide();
-
-        $(document).ready(function () {
-            $('.btn-reply').click(function () {
-                // $(this).next('.comment-reply-div').toggle('swing');
-                $('.comment-reply-div').toggle('swing');
-            });
-        });
-    </script>
-    <script>
-        $('html, body').animate({
-            scrollTop: $("#comment-section").offset().top
-        }, 2000);
-    </script>
-@endsection

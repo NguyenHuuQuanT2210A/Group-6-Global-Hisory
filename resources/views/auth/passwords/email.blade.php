@@ -9,7 +9,7 @@
     </section>
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="margin: 35px 0">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>

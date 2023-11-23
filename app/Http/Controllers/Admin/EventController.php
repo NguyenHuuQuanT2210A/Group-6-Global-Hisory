@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Event;
 use App\Models\Tag;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,8 +14,25 @@ class EventController extends Controller
 {
     public function index(Request $request)
     {
-        $events = Event::Search($request)->orderByDesc("id")->paginate(10);
-        return view("admin.pages.event.event",compact("events"));
+        $categories = Category::all();
+        $tags = Tag::all();
+        $search = $request->get("search");
+        $category_id = $request->get("category_id");
+        $tag_id = $request->get("tag_id");
+        $date_from = $request->get("date_from");
+        $date_to = $request->get("date_to");
+
+
+
+        $events = Event::Search($request)
+            ->Category($request)
+            ->Tag($request)
+            ->Date($request)
+            ->Status($request)
+            ->orderByDesc("id")
+            ->paginate(10);
+//        dd($events);
+        return view("admin.pages.event.event",compact("events","categories","tags"));
     }
 
 
@@ -29,14 +47,19 @@ class EventController extends Controller
     public function store(Request $request)
     {
 //        return dd($request);
+        $datetime_from = $request->input('date_from');
+        $formattedDatetime_from = date('d-m-Y H:i:s', strtotime($datetime_from));
+        $datetime_to = $request->input('date_to');
+        $formattedDatetime_to = date('d-m-Y H:i:s', strtotime($datetime_to));
+
         $request->validate([
-            "thumbnail"=>"nullable|mimes:png,jpg,jpeg,gif|mimetypes:image/jpeg,image/png,image/jpg",
-            "name"=>"required",
+            "thumbnail"=>"required|mimes:png,jpg,jpeg,gif|mimetypes:image/jpeg,image/png,image/jpg",
+            "name"=>"required|min:6",
             "date_from"=>"required",
             "date_to"=>'required|after:date_from',
             "qty" => "required",
-            "address" => "required",
-            "description" => "required",
+            "address" => "required|min:6",
+            "description" => "required|min:6",
             "category_id" => "required",
             "tag_id" =>"required",
         ]);
@@ -49,19 +72,20 @@ class EventController extends Controller
                 $file->move($path, $file_name);
                 $thumbnail = "/uploads/events/" . $file_name;
             }
-            Event::create([
+            $d = Event::create([
                 "thumbnail"=> $thumbnail,
                 "name"=>$request->get("name"),
                 "slug"=> Str::slug($request->get("name")),
-                "date_from"=>$request->get("date_from"),
-                "date_to"=>$request->get("date_to"),
+                "date_from"=>$formattedDatetime_from,
+                "date_to"=>$formattedDatetime_to,
                 "qty"=>$request->get("qty"),
                 "address"=>$request->get("address"),
                 "description"=>$request->get("description"),
                 "category_id" => $request->get("category_id"),
                 "tag_id" => $request->get("tag_id"),
             ]);
-            return redirect()->to("admin/event/")->with("success","Successfully");
+            Toastr::success("Created Event Successfully!","success");
+            return redirect()->to("admin/event/");
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }
@@ -80,7 +104,7 @@ class EventController extends Controller
     public function update(Event $event,Request $request){
         $request->validate([
             "thumbnail"=>"nullable|mimes:png,jpg,jpeg,gif|mimetypes:image/jpeg,image/png,image/jpg",
-            "name"=>"required",
+            "name"=>"required|min:6",
             "date_from"=>"required",
             "date_to"=>"required|date|after:date_from",
             "qty" => "required",
@@ -111,7 +135,8 @@ class EventController extends Controller
                 "category_id" => $request->get("category_id"),
                 "tag_id" => $request->get("tag_id"),
             ]);
-            return redirect()->to("/admin/event")->with("success","Successfully");
+            Toastr::success("Updated Event Successfully!","success");
+            return redirect()->to("/admin/event");
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }
@@ -121,7 +146,8 @@ class EventController extends Controller
     public function delete(Event $event){
         try {
             $event->delete();
-            return redirect()->to("/admin/event")->with("success","Successfully");
+            Toastr::success("Deleted Event Successfully!","success");
+            return redirect()->to("/admin/event");
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }

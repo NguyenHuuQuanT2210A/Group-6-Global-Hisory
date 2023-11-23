@@ -19,6 +19,7 @@
 
 .inner-main {
     width: 820px;
+  position: relative;
 }
 .sb-right{
     width: 400px;
@@ -40,7 +41,7 @@
 .inner-sidebar-body {
     padding: 1rem;
     /*overflow-y: auto;*/
-    /*position: relative;*/
+    position: relative;
     flex: 1 1 auto;
 }
 .inner-main-body .sticky-top,
@@ -171,11 +172,12 @@
     margin-bottom: 5px;
 }
 .inner-sidebar-content a{
-    padding: 15px 30px;background-color: deepskyblue;
-    color: #EFEFF0;
+    padding: 15px 30px;background-color: #05c9f0;
+    color: #dfe9eb;
+  border-radius: 3px;
 }
 .inner-sidebar-content a:hover{
-    background-color: blue;
+    background-color: #2ba7e7;
     color: #fff;
 }
 /*.inner-sidebar-header span*/

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("email");
             $table->string("tel");
             $table->string("address");
+            $table->boolean("confirm")->default(false);
             $table->foreign("user_id")->references("id")->on("users")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign("event_id")->references("id")->on("events")->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamp('created_at')->useCurrent();

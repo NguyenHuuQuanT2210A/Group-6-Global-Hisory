@@ -1,53 +1,92 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Like;
-use App\Models\LikeComment;
 use App\Models\Post;
 use App\Models\Tag;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use function Sodium\increment;
+use SebastianBergmann\Diff\Exception;
+use Brian2694\Toastr\Facades\Toastr;
 
 class PostController extends Controller
 {
 
-    public function forum()
+    public function forum(Request $request)
     {
         $categories = Category::all();
         $tags = Tag::all();
-        $posts = Post::where("is_approved", 1)->where("is_approved",1 )->orderByDesc("created_at")->paginate(15);
+        $select = $request->get("post_id");
+
+        $search = $request->get("search");
+//        $category_id = $request->get("category_id");
+//        $tag_id = $request->get("tag_id");
+        $created_at = $request->get("created_at");
+
+        $posts = Post::Search($request)
+            ->SearchPost($request)
+//            ->Category($request)
+//            ->Tag($request)
+            ->CreatedAt($request)
+            ->where("is_approved",1 )
+            ->orderByDesc("created_at")
+            ->paginate(15);
         $post_related = Post::where("is_approved", 1)->orderBy("created_at")->limit(5)->get();
         $post_new = Post::where("is_approved", 1)->orderByDesc("created_at")->limit(5)->get();
         return view("user.pages.forum.index",compact("categories","tags","posts","post_related","post_new"));
     }
 
-    public function forumCategory(Category $category)
+    public function forumCategory(Category $category, Request $request)
     {
-        $posts = Post::where("category_id",$category->id)->where("is_approved",1 )->paginate(15);
-        $categories = Category::all();
-        $tags = Tag::all();
-        $post_related = Post::where("is_approved", 1)->orderBy("created_at")->limit(5)->get();
-        $post_new = Post::where("is_approved", 1)->orderByDesc("created_at")->limit(5)->get();
-        return view("user.pages.forum.forum_category",compact("categories","tags","posts","post_related","post_new"));
-    }
-    public function forumTag(Tag $tag)
-    {
+        $search = $request->get("search");
+//        $category_id = $request->get("category_id");
+//        $tag_id = $request->get("tag_id");
+        $created_at = $request->get("created_at");
+        $posts = Post::Search($request)
+            ->SearchPost($request)
+//            ->Category($request)
+//            ->Tag($request)
+            ->CreatedAt($request)
+            ->where("category_id",$category->id)
+            ->where("is_approved",1 )
+            ->orderByDesc("created_at")
+            ->paginate(15);
+//        $posts = Post::where("category_id",$category->id)->where("is_approved",1 )->paginate(15);
 
-        $posts = Post::whereJsonContains('tag_id', $tag->name)->paginate(15);
-//        dd($posts);
         $categories = Category::all();
         $tags = Tag::all();
         $post_related = Post::where("is_approved", 1)->orderBy("created_at")->limit(5)->get();
         $post_new = Post::where("is_approved", 1)->orderByDesc("created_at")->limit(5)->get();
-        return view("user.pages.forum.forum_tag",compact("categories","tags","posts","post_related","post_new"));
+        return view("user.pages.forum.forum_category",compact("category","categories","tags","posts","post_related","post_new"));
+    }
+    public function forumTag(Tag $tag, Request $request)
+    {
+        $search = $request->get("search");
+//        $category_id = $request->get("category_id");
+//        $tag_id = $request->get("tag_id");
+        $created_at = $request->get("created_at");
+        $posts = Post::Search($request)
+            ->SearchPost($request)
+//            ->Category($request)
+//            ->Tag($request)
+            ->CreatedAt($request)
+            ->whereJsonContains('tag_id', $tag->name)
+            ->where("is_approved",1 )
+            ->orderByDesc("created_at")
+            ->paginate(15);
+//        $posts = Post::whereJsonContains('tag_id', $tag->name)->paginate(15);
+
+        $categories = Category::all();
+        $tags = Tag::all();
+        $post_related = Post::where("is_approved", 1)->orderBy("created_at")->limit(5)->get();
+        $post_new = Post::where("is_approved", 1)->orderByDesc("created_at")->limit(5)->get();
+        return view("user.pages.forum.forum_tag",compact("tag","categories","tags","posts","post_related","post_new"));
     }
 
     public function createPost()
@@ -66,10 +105,11 @@ class PostController extends Controller
         $request->validate([
 //            "thumbnail"=>"nullable|mimes:png,jpg,jpeg,gif|mimetypes:image/jpeg,image/png,image/jpg",
             "title"=>"required",
-//            "category_id" =>"required",
+            "category_id" =>"required ",
+            "tag_id" =>"required",
             "body"=>"required",
         ]);
-//        try{
+        try{
 //            $thumbnail = null;
 //            if ($request->hasFile("thumbnail")) {
 //                $path = public_path("uploads");
@@ -87,10 +127,11 @@ class PostController extends Controller
                 "user_id"=>Auth::user()->id,
                 "body"=>$request->get("body"),
             ]);
-            return redirect()->to("/")->with("success","Successfully");
-//        }catch (\Exception $e){
-//            return redirect()->back()->withErrors($e->getMessage());
-//        }
+            Toastr::success("The post has been sent to admin, please wait for a response!","Success!");
+            return redirect()->to("forum/");
+        }catch (\Exception $errors){
+            return redirect()->back()->withErrors($errors->getMessage());
+        }
     }
 
 
@@ -101,6 +142,7 @@ class PostController extends Controller
         return view("user.pages.forum.edit_post",compact("post","categories","tags"));
     }
 
+
     public function updatePost(Request $request, Post $post)
     {
         $request->validate([
@@ -109,7 +151,7 @@ class PostController extends Controller
             "tag_id" =>"required",
             "body"=>"required",
         ]);
-//        try{
+        try{
         $post->update([
             "title"=>$request->get("title"),
             "slug"=> Str::slug($request->get("title")),
@@ -118,18 +160,20 @@ class PostController extends Controller
             "user_id"=>Auth::user()->id,
             "body"=>$request->get("body"),
         ]);
-        return redirect()->to("/")->with("success","Successfully");
-//        }catch (\Exception $e){
-//            return redirect()->back()->withErrors($e->getMessage());
-//        }
+            Toastr::success("Post updated successfully!","Success!");
+        return redirect()->to("forum/");
+        }catch (\Exception $e){
+            return redirect()->back()->withErrors($e->getMessage());
+        }
     }
     public function deletePost(Post $post)
     {
         $post->delete();
-        return redirect()->to("/")->with("success","Successfully");
+        Toastr::success("Deleted post successfully!","Success!");
+        return redirect()->to("forum/");
     }
 
-    public function singlePost(Post $post)
+    public function singlePost(Post $post, Request $request)
     {
         $likes = Like::where('like',1)->where("post_id",$post->id)->get();
         $likes_latest = Like::where('like',1)->orderByDesc('id')->limit(1)->get();
@@ -145,12 +189,12 @@ class PostController extends Controller
         $cmts = Comment::where('post_id',$post->id)
             ->where('parent_id',0)->get();
 
-
+        $url = $request->url();
         $post_related = Post::where("is_approved", 1)->orderBy("created_at")->limit(5)->get();
         $post_new = Post::where("is_approved", 1)->orderByDesc("created_at")->limit(5)->get();
 
 
-        return view("user.pages.forum.single",compact("post","categories","tags","post_related","post_new","cmts","likes","likes_latest"));
+        return view("user.pages.forum.single",compact("post","categories","tags","post_related","post_new","cmts","likes","likes_latest","url"));
     }
 
 }

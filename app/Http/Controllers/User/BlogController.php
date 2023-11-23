@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Category;
-use App\Models\Comment;
 use App\Models\CommentBlog;
-use App\Models\Like;
 use App\Models\LikeBlog;
-use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -29,18 +27,18 @@ class BlogController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        $blogs = Blog::where("category_id",$category->id)->orderByDesc("created_at")->paginate(5);
+        $blog_category = Blog::where("category_id",$category->id)->orderByDesc("created_at")->paginate(5);
         $blog_popular = Blog::orderByDesc("view_count")->limit(5)->get();
-        return view("user.pages.blog.category_blog",compact("category","categories","tags","blogs","blog_popular"));
+        return view("user.pages.blog.category_blog",compact("category","categories","tags","blog_category","blog_popular"));
     }
 
     public function tagBlog(Request $request,Tag $tag)
     {
         $categories = Category::all();
         $tags = Tag::all();
-        $blogs = Blog::where("tag_id",$tag->id)->orderByDesc("created_at")->paginate(5);
+        $blog_tag = Blog::where("tag_id",$tag->id)->orderByDesc("created_at")->paginate(5);
         $blog_popular = Blog::orderByDesc("view_count")->limit(5)->get();
-        return view("user.pages.blog.tag_blog",compact("tag","categories","tags","blogs","blog_popular"));
+        return view("user.pages.blog.tag_blog",compact("tag","categories","tags","blog_tag","blog_popular"));
     }
 
     public function blogDetail(Blog $blog)

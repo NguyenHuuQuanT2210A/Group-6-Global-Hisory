@@ -1,18 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Events\CreateNewUserEvent;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Event;
 use App\Models\LikeEvent;
 use App\Models\Tag;
 use App\Models\User_Event;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use SebastianBergmann\Diff\Exception;
+
 
 class EventController extends Controller
 {
@@ -20,6 +24,17 @@ class EventController extends Controller
     {
         $events = Event::orderByDesc("created_at")->Search($request)->paginate(6);
         return view("user.pages.event.event",compact("events"));
+    }
+    public function categoryEvent(Category $category)
+    {
+        $category_event = Event::where("category_id",$category->id)->paginate(10);
+        return view("user.pages.event.category_event",compact("category_event"));
+    }
+
+    public function tagEvent(Tag $tag)
+    {
+        $tag_event = Event::where("tag_id",$tag->id)->paginate(10);
+        return view("user.pages.event.tag_event",compact("tag_event"));
     }
     public function blogEvent(Event $event)
     {
@@ -43,12 +58,6 @@ class EventController extends Controller
     public function registerEvent(Event $event, Request $request)
     {
 //        $rq_id = $request->ip();
-        $user = User_Event::all();
-        foreach ($user as $items) {
-            if (($event->id == $items->event_id) && ($items->user_id == Auth::user()->id)) {
-                return redirect()->back()->withErrors("Mỗi tài khoản chỉ được phép đăng ký một lần!");
-            }
-        }
         $request->validate([
             "name" =>"required",
             "email" =>"required",
@@ -56,6 +65,15 @@ class EventController extends Controller
             "address" =>"required"
         ]);
 
+        $user = User_Event::all();
+        foreach ($user as $items) {
+            if (($event->id == $items->event_id) && ($items->user_id == Auth::user()->id)) {
+                Toastr::error("Mỗi tài khoản chỉ được phép đăng ký một lần!","Error!");
+                return redirect()->back();
+            }
+        }
+
+        try {
         $user_registered = User_Event::create([
             "name" => $request->get("name"),
             "slug" => Str::slug($request->get("name")),
@@ -75,6 +93,31 @@ class EventController extends Controller
             ]);
         }
         event(new CreateNewUserEvent(($user_registered)));
-        return redirect("/");
+            Toastr::success("You have successfully registered, the invitation has been sent to your email!","Success!");
+            return redirect()->back();
+
+        }catch (\Exception $e){
+            return redirect()->back()->withErrors($e->getMessage());
+        }
+//        $start = Carbon::now();
+//        $end = $start->addHours(24);
+//        if (\Carbon\Carbon::now()->gte($end)) {
+//            // Đã đạt đến 24 giờ sau
+//            if ($user_registered->confirm == false){
+//                $user_registered->delete();
+//            }
+//        }
+
     }
+
+//    public function mailConfirm(User_Event $user_Event)
+//    {
+//        dd($user_Event);
+//        $boolean = $user_Event->update([
+//           "confirm" => true
+//        ]);
+//
+//        return redirect("/");
+//    }
+
 }

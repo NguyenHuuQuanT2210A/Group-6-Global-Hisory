@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Interact;
 
+use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\LikeBlog;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LikeBlogController extends Controller
@@ -17,10 +17,16 @@ class LikeBlogController extends Controller
                 $item->update([
                     'like' => false
                 ]);
+                $blog->update([
+                    'count_like' => $blog->decrement('view_count')
+                ]);
                 return back();
             }elseif ($item->user_id == Auth::user()->id && $item->like == 0 && $item->blog_id == $blog->id){
                 $item->update([
                     'like' => true
+                ]);
+                $blog->update([
+                    'count_like' => $blog->increment('view_count')
                 ]);
                 return back();
             }
@@ -31,7 +37,9 @@ class LikeBlogController extends Controller
             'blog_id' => $blog->id,
             'like' => true
         ]);
-
+        $blog->update([
+            'count_like' => $blog->increment('view_count')
+        ]);
         return back();
     }
 }

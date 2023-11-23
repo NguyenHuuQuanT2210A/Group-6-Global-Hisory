@@ -1,4 +1,13 @@
 @extends("user.layouts.app")
+
+@section("after_css")
+    <style>
+        .img-donate{
+            object-fit: cover;
+
+        }
+    </style>
+@endsection
 @section ("content")
 
 
@@ -142,95 +151,50 @@
 
 
 
-    {{--<!-- Banner -->--}}
-    {{--<div class="parallax0 parallax100" style="background-image: url(https://ss-images.saostar.vn/wwebp700/pc/1632805934126/saostar-mzcwfczbo2yjcra0.jpg);">--}}
-    {{--    <div class="overlay0-parallax t-center size33"></div>--}}
-    {{--</div>--}}
+    <!-- Banner -->
+    <div class="parallax0 parallax100" style="background-image: url(https://ss-images.saostar.vn/wwebp700/pc/1632805934126/saostar-mzcwfczbo2yjcra0.jpg);">
+        <div class="overlay0-parallax t-center size33"></div>
+    </div>
 
 
-    {{--<!-- Chef -->--}}
-    {{--<section class="section-chef bgwhite p-t-115 p-b-95">--}}
-    {{--    <div class="container t-center">--}}
-    {{--			<span class="tit2 t-center">--}}
-    {{--				Meet Our--}}
-    {{--			</span>--}}
+    <!-- Chef -->
+    <section class="section-chef bgwhite p-t-115 p-b-95">
+        <div class="container t-center">
+    			<span class="tit2 t-center">
+    				Donate
+    			</span>
 
-    {{--        <h3 class="tit5 t-center m-b-50 m-t-5">--}}
-    {{--            Chef--}}
-    {{--        </h3>--}}
+            <h3 class="tit5 t-center m-b-50 m-t-5">
+                For Us
+            </h3>
 
-    {{--        <div class="row">--}}
-    {{--            <div class="col-md-8 col-lg-4 m-l-r-auto p-b-30">--}}
-    {{--                <!-- -Block5 -->--}}
-    {{--                <div class="blo5 pos-relative p-t-60">--}}
-    {{--                    <div class="pic-blo5 size14 bo4 wrap-cir-pic hov-img-zoom ab-c-t">--}}
-    {{--                        <a href="#"><img src="images/avatar-02.jpg" alt="IGM-AVATAR"></a>--}}
-    {{--                    </div>--}}
+            <div class="row">
+                <div class="col-md-8 col-lg-4 m-l-r-auto p-b-30">
+                    <!-- -Block5 -->
+                    <div>
+{{--                        <form action="{{ url("payment/paypal") }}">--}}
+                        <a href="{{ url("payment/") }}"><img class="img-donate" width="390px" height="390px" src="https://i.pcmag.com/imagery/reviews/068BjcjwBw0snwHIq0KNo5m-15.fit_scale.size_1028x578.v1602794215.png"   alt="paypal"></a>
+{{--                            <button type="submit"></button>--}}
+{{--                        </form>--}}
+                    </div>
+                </div>
 
-    {{--                    <div class="text-blo5 size34 t-center bo-rad-10 bo7 p-t-90 p-l-35 p-r-35 p-b-30">--}}
-    {{--                        <a href="#" class="txt34 dis-block p-b-6">--}}
-    {{--                            Peter Hart--}}
-    {{--                        </a>--}}
+                <div class="col-md-8 col-lg-4 m-l-r-auto p-b-30">
+                    <!-- -Block5 -->
+                    <div>
+                        <a href=""><img class="img-donate" width="390px" height="390px" src="https://i.ytimg.com/vi/i09C02151PI/maxresdefault.jpg" alt=""></a>
+                    </div>
+                </div>
 
-    {{--                        <span class="dis-block t-center txt35 p-b-25">--}}
-    {{--								Chef--}}
-    {{--							</span>--}}
-
-    {{--                        <p class="t-center">--}}
-    {{--                            Donec porta eleifend mauris ut effici-tur. Quisque non velit vestibulum, lob-ortis mi eget, rhoncus nunc--}}
-    {{--                        </p>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-
-    {{--            <div class="col-md-8 col-lg-4 m-l-r-auto p-b-30">--}}
-    {{--                <!-- -Block5 -->--}}
-    {{--                <div class="blo5 pos-relative p-t-60">--}}
-    {{--                    <div class="pic-blo5 size14 bo4 wrap-cir-pic hov-img-zoom ab-c-t">--}}
-    {{--                        <a href="#"><img src="images/avatar-03.jpg" alt="IGM-AVATAR"></a>--}}
-    {{--                    </div>--}}
-
-    {{--                    <div class="text-blo5 size34 t-center bo-rad-10 bo7 p-t-90 p-l-35 p-r-35 p-b-30">--}}
-    {{--                        <a href="#" class="txt34 dis-block p-b-6">--}}
-    {{--                            Joyce Bowman--}}
-    {{--                        </a>--}}
-
-    {{--                        <span class="dis-block t-center txt35 p-b-25">--}}
-    {{--								Chef--}}
-    {{--							</span>--}}
-
-    {{--                        <p class="t-center">--}}
-    {{--                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies felis a sem tempus tempus.--}}
-    {{--                        </p>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-
-    {{--            <div class="col-md-8 col-lg-4 m-l-r-auto p-b-30">--}}
-    {{--                <!-- -Block5 -->--}}
-    {{--                <div class="blo5 pos-relative p-t-60">--}}
-    {{--                    <div class="pic-blo5 size14 bo4 wrap-cir-pic hov-img-zoom ab-c-t">--}}
-    {{--                        <a href="#"><img src="images/avatar-05.jpg" alt="IGM-AVATAR"></a>--}}
-    {{--                    </div>--}}
-
-    {{--                    <div class="text-blo5 size34 t-center bo-rad-10 bo7 p-t-90 p-l-35 p-r-35 p-b-30">--}}
-    {{--                        <a href="#" class="txt34 dis-block p-b-6">--}}
-    {{--                            Peter Hart--}}
-    {{--                        </a>--}}
-
-    {{--                        <span class="dis-block t-center txt35 p-b-25">--}}
-    {{--								Chef--}}
-    {{--							</span>--}}
-
-    {{--                        <p class="t-center">--}}
-    {{--                            Phasellus aliquam libero a nisi varius, vitae placerat sem aliquet. Ut at velit nec ipsum iaculis posuere quis in sapien--}}
-    {{--                        </p>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-    {{--</section>--}}
+                <div class="col-md-8 col-lg-4 m-l-r-auto p-b-30">
+                    <!-- -Block5 -->
+                    <div>
+                        <a href=""><img class="img-donate" width="390px" height="390px"  src="https://developers.momo.vn/v3/assets/images/square-8c08a00f550e40a2efafea4a005b1232.png"  alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 

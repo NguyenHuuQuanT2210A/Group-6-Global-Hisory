@@ -41,7 +41,7 @@ class UserEventMail extends Mailable
         return new Content(
             view: 'mails.user_event',
             with: [
-                "user_event" => $this->user_event
+                "user_events" => $this->user_event
             ]
         );
     }

@@ -51,18 +51,18 @@
                         <!-- Block4 -->
                         <div class="blo4 p-b-63">
                             <!-- - -->
-                            <div class="pic-blo4 hov-img-zoom bo-rad-10 pos-relative">
-                                <a href="{{ url("blog/single",["blog"=>$blog->slug]) }}">
-                                    <img src="{{ $blog->thumbnail }}" alt="IMG-BLOG">
-                                </a>
+                            <div class="bo-rad-10 pos-relative">
+{{--                                <a href="{{ url("blog/single",["blog"=>$blog->slug]) }}">--}}
+                                    <img style="width: 820px;border-radius: 10px;max-height: 600px" src="{{ $blog->thumbnail }}" alt="IMG-BLOG">
+{{--                                </a>--}}
 
                                 <div class="date-blo4 flex-col-c-m">
 									<span class="txt30 m-b-4">
-										28
+										{{ date('m', strtotime($blog->created_at)) }}
 									</span>
 
                                     <span class="txt31">
-										Dec, 2018
+										{{ date('D Y', strtotime($blog->created_at)) }}
 									</span>
                                 </div>
                             </div>
@@ -90,7 +90,10 @@
 									</span>
 
                                     <span>
-										8 Comments
+                                        @php
+                                        $cmt_blog = \App\Models\CommentBlog::where("blog_id",$blog->id)->where("parent_id",0)->count();
+                                        @endphp
+										{{ $cmt_blog }} Comment
 									</span>
                                 </div>
 
@@ -186,13 +189,44 @@
                                             </a>
                                             <div class="media-body ml-3">
                                                 <a href="javascript:void(0)" class="text-secondary">{{ $cmt->user->name }}</a>
-                                                <small class="text-muted ml-2">{{ $blog->user->created_at }}</small>
+                                                <small class="text-muted ml-2">{{ $cmt->created_at }}</small>
                                                 <div class="mt-2 font-size-sm">
                                                     {{ $cmt->comment }}
                                                 </div>
 
                                                 <div class="text-muted small" style="margin: 5px 0">
-                                                    <span style="margin: 0 5px"><i class="fa-solid fa-heart" style="color: #868e96;"></i> 10</span>
+                                                    <span style="margin: 0 5px">
+
+                                                        @php
+                                                            $like_cmts = \App\Models\LikeCommentBlog::where('like_cmt_blog',1)->where("blog_id",$blog->id)->where("comment_id",$cmt->id)->get();
+                                                        @endphp
+
+                                                        <a href="{{ url("blog/comment/like",["blog"=>$blog->id,"commentBlog"=>$cmt->id]) }}">
+                                                            @php
+                                                                $you_like_cmt = false;
+                                                            @endphp
+                                                            @foreach($like_cmts as $like_cmt)
+                                                                @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id == $like_cmt->user_id)
+                                                                    @php
+                                                                        $you_like_cmt = true;
+                                                                    @endphp
+                                                                @endif
+                                                            @endforeach
+
+                                                            @if(count($like_cmts) > 0)
+                                                                @if($you_like_cmt)
+                                                                    <i class="fa-solid fa-heart" style="color: red;"></i>
+                                                                @else
+                                                                    <i class="fa-solid fa-heart" style="color: #868e96;"></i>
+                                                                @endif
+                                                            @else
+                                                                <i class="fa-solid fa-heart" style="color: #868e96;"></i>
+                                                            @endif
+                                                </a>
+
+                                                {{ count($like_cmts) }}
+
+                                                    </span>
 {{--                                                    <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                     <span class="btn-reply" style="margin-left: 10px;cursor: pointer">Reply</span>
                                                     <div class="comment-reply-div" style="position: relative;right: 45px;width: 790px;">
@@ -235,13 +269,41 @@
                                                     </a>
                                                     <div class="media-body ml-3">
                                                         <a href="javascript:void(0)" class="text-secondary">{{ $reply->user->name }}</a>
-                                                        <small class="text-muted ml-2">{{ $reply->user->created_at }}</small>
+                                                        <small class="text-muted ml-2">{{ $reply->created_at }}</small>
                                                         <div class="mt-2 font-size-sm">
                                                             {{ $reply->comment }}
                                                         </div>
 
                                                         <div class="text-muted small" style="margin: 5px 0">
-                                                            <span style="margin: 0 5px"><i class="fa-solid fa-heart" style="color: #868e96;"></i> 10</span>
+                                                            <span style="margin: 0 5px">
+                                                        @php
+                                                            $like_cmt_replies = \App\Models\LikeCommentBlog::where('like_cmt_blog',1)->where("blog_id",$blog->id)->where("comment_id",$reply->id)->get();
+                                                        @endphp
+
+                                                        <a href="{{ url("blog/comment/like",["blog"=>$blog->id,"comment"=>$reply->id]) }}">
+                                                             @php
+                                                                 $you_like_cmt_reply = false;
+                                                             @endphp
+                                                            @foreach($like_cmt_replies as $like_cmt_reply)
+                                                                @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id == $like_cmt_reply->user_id)
+                                                                    @php
+                                                                        $you_like_cmt_reply = true;
+                                                                    @endphp
+                                                                @endif
+                                                            @endforeach
+                                                            @if(count($like_cmt_replies) > 0)
+                                                                @if($you_like_cmt_reply)
+                                                                    <i class="fa-solid fa-heart" style="color: red;"></i>
+                                                                @else
+                                                                    <i class="fa-solid fa-heart" style="color: #868e96;"></i>
+                                                                @endif
+                                                            @else
+                                                                <i class="fa-solid fa-heart" style="color: #868e96;"></i>
+                                                            @endif
+                                                </a>
+
+                                                {{ count($like_cmt_replies) }}
+                                                    </span>
 {{--                                                            <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                             <span class="btn-reply"  style="margin-left: 10px;cursor: pointer">Reply</span>
                                                             <div class="comment-reply-div" style="position: relative;right: 55px;width: 770px;">
@@ -283,13 +345,41 @@
                                                             </a>
                                                             <div class="media-body ml-3">
                                                                 <a href="javascript:void(0)" class="text-secondary">{{ $reply_reply->user->name }}</a>
-                                                                <small class="text-muted ml-2">{{ $blog->user->created_at }}</small>
+                                                                <small class="text-muted ml-2">{{ $reply_reply->created_at }}</small>
                                                                 <div class="mt-2 font-size-sm">
                                                                     {{$reply_reply->comment}}
                                                                 </div>
 
                                                                 <div class="text-muted small" style="margin: 5px 0">
-                                                                    <span style="margin: 0 5px"><i class="fa-solid fa-heart" style="color: #868e96;"></i> 10</span>
+                                                                    <span style="margin: 0 5px">
+                                                        @php
+                                                            $like_cmt_reply_replies = \App\Models\LikeCommentBlog::where('like_cmt_blog',1)->where("blog_id",$blog->id)->where("comment_id",$reply_reply->id)->get();
+                                                        @endphp
+
+                                                        <a href="{{ url("forum/post/comment/like",["blog"=>$blog->id,"comment"=>$reply_reply->id]) }}">
+                                                            @php
+                                                                $you_like_cmt_reply_reply = false;
+                                                            @endphp
+                                                            @foreach($like_cmt_reply_replies as $like_cmt_reply_reply)
+                                                                @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id == $like_cmt_reply_reply->user_id)
+                                                                    @php
+                                                                        $you_like_cmt_reply_reply = true;
+                                                                    @endphp
+                                                                @endif
+                                                            @endforeach
+                                                            @if(count($like_cmt_reply_replies) > 0)
+                                                                @if($you_like_cmt_reply_reply)
+                                                                    <i class="fa-solid fa-heart" style="color: red;"></i>
+                                                                @else
+                                                                    <i class="fa-solid fa-heart" style="color: #868e96;"></i>
+                                                                @endif
+                                                            @else
+                                                                <i class="fa-solid fa-heart" style="color: #868e96;"></i>
+                                                            @endif
+                                                </a>
+
+                                                {{ count($like_cmt_reply_replies) }}
+                                                    </span>
 {{--                                                                    <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                                     <span class="btn-reply"  style="margin-left: 10px;cursor: pointer;">Reply</span>
                                                                     <div class="comment-reply-div" style="position: relative;right: 85px;width: 770px;">

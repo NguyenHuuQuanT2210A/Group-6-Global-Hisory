@@ -132,7 +132,7 @@
                     <span class="nav-label">Mailbox</span><i class="fa fa-angle-left arrow"></i></a>
                 <ul class="nav-2-level collapse">
                     <li>
-                        <a href="mailbox.html">Inbox</a>
+                        <a href="{{ url("admin/mail/") }}">Inbox</a>
                     </li>
                     <li>
                         <a href="mail_view.html">Mail view</a>

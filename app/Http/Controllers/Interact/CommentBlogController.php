@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Interact;
 
+use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\CommentBlog;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,19 +16,22 @@ class CommentBlogController extends Controller
 
 //        dd($request);
 
-        $request->validate([
-            'comment' => 'required'
-        ]);
+//        $request->validate([
+//            'comment' => 'required'
+//        ]);
         if ($request->comment == ''){
-            return back()->withErrors('Vui long nhap comment');
+            return back()->with('error','Vui long nhap comment');
         }
         CommentBlog::create([
             'blog_id' => $blog->id,
             'user_id' => Auth::user()->id,
             'comment' => $request->comment
         ]);
-        $request->session()->flash('alert-success','Comment added successfully.');
-
+        $blog->update([
+            'count_comment' => $blog->increment('count_like')
+        ]);
+//        $request->session()->flash('success','Comment added successfully.');
+        Toastr::success("Comment added successfully!","Success");
 
         return  back();
     }
@@ -37,7 +42,7 @@ class CommentBlogController extends Controller
 
 //        dd($request);
 //        try {
-        $result = CommentBlog::create([
+        CommentBlog::create([
             'parent_id' => $commentBlog->id,
             'user_id' =>Auth::user()->id,
             'comment' =>$comment_reply,
@@ -49,8 +54,8 @@ class CommentBlogController extends Controller
 
 //        $cmts_reply = Comment::where('parent_id',$comment->id)->get();
 //        dd($cmts_reply);
-
-        $request->session()->flash('alert-success','Comment reply added successfully');
+        Toastr::success("Comment reply added successfully!","Success");
+//        $request->session()->flash('success','Comment reply added successfully');
 
         return back();
     }
@@ -68,7 +73,8 @@ class CommentBlogController extends Controller
             $item->delete();
         }
         $commentBlog->delete();
-        $request->session()->flash('alert-success','Comment reply deleted successfully');
+        Toastr::success("Comment reply deleted successfully","Success");
+//        $request->session()->flash('success','Comment reply deleted successfully');
 
         return back();
 

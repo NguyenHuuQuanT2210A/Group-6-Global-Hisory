@@ -21,6 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger("category_id");
             $table->unsignedBigInteger("tag_id");
             $table->unsignedBigInteger("user_id");
+            $table->bigInteger("count_like")->unsigned()->default(0)->index();
+            $table->bigInteger("count_comment")->unsigned()->default(0)->index();
 //            $table->boolean("is_approved")->default(0);
             $table->foreign("category_id")->references("id")->on("categories")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign("tag_id")->references("id")->on("tags")->cascadeOnUpdate()->cascadeOnDelete();

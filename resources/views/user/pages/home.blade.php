@@ -164,95 +164,111 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="row">
+                        @php
+                        $category_blog1 = \App\Models\Category::where("id",1)->get();
+                        $category_blog2 = \App\Models\Category::where("id",2)->get();
+                        $category_blog3 = \App\Models\Category::where("id",3)->get();
+                        $category_blog4 = \App\Models\Category::where("id",4)->get();
+                        $category_blog5 = \App\Models\Category::where("id",5)->get();
+                        $category_blog6 = \App\Models\Category::where("id",6)->get();
+                        $category_blog7 = \App\Models\Category::where("id",7)->get();
+                        @endphp
+                        @foreach($category_blog1 as $item)
                         <div class="col-sm-6">
                             <!-- Item our menu -->
                             <div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
                                 <img src="https://www.fine-art-bender.com/images/european-art-history-statue.jpg" alt="IMG-MENU">
 
                                 <!-- Button2 -->
-                                <a href="#" class="btn2 flex-c-m txt5 ab-c-m size4">
-                                    European
+                                <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="btn2 flex-c-m txt5 ab-c-m size4">
+                                    {{ $item->name }}
                                 </a>
                             </div>
                         </div>
-
+                        @endforeach
+                        @foreach($category_blog2 as $item)
                         <div class="col-sm-6">
                             <!-- Item our menu -->
                             <div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
                                 <img src="https://study.com/cimages/course-image/history-100-western-civilization-from-prehistory-to-post-wwii_748915_large.jpeg" alt="IMG-MENU" style="height: 246.66px">
 
                                 <!-- Button2 -->
-                                <a href="#" class="btn2 flex-c-m txt5 ab-c-m size5">
-                                    western
+                                <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="btn2 flex-c-m txt5 ab-c-m size5">
+                                    {{ $item->name }}
                                 </a>
                             </div>
                         </div>
-
+                        @endforeach
+                        @foreach($category_blog3 as $item)
                         <div class="col-12">
                             <!-- Item our menu -->
                             <div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
                                 <img src="https://mrimhotep.org/wp-content/uploads/2018/08/1abaVd1918F97QaKBc1J68g-copie.jpeg" alt="IMG-MENU">
 
                                 <!-- Button2 -->
-                                <a href="#" class="btn2 flex-c-m txt5 ab-c-m size6">
-                                    African
+                                <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="btn2 flex-c-m txt5 ab-c-m size6">
+                                    {{ $item->name }}
                                 </a>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="row">
-
+                        @foreach($category_blog4 as $item)
                         <div class="col-12">
                             <!-- Item our menu -->
                             <div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
                                 <img src="https://liondecor.vn/wp-content/uploads/2022/12/lich-su-hoa-ky-1.jpg" alt="IMG-MENU">
 
                                 <!-- Button2 -->
-                                <a href="#" class="btn2 flex-c-m txt5 ab-c-m size7">
-                                    American
+                                <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="btn2 flex-c-m txt5 ab-c-m size7">
+                                    {{ $item->name }}
                                 </a>
                             </div>
                         </div>
-
+                        @endforeach
+                            @foreach($category_blog5 as $item)
                         <div class="col-12">
                             <!-- Item our menu -->
                             <div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
                                 <img src="https://aseanvietnam.vn/uploads/images/image_750x_62f237cca303a.jpg" alt="IMG-MENU" style="height: 183px">
 
                                 <!-- Button2 -->
-                                <a href="#" class="btn2 flex-c-m txt5 ab-c-m size8">
-                                    VietNam
+                                <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="btn2 flex-c-m txt5 ab-c-m size8">
+                                    {{ $item->name }}
                                 </a>
                             </div>
                         </div>
-
+                            @endforeach
+                                @foreach($category_blog6 as $item)
                         <div class="col-12">
                             <!-- Item our menu -->
                             <div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
                                 <img src="https://static.independent.co.uk/2022/03/28/12/newFile-4.jpg?quality=75&width=1200&auto=webp" alt="IMG-MENU" style="height: 183px">
 
                                 <!-- Button2 -->
-                                <a href="#" class="btn2 flex-c-m txt5 ab-c-m size9">
-                                    Asian
+                                <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="btn2 flex-c-m txt5 ab-c-m size9">
+                                    {{ $item->name }}
                                 </a>
                             </div>
                         </div>
-
+                                @endforeach
+                                    @foreach($category_blog7 as $item)
                         <div class="col-12">
                             <!-- Item our menu -->
                             <div class="item-ourmenu bo-rad-10 hov-img-zoom pos-relative m-t-30">
                                 <img src="https://static.independent.co.uk/2022/03/28/12/newFile-4.jpg?quality=75&width=1200&auto=webp" alt="IMG-MENU" style="height: 183px">
 
                                 <!-- Button2 -->
-                                <a href="#" class="btn2 flex-c-m txt5 ab-c-m size9">
-                                    Asian
+                                <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="btn2 flex-c-m txt5 ab-c-m size9">
+                                    {{ $item->name }}
                                 </a>
                             </div>
                         </div>
-
+                                    @endforeach
                     </div>
                 </div>
             </div>

@@ -3,17 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Tag;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function listPost(Request $request)
     {
-        $search = $request->get("search");
-        $posts = Post::orderByDesc("id")->Search($request)->paginate(10);
-        return view("admin.pages.post.list_post",compact("posts"));
+        $categories = Category::all();
+        $tags = Tag::all();
+//        $search = $request->get("search");
+
+        $posts = Post::Search($request)
+            ->Category($request)
+            ->Tag($request)
+            ->Status($request)
+            ->orderByDesc("id")
+            ->paginate(10);
+        return view("admin.pages.post.list_post",compact("posts","categories","tags"));
     }
 
     public function postDetail(Post $post)
@@ -31,7 +42,8 @@ class PostController extends Controller
             $post->update([
                 "is_approved"=> Post::APPROVED,
             ]);
-            return redirect()->to("/admin/post/")->with("success","Successfully");
+            Toastr::success("Post Approved!","success");
+            return redirect()->to("/admin/post");
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }
@@ -44,7 +56,8 @@ class PostController extends Controller
             $post->update([
                 "is_approved"=> Post::UNAPPROVED,
             ]);
-            return redirect()->to("/admin/post/")->with("success","Successfully");
+            Toastr::success("Post Unapproved!","success");
+            return redirect()->to("/admin/post/");
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }
@@ -54,7 +67,8 @@ class PostController extends Controller
     {
         try {
             $post->delete();
-            return redirect()->to("/admin/post/")->with("success","Successfully");
+            Toastr::success("Deleted Post Success!","success");
+            return redirect()->to("/admin/post/");
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }

@@ -12,13 +12,13 @@
 <body class="fixed-navbar">
 <div class="page-wrapper">
 
-{{--    @include('admin.layouts.navbar')--}}
+    {{--    @include('admin.layouts.navbar')--}}
     @include('admin.layouts.header')
     @include('admin.layouts.sidebar')
 
     <div class="content-wrapper">
         <!-- START PAGE CONTENT-->
-            @yield('content')
+        @yield('content')
         <!-- END PAGE CONTENT-->
         @include('admin.layouts.footer')
     </div>

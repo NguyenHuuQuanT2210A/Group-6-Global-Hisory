@@ -7,3 +7,6 @@
 <!-- THEME STYLES-->
 <link href="html/dist/assets/css/main.min.css" rel="stylesheet" />
 <!-- PAGE LEVEL STYLES-->
+
+{{-- Notification --}}
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">

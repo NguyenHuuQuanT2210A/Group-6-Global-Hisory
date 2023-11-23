@@ -1,5 +1,4 @@
 @extends("user.layouts.app")
-
 @section("after_css")
 {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />--}}
     <link rel="stylesheet" href="css/style.css" />
@@ -41,6 +40,67 @@
             font-size: 1em;
             padding-top: 1px;
         }
+
+        .share{
+            position: relative;
+            margin-right: 10px;
+            font-size: 1em;
+            padding-top: 3px;
+        }
+
+        .share-with {
+            position: absolute;
+            display: flex;
+            border: 1px solid #b1aaaa;
+            border-radius: 2px;
+            background-color: #e0e0e0;
+            top: 30px;
+            right: 0;
+            width: 200px;
+            height: 35px;
+        }
+
+        .triangle{
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid #e0e0e0;
+            position: absolute;
+            top: -10px;
+            transform: translateX(60%);
+            right: 25px;
+        }
+        .triangle::before{
+            content: "";
+            position: absolute;
+            top: -2px;
+            bottom: -8px;
+            border-left: 1px solid #b1aaaa;
+            border-top-left-radius: 1px;
+            border-bottom-right-radius: 1px;
+        }
+        .triangle::after{
+            content: "";
+            position: absolute;
+            top: -2px;
+            bottom: -8px;
+            border-left: 1px solid #b1aaaa;
+            border-top-right-radius: 1px;
+            border-bottom-left-radius: 1px;
+        }
+        .triangle::before {
+            transform: translateY(36%) rotate(27deg) translateX(-3px);
+        }
+
+        .triangle::after {
+            transform:translateY(22%) translateX(2px) rotate(-27deg);
+        }
+        .share-with a{
+            width: 100%;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
         .edit-area .delete{
             margin-right: 10px;
             color: #868e96;
@@ -68,14 +128,12 @@
 @endsection
 
 @section("content")
-
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/footer-2.jpg);">
         <h2 class="tit6 t-center">
             Post
         </h2>
     </section>
-
     <div class="container" style="margin-top: 100px; margin-bottom: 100px; max-width: 1250px;">
         <div class="main-body p-0">
             <div class="inner-wrapper">
@@ -143,13 +201,20 @@
                                                     <form  action="{{ url("forum/delete_post",["post"=>$post->id]) }}" method="POST">
                                                         @csrf
                                                         @method("DELETE")
-                                                        <button class="delete" onclick="return confirm('Chắc chắn muốn xoá Post này?: {{$post->title}}')"  type="submit"><i class="fa-solid fa-trash" style="color: red;"></i> Delete</button>
+                                                        <button class="delete" onclick="return confirm('Chắc chắn muốn xoá Post này?')"  type="submit"><i class="fa-solid fa-trash" style="color: red;"></i> Delete</button>
                                                     </form>
                                                 @endif
-                                                <a href="" class="share">
+                                                <div class="share">
+{{--                                                    <input type="text" id="share-url" value="{{ $url }}" class="url-link" readonly>--}}
                                                     <i class="fa-solid fa-share-from-square" style="color: black;"></i>
                                                     Share
-                                                </a>
+                                                </div>
+                                                    <div class="share-with">
+                                                        <span class="triangle"></span>
+                                                        <a id="shareWithFacebook"><i class="fa-brands fa-instagram m-l-21" aria-hidden="true"></i></a>
+                                                        <a href=""><i class="fa-brands fa-facebook-f m-l-21" aria-hidden="true"></i></a>
+                                                        <a href=""><i class="fa-brands fa-twitter m-l-21" aria-hidden="true"></i></a>
+                                                    </div>
                                             </div>
                                         </div>
                                         </div>
@@ -171,7 +236,7 @@
                                 @if(count($cmts) > 0)
                                 <div style="border-top:1px solid rgba(0,0,0,.15) !important;border-radius:.25rem;margin: 50px 0 0 60px">
                                     @foreach($cmts as $cmt)
-                                    <div class="comment-container" style="padding: 20px 0 0 10px">
+                                    <div class="comment-container" style="padding-left: 10px;padding-top: 10px">
                                         <div class="media forum-item">
                                             <a href="javascript:void(0)" class="card-link">
                                                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
@@ -179,7 +244,7 @@
                                             </a>
                                             <div class="media-body ml-3">
                                                 <a href="javascript:void(0)" class="text-secondary">{{ $cmt->user->name }}</a>
-                                                <small class="text-muted ml-2">{{ $post->user->created_at }}</small>
+                                                <small class="text-muted ml-2">{{ $cmt->created_at }}</small>
                                                 <div class="mt-2 font-size-sm">
                                                     {{ $cmt->comment }}
                                                 </div>
@@ -215,7 +280,6 @@
                                                 </a>
 
                                                 {{ count($like_cmts) }}
-
                                                     </span>
 {{--                                                    <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                     <span class="btn-reply" style="margin-left: 10px;cursor: pointer">Reply</span>
@@ -240,26 +304,22 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                         </div>
-
                                     </div>
-
 
                                         @if($cmt->parent_id == 0)
                                             @php
                                                 $cmt_reply = \App\Models\Comment::where("parent_id",$cmt->id)->get();
                                             @endphp
                                             @foreach($cmt_reply as $reply)
-                                         <div class="media forum-item" style="margin-top: 10px;padding-left: 30px">
+                                         <div class="media forum-item" style="padding-left: 30px">
                                             <a href="javascript:void(0)" class="card-link">
                                                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
                                                 <small class="d-block text-center text-muted">Newbie</small>
                                             </a>
                                             <div class="media-body ml-3">
                                                 <a href="javascript:void(0)" class="text-secondary">{{ $reply->user->name }}</a>
-                                                <small class="text-muted ml-2">{{ $reply->user->created_at }}</small>
+                                                <small class="text-muted ml-2">{{ $reply->created_at }}</small>
                                                 <div class="mt-2 font-size-sm">
                                                     {{ $reply->comment }}
                                                 </div>
@@ -320,22 +380,19 @@
                                             </div>
                                         </div>
 
-
-
-
                                                 @if($reply->parent_id > 0)
                                                     @php
                                                         $cmt_reply_reply = \App\Models\Comment::where("parent_id",$reply->id)->get();
                                                     @endphp
                                                     @foreach($cmt_reply_reply as $reply_reply)
-                                         <div class="media forum-item" style="margin-top: 10px;padding-left: 60px">
+                                         <div class="media forum-item" style="padding-left: 60px">
                                             <a href="javascript:void(0)" class="card-link">
                                                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle" width="50" alt="User" />
                                                 <small class="d-block text-center text-muted">Newbie</small>
                                             </a>
                                             <div class="media-body ml-3">
                                                 <a href="javascript:void(0)" class="text-secondary">{{ $reply_reply->user->name }}</a>
-                                                <small class="text-muted ml-2">{{ $post->user->created_at }}</small>
+                                                <small class="text-muted ml-2">{{ $reply_reply->created_at }}</small>
                                                 <div class="mt-2 font-size-sm">
                                                     {{$reply_reply->comment}}
                                                 </div>
@@ -395,12 +452,8 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                                                     @endforeach
                                                 @endif
-
-
                                             @endforeach
                                         @endif
                                 </div>
@@ -411,12 +464,9 @@
                                 @endif
                         </div>
                     </div>
-
                     <!-- /Forum Detail -->
                 </div>
-
             </div>
-
                 <div class="sb-right">
                     <!-- Inner sidebar body -->
                     <div style="padding: 10px 0 0 10px">
@@ -494,9 +544,33 @@
                     });
                 });
             </script>
+
             <script>
-                $('html, body').animate({
-                    scrollTop: $("#comment-section").offset().top
-                }, 2000);
+                $('.share-with').hide();
+
+                $(document).ready(function () {
+                    $('.share').click(function () {
+                        $(this).siblings('.share-with').toggle();
+                    });
+                });
             </script>
+
+            <script>
+                let copiedLink = '';
+                $(document).ready(function (){
+                    copiedLink = $('#share_url').val();
+
+                    $('#shareWithFacebook').click(function (){
+                        alert('123');
+                       window.open('https://www.facebook.com/sharer/sharer.php?u=' + copiedLink);
+                    });
+                });
+            </script>
+
+
+{{--            <script>--}}
+{{--                $('html, body').animate({--}}
+{{--                    scrollTop: $("#comment-section").offset().top--}}
+{{--                }, 2000);--}}
+{{--            </script>--}}
 @endsection

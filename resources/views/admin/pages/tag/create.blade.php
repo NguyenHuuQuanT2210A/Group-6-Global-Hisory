@@ -20,12 +20,19 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="tag">Name</label>
-                            <input type="text" name="name" value="{{old("name")}}" class="form-control"  placeholder="Enter Name" required>
+                            <input type="text" name="name" value="{{old("name")}}" class="form-control"
+                                   placeholder="Enter Name" required>
+                            @error("name")
+                            <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label>Description</label>
                             <textarea name="description" class="form-control" rows="3">{{old("description")}}</textarea>
+                            @error("description")
+                            <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
+                            @enderror
                         </div>
 
                     </div>

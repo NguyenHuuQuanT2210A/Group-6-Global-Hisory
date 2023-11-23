@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Interact;
 
+use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Post;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,47 +13,41 @@ class CommentController extends Controller
 {
     public function postComment(Request  $request, Post $post)
     {
-
-//        dd($request);
-
-        $request->validate([
-            'comment' => 'required'
-        ]);
-            if ($request->comment == ''){
-                return back()->withErrors('Vui long nhap comment');
-            }
+        if ($request->comment == ''){
+            Toastr::error("Vui long nhap comment!","Error!");
+            return redirect()->back();
+        }
+//        $request->validate([
+//            'comment' => 'required'
+//        ]);
             Comment::create([
                 'post_id' => $post->id,
                 'user_id' => Auth::user()->id,
                 'comment' => $request->comment
             ]);
-            $request->session()->flash('alert-success','Comment added successfully.');
-
-
+        $post->update([
+            'count_comment' => $post->increment('count_comment')
+        ]);
+        Toastr::success("Comment added successfully!","Success");
         return  back();
     }
 
     public function postCommentReply(Request $request, Comment $comment, Post $post)
     {
         $comment_reply = $request->comment;
-
-//        dd($request);
-//        try {
-            $result = Comment::create([
+        if ($comment_reply == ''){
+            return redirect()->back()->with('error','Vui long nhap comment reply');
+        }
+            Comment::create([
                 'parent_id' => $comment->id,
                 'user_id' =>Auth::user()->id,
                 'comment' =>$comment_reply,
                 'post_id' =>$post->id
             ]);
-//        }catch (\Exception $ex){
-//            return back()->withErrors($ex->getMessage());
-//        }
-
-//        $cmts_reply = Comment::where('parent_id',$comment->id)->get();
-//        dd($cmts_reply);
-
-        $request->session()->flash('alert-success','Comment reply added successfully');
-
+//        $post->update([
+//            'count_comment' => $post->increment('count_comment')
+//        ]);
+        Toastr::success("Comment reply added successfully!","Success");
         return back();
     }
 
@@ -68,8 +64,11 @@ class CommentController extends Controller
                 $item->delete();
         }
         $comment->delete();
-        $request->session()->flash('alert-success','Comment reply deleted successfully');
 
+//        $post->update([
+//            'count_comment' => $post->increment('count_comment')
+//        ]);
+        Toastr::success("Comment reply deleted successfully!","Success");
         return back();
 
     }

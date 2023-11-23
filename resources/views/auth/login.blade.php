@@ -4,11 +4,11 @@
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/bg-title-page-03.jpg);">
         <h2 class="tit6 t-center">
-            Blog
+            Login
         </h2>
     </section>
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container" >
+    <div class="row justify-content-center" style="margin: 35px 0">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-3" style="margin-left: 215px">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>

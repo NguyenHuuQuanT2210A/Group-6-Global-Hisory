@@ -8,7 +8,8 @@
                     <div class="card-tools">
                         <form action="{{url("/admin/user")}}" method="get">
                             <div class="input-group input-group-sm" style="width: 150px;float:left">
-                                <input value="{{app("request")->input("search")}}" type="text" name="search" class="form-control float-right" placeholder="Search">
+                                <input value="{{app("request")->input("search")}}" type="text" name="search"
+                                       class="form-control float-right" placeholder="Search">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-default">
                                         <i class="fas fa-search"></i>
@@ -35,14 +36,14 @@
                                 <td>#{{$loop->index+1}}</td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->email}}</td>
-{{--                                <td>--}}
-{{--                                    <a href="{{url("admin/product/edit",['product'=>$item->id])}}" class="btn btn-outline-info">Sửa</a>--}}
-{{--                                    <form action="{{url("admin/product/delete",['product'=>$item->id])}}" method="POST">--}}
-{{--                                        @csrf--}}
-{{--                                        @method("DELETE")--}}
-{{--                                        <button onclick="return confirm('Chắc chắn muốn xoá sản phẩm: {{$item->name}}')" class="btn btn-outline-danger" type="submit">Delete</button>--}}
-{{--                                    </form>--}}
-{{--                                </td>--}}
+                                {{--                                <td>--}}
+                                {{--                                    <a href="{{url("admin/product/edit",['product'=>$item->id])}}" class="btn btn-outline-info">Sửa</a>--}}
+                                {{--                                    <form action="{{url("admin/product/delete",['product'=>$item->id])}}" method="POST">--}}
+                                {{--                                        @csrf--}}
+                                {{--                                        @method("DELETE")--}}
+                                {{--                                        <button onclick="return confirm('Chắc chắn muốn xoá sản phẩm: {{$item->name}}')" class="btn btn-outline-danger" type="submit">Delete</button>--}}
+                                {{--                                    </form>--}}
+                                {{--                                </td>--}}
                             </tr>
                         @endforeach
                         </tbody>

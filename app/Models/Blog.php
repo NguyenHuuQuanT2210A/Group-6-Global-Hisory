@@ -31,16 +31,32 @@ class Blog extends Model
 //        return $this->belongsTo(Like::class);
 //    }
 
-//    public function comments()
-//    {
-//        return $this->belongsTo(Comment::class);
-//    }
+    public function commentBlog()
+    {
+        return $this->belongsTo(CommentBlog::class);
+    }
 
     public function scopeSearch($query,$request){
         if($request->has("search")&& $request->get("search") != ""){
             $search = $request->get("search");
-            $query->where("name","like","%$search%")
+            $query->where("title","like","%$search%")
                 ->orWhere("slug","like","%$search%");
+        }
+        return $query;
+    }
+
+    public function scopeCategory($query,$request){
+        if($request->has("category_id")&& $request->get("category_id") != 0){
+            $category_id = $request->get("category_id");
+            $query->where("category_id",$category_id);
+        }
+        return $query;
+    }
+
+    public function scopeTag($query,$request){
+        if($request->has("tag_id") && $request->get("tag_id") != ""){
+            $tag_id = $request->get("tag_id");
+            $query->where("tag_id",$tag_id);
         }
         return $query;
     }

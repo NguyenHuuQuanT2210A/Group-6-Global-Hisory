@@ -27,7 +27,7 @@
     <script async charset="utf-8" src="https://cdn.embedly.com/widgets/platform.js"></script>
 
     <!-- Bootstrap 5 CDN Link -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+{{--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">--}}
 
     <!-- Summernote CSS - CDN Link -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -45,8 +45,10 @@
     </section>
 
 
-    <div class="container-fluid pb-4 pt-4 paddding">
+    <div class="container-fluid pb-4 pt-4 paddding" style="position: relative">
+
         <div class="container paddding">
+
             <div class="row mx-0">
                 <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
 
@@ -56,14 +58,17 @@
                                 <label>Title</label>
                                 <input type="text" value="{{old("title")}}" name="title" class="form-control"
                                        placeholder="Enter Title">
+                                @error("title")
+                                <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label>Category</label>
                                 <div class="input-group-icon mt-10">
 {{--                                    <div class="form-select" id="default-select">--}}
-                                        <select name="category_id" class="form-select" id="default-select">
-
+                                        <select name="category_id" class="form-select select2Category" id="default-select">
+                                            <option value="">Category</option>
                                             @foreach($categories as $item)
                                                 <option @if($item->id==old("category_id")) selected
                                                         @endif value="{{$item->id}}">{{$item->name}}</option>
@@ -71,6 +76,9 @@
                                         </select>
 {{--                                    </div>--}}
                                 </div>
+                                @error("category_id")
+                                <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
+                                @enderror
                             </div>
 
 
@@ -87,11 +95,16 @@
                                         </select>
 {{--                                    </div>--}}
                                 </div>
+                                @error("tag_id")
+                                <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
+                                @enderror
                             </div>
                                 <div class="form-group">
                             <label>Body</label>
-                                        <textarea name="body" id="summernote" class="form-control" rows="3">{{old("body")}}</textarea>
-
+                                        <textarea name="body" id="summernote" class="form-control" rows="3">{!! old("body") !!}</textarea>
+                                    @error("body")
+                                    <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
+                                    @enderror
                                 </div>
                         </div>
                         <div>
@@ -116,15 +129,13 @@
             tags: true,
             width: "100%" // just for stack-snippet to show properly
         });
-        $(".initial-width").next(".select2-container").find(".select2-selection").css("border-radius", "10px");
-        // $(".initial-width").next(".select2-container").find(".select2-selection").css("width", "750px");
-        //
-        // $(".select2Category").select2({
-        //     tags: true,
-        // });
-        // $(".select2Category").next(".select2-container").find(".select2-selection").css("width", "750px");
-        // $(".select2Category").next(".select2-container").find(".select2-selection").css("height", "30px");
-        // $(".select2Category").next(".select2-container").find(".select2-selection").css("border-radius", "0");
+        $(".initial-width").next(".select2-container").find(".select2-selection").css("border-radius", "4px");
+        $(".initial-width").next(".select2-container").find(".select2-selection").css("border", "1px solid #d9d9d9");
+        // $(".initial-width").next(".select2-container").find(".select2-selection").css("height", "38px");
+        $(".select2Category").select2({
+            tags: true,
+        });
+        $(".select2Category").next(".select2-container").find(".select2-selection").css("height", "38px");
     });
 </script>
 lllllllllll

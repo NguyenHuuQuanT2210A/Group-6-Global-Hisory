@@ -23,7 +23,7 @@
 
                     <div class="blo1">
                         <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
-                            <a href="{{ url("event/single",['event'=>$item->slug]) }}"><img src="{{ $item->thumbnail }}" alt="IMG-INTRO"></a>
+                            <a href="{{ url("event/single",['event'=>$item->slug]) }}"><img src="{{ $item->thumbnail }}" style="width: 370px;height: 247px" alt="IMG-INTRO"></a>
                         </div>
 
                         <div class="wrap-text-blo1 p-t-35">
@@ -33,17 +33,17 @@
                                     {{ $item->name }}
                                 </h4></a>
                             <p>
-                                Date : {{$item->date_from}} - {{$item->date_to}}
+                                Date From: {{ date('d-M-Y H:i:s', strtotime($item->date_from)) }}
+                            </p>
+                            <p>
+                                Date To: {{ date('d-M-Y H:i:s', strtotime($item->date_to)) }}
                             </p>
                             <p>
                                 Number of people participated: {{ $item->qty_registered }}/{{ $item->qty }}
                             </p>
-                            <br>
-
                             <p class="m-b-20">
                                 {{\Illuminate\Support\Str::limit($item->description , 100 ,'...') }}
                             </p>
-
                             <a href="{{ url("event/single",['event'=>$item->slug]) }}" class="txt4">
                                 Learn More
                                 <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
@@ -52,21 +52,14 @@
                     </div>
                 </div>
                 @endforeach
-                    {!! $events->links("pagination::bootstrap-5") !!}
-
+                <div>
+                    {!! $events->links("pagination::bootstrap-4") !!}
+                </div>
             </div>
 
         </div>
     </div>
 
 </section>
-
-
-
-
-
-
-
-
 
 @endsection

@@ -135,7 +135,7 @@ h1,h2,h3,h4,h5,h6 {
 p {
 	font-family: Roboto, sans-serif;
   font-weight: 400;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
@@ -325,7 +325,7 @@ input[type="date" i] {
 
 .table-condensed td, .table-condensed th {
   font-size: 14px;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
 }
 .daterangepicker {
@@ -371,18 +371,19 @@ input[type="date" i] {
   align-items: center;
     background-color: white;
     border: 0px solid transparent;
-    border-radius: 10px !important;
+    border-radius: 4px !important;
     height: 46px;
     outline: none;
+  border: 1px solid #d9d9d9;
 }
 
 .select2-container--focus {
-  border-radius: 10px;
-  box-shadow: 0 0 0px 2px #ec1d25;
-  -moz-box-shadow: 0 0 0px 2px #ec1d25;
-  -webkit-box-shadow: 0 0 0px 2px #ec1d25;
-  -o-box-shadow: 0 0 0px 2px #ec1d25;
-  -ms-box-shadow: 0 0 0px 2px #ec1d25;
+  border-radius: 4px;
+  box-shadow: 0 0 0px 4px #c2daff;
+  -moz-box-shadow: 0 0 0px 4px #c2daff;
+  -webkit-box-shadow: 0 0 0px 4px #c2daff;
+  -o-box-shadow: 0 0 0px 4px #c2daff;
+  -ms-box-shadow: 0 0 0px 4px #c2daff;
 }
 
 .select2-container--focus .select2-selection--single {
@@ -390,12 +391,12 @@ input[type="date" i] {
 }
 
 .select2-container--below.select2-container--open {
-  border-radius: 10px;
-  box-shadow: 0 0 0px 2px #ec1d25;
-  -moz-box-shadow: 0 0 0px 2px #ec1d25;
-  -webkit-box-shadow: 0 0 0px 2px #ec1d25;
-  -o-box-shadow: 0 0 0px 2px #ec1d25;
-  -ms-box-shadow: 0 0 0px 2px #ec1d25;
+  border-radius: 4px;
+  box-shadow: 0 0 0px 4px #c2daff;
+  -moz-box-shadow: 0 0 0px 4px #c2daff;
+  -webkit-box-shadow: 0 0 0px 4px #c2daff;
+  -o-box-shadow: 0 0 0px 4px #c2daff;
+  -ms-box-shadow: 0 0 0px 4px #c2daff;
 }
 
 .select2-container--below.select2-container--open .select2-selection--single {
@@ -403,12 +404,12 @@ input[type="date" i] {
 }
 
 .select2-container--above.select2-container--open {
-  border-radius: 10px;
-  box-shadow: 0 0 0px 2px #ec1d25;
-  -moz-box-shadow: 0 0 0px 2px #ec1d25;
-  -webkit-box-shadow: 0 0 0px 2px #ec1d25;
-  -o-box-shadow: 0 0 0px 2px #ec1d25;
-  -ms-box-shadow: 0 0 0px 2px #ec1d25;
+  border-radius: 4px;
+  box-shadow: 0 0 0px 4px #c2daff;
+  -moz-box-shadow: 0 0 0px 4px #c2daff;
+  -webkit-box-shadow: 0 0 0px 4px #c2daff;
+  -o-box-shadow: 0 0 0px 4px #c2daff;
+  -ms-box-shadow: 0 0 0px 4px #c2daff;
 }
 
 .select2-container--above.select2-container--open .select2-selection--single {
@@ -419,11 +420,11 @@ input[type="date" i] {
 /*[ in select ]
 ===========================================================*/
 .select2-selection__rendered {
-  font-size: 14px;
-  font-family: Montserrat;
+  /*font-size: 14px;*/
+  font-family: Roboto, sans-serif;
   font-weight: 400;
   color: #666666 !important;
-  padding-left: 20px !important;
+  padding-left: 10px !important;
 }
 
 .select2-selection__arrow {
@@ -447,13 +448,13 @@ input[type="date" i] {
 
 .select2-container--default .select2-results__option[aria-selected=true],
 .select2-container .select2-results__option--highlighted[aria-selected] {
-  background-color: #ec1d25;
+  background-color: #5a93ea;
   color: #fff;
 }
 
 .select2-results__options{
-  font-size: 14px;
-  font-family: Montserrat;
+  /*font-size: 14px;*/
+  font-family: Roboto, sans-serif;
   font-weight: 400;
   color: #666666 !important;
 }
@@ -462,7 +463,7 @@ input[type="date" i] {
 .select2-search--dropdown .select2-search__field {
   border: 1px solid #aaa !important;
   outline: none;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 14px;
   color: #666666;
@@ -573,7 +574,7 @@ input[type="date" i] {
 }
 
 .main_menu > li > a {
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 14px;
   text-transform: uppercase;
@@ -642,7 +643,7 @@ input[type="date" i] {
 
 .sub_menu li, .sub_menu a {
   padding: 10px;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 14px;
   color: #808080;
@@ -1376,7 +1377,7 @@ body {padding-right: 0px !important;}
   background-color: rgba(0,0,0,0.5);
   padding: 3px 15px;
 
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 12px;
   color: white;
@@ -1549,7 +1550,7 @@ body {padding-right: 0px !important;}
 ///////////////////////////////////////////////////////////
 */
 .item-pagination {
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 13px;
   color: #808080;
@@ -1639,28 +1640,28 @@ body {padding-right: 0px !important;}
 }
 .sub-menu-wrap.open-menu{
   max-height: 400px;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }
 .sub-menu{
   background: white;
   padding: 20px;
   margin: 10px;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }
 .user-info{
   display: flex;
   align-items: center;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }
 .user-info h3{
   font-weight: bold;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }
 .user-info img{
   width: 60px;
   border-radius: 50%;
   margin-right: 15px;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }
 .sub-menu hr{
   border: 0;
@@ -1668,7 +1669,7 @@ body {padding-right: 0px !important;}
   width: 100%;
   background: #ccc;
   margin: 15px 0 10px;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }
 .sub-menu-link{
   display: flex;
@@ -1676,11 +1677,11 @@ body {padding-right: 0px !important;}
   text-decoration: none;
   color: #525252;
   margin: 12px 0;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }
 .sub-menu-link p{
   width: 100%;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }
 .sub-menu-link img{
   width: 40px;
@@ -1688,25 +1689,25 @@ body {padding-right: 0px !important;}
   border-radius: 50%;
   padding: 8px;
   margin-right: 15px;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }
 .sub-menu-link span{
   font-size: 22px;
   transition: transform 0.5s;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }
 .sub-menu-link:hover span{
   transform: translate(5px);
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }
 .sub-menu-link:hover p{
   font-weight: 600;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }
 .user-pic{
   width: 40px;
   border-radius: 50%;
   cursor: pointer;
   margin-left: 30px;
-  font-family: Montserrat;
+  font-family: Roboto, sans-serif;
 }

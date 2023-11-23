@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Event;
 use App\Models\Post;
 use App\Models\Tag;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -16,8 +17,19 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
-        $blogs = Blog::Search($request)->orderByDesc("id")->paginate(10);
-        return view("admin.pages.blog.blog",compact("blogs"));
+        $categories = Category::all();
+        $tags = Tag::all();
+        $search = $request->get("search");
+        $category_id = $request->get("category_id");
+        $tag_id = $request->get("tag_id");
+
+
+        $blogs = Blog::Search($request)
+            ->Category($request)
+            ->Tag($request)
+            ->orderByDesc("id")
+            ->paginate(10);
+        return view("admin.pages.blog.blog",compact("blogs","categories","tags"));
     }
 
 
@@ -32,13 +44,13 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "thumbnail"=>"nullable|mimes:png,jpg,jpeg,gif|mimetypes:image/jpeg,image/png,image/jpg",
-            "title"=>"required",
+            "thumbnail"=>"required|mimes:png,jpg,jpeg,gif|mimetypes:image/jpeg,image/png,image/jpg",
+            "title"=>"required|min:6",
             "category_id" =>"required",
             "tag_id" =>"required",
             "body"=>"required",
         ]);
-//        try{
+        try{
         $thumbnail = null;
         if ($request->hasFile("thumbnail")) {
             $path = public_path("uploads/blogs");
@@ -56,10 +68,11 @@ class BlogController extends Controller
             "user_id"=>Auth::user()->id,
             "body"=>$request->get("body"),
         ]);
-        return redirect()->to("admin/blog/")->with("success","Successfully");
-//        }catch (\Exception $e){
-//            return redirect()->back()->withErrors($e->getMessage());
-//        }
+        Toastr::success("Created Blog Success!","success");
+        return redirect()->to("admin/blog");
+        }catch (\Exception $e){
+            return redirect()->back()->withErrors($e->getMessage());
+        }
 
     }
 
@@ -78,12 +91,12 @@ class BlogController extends Controller
     public function update(Blog $blog,Request $request){
         $request->validate([
             "thumbnail"=>"nullable|mimes:png,jpg,jpeg,gif|mimetypes:image/jpeg,image/png,image/jpg",
-            "title"=>"required",
+            "title"=>"required|min:6",
             "category_id" =>"required",
             "tag_id" =>"required",
             "body"=>"required",
         ]);
-//        try{
+        try{
         $thumbnail = $blog->thumbnail;
 
             if ($request->hasFile("thumbnail")) {
@@ -102,17 +115,19 @@ class BlogController extends Controller
             "user_id"=>Auth::user()->id,
             "body"=>$request->get("body"),
         ]);
-        return redirect()->to("admin/blog/")->with("success","Successfully");
-//        }catch (\Exception $e){
-//            return redirect()->back()->withErrors($e->getMessage());
-//        }
+            Toastr::success("Updated Blog Success!","success");
+        return redirect()->to("admin/blog");
+        }catch (\Exception $e){
+            return redirect()->back()->withErrors($e->getMessage());
+        }
     }
 
 
     public function delete(Blog $blog){
         try {
             $blog->delete();
-            return redirect()->to("admin/blog/")->with("success","Successfully");
+            Toastr::success("Deleted Blog Success!","success");
+            return redirect()->to("admin/blog");
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }

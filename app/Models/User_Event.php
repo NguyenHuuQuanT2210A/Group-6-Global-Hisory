@@ -10,7 +10,7 @@ class User_Event extends Model
 {
     use HasFactory;
     protected $table = "user_events";
-    protected $fillable = ['user_id','event_id','name','slug','email','tel','address'];
+    protected $fillable = ['user_id','event_id','name','slug','email','tel','address','confirm'];
     use SoftDeletes;
 
     public function user()

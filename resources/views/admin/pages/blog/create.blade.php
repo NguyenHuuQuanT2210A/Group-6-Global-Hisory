@@ -1,12 +1,12 @@
 @extends("admin.layouts.app")
 @section("after_css")
-    <link href="html/dist/assets/vendors/select2/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="html/dist/assets/vendors/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
-    <link href="html/dist/assets/vendors/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
-    <link href="html/dist/assets/vendors/jquery-minicolors/jquery.minicolors.css" rel="stylesheet" />
+    <link href="html/dist/assets/vendors/select2/dist/css/select2.min.css" rel="stylesheet"/>
+    <link href="html/dist/assets/vendors/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet"/>
+    <link href="html/dist/assets/vendors/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet"/>
+    <link href="html/dist/assets/vendors/jquery-minicolors/jquery.minicolors.css" rel="stylesheet"/>
 
-    <link href="html/dist/assets/vendors/summernote/dist/summernote.css" rel="stylesheet" />
-    <link href="html/dist/assets/vendors/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" />
+    <link href="html/dist/assets/vendors/summernote/dist/summernote.css" rel="stylesheet"/>
+    <link href="html/dist/assets/vendors/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet"/>
 @endsection
 @section('content')
     <div class="page-heading">
@@ -28,7 +28,11 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="category">Title</label>
-                            <input type="text" name="title" value="{{old("title")}}" class="form-control"  placeholder="Enter Title" required>
+                            <input type="text" name="title" value="{{old("title")}}" class="form-control"
+                                   placeholder="Enter Title" required>
+                            @error("title")
+                            <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
+                            @enderror
                         </div>
 
                         <div class="form-group">
@@ -38,6 +42,9 @@
                                 {{old("thumbnail")}}
                             </div>
                             <input type="hidden" id="thumb">
+                            @error("thumbnail")
+                            <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
+                            @enderror
                         </div>
 
                         <div class="form-group">
@@ -49,6 +56,9 @@
                                             @endif value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
+                            @error("category_id")
+                            <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
+                            @enderror
                         </div>
 
                         <div class="form-group">
@@ -59,11 +69,17 @@
                                             @endif value="{{$tag->id}}">{{$tag->name}}</option>
                                 @endforeach
                             </select>
+                            @error("tag_id")
+                            <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
+                            @enderror
                         </div>
 
                         <label for="summernote"></label>
-                        <textarea id="summernote" name="body" data-plugin="summernote" data-air-mode="true">{{ old("body") }}</textarea>
-
+                        <textarea id="summernote" name="body" data-plugin="summernote"
+                                  data-air-mode="true">{{ old("body") }}</textarea>
+                        @error("body")
+                        <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
+                        @enderror
                     </div>
 
                     <div class="card-footer">
@@ -80,8 +96,10 @@
     <script src="html/dist/assets/vendors/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
     <script src="html/dist/assets/vendors/jquery-knob/dist/jquery.knob.min.js" type="text/javascript"></script>
     <script src="html/dist/assets/vendors/moment/min/moment.min.js" type="text/javascript"></script>
-    <script src="html/dist/assets/vendors/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-    <script src="html/dist/assets/vendors/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <script src="html/dist/assets/vendors/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"
+            type="text/javascript"></script>
+    <script src="html/dist/assets/vendors/bootstrap-timepicker/js/bootstrap-timepicker.min.js"
+            type="text/javascript"></script>
     <script src="html/dist/assets/vendors/jquery-minicolors/jquery.minicolors.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
     <script src="html/dist/assets/js/scripts/form-plugins.js" type="text/javascript"></script>
@@ -89,7 +107,7 @@
     <script src="html/dist/assets/vendors/summernote/dist/summernote.min.js" type="text/javascript"></script>
     <script src="html/dist/assets/vendors/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             $('#summernote').summernote();
             $('#summernote_air').summernote({
                 airMode: true
