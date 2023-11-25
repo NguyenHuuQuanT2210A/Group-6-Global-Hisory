@@ -12,7 +12,6 @@ class LikeEvent extends Model
     protected $table = "like_events";
     protected $fillable = ['user_id','event_id', 'like'];
     use SoftDeletes;
-
     public function user()
     {
         return $this->belongsTo(User::class);

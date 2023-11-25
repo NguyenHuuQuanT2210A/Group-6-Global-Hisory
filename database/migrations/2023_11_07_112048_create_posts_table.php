@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-//            $table->string("thumbnail")->nullable();
             $table->string("title",255)->unique();
             $table->string("slug",255)->unique();
             $table->bigInteger('view_count')->unsigned()->default(0)->index();
@@ -25,7 +24,6 @@ return new class extends Migration
             $table->bigInteger("count_like")->unsigned()->default(0)->index();
             $table->bigInteger("count_comment")->unsigned()->default(0)->index();
             $table->foreign("category_id")->references("id")->on("categories")->cascadeOnUpdate()->cascadeOnDelete();
-//            $table->foreign("tag_id")->references("id")->on("tags")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign("user_id")->references("id")->on("users")->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

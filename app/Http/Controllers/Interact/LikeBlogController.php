@@ -30,7 +30,6 @@ class LikeBlogController extends Controller
                 ]);
                 return back();
             }
-
         }
         LikeBlog::create([
             'user_id' => Auth::user()->id,

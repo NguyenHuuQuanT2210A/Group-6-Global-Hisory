@@ -22,7 +22,6 @@ class TagFactory extends Factory
             'name' => $name,
             "slug"=> Str::slug($name),
             'description' => $this->faker->text(200),
-//            'category_id'=> random_int(1,10),
         ];
     }
 }

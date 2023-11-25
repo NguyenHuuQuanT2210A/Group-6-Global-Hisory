@@ -11,7 +11,6 @@ class LikeController extends Controller
 {
     public function likePost(Post $post)
     {
-
         $likes = Like::all();
         foreach ($likes as $item){
             if ($item->user_id == Auth::user()->id && $item->like == 1 && $item->post_id == $post->id){
@@ -33,7 +32,6 @@ class LikeController extends Controller
                 return back();
             }
         }
-//        dd($likes);
         Like::create([
            'user_id' => Auth::user()->id,
            'post_id' => $post->id,
@@ -42,7 +40,6 @@ class LikeController extends Controller
         $post->update([
             'count_like' => $post->increment('count_like')
         ]);
-
         return back();
     }
 }

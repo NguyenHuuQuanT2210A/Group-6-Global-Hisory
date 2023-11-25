@@ -17,7 +17,6 @@ class LikeEventController extends Controller
                 $item->update([
                     'like' => false
                 ]);
-
                 return back();
             }elseif ($item->user_id == Auth::user()->id && $item->like == 0 && $item->event_id == $event->id){
                 $item->update([
@@ -26,15 +25,12 @@ class LikeEventController extends Controller
 
                 return back();
             }
-
         }
-
         LikeEvent::create([
             'user_id' => Auth::user()->id,
             'event_id' => $event->id,
             'like' => true
         ]);
-
         return back();
     }
 }

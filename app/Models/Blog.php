@@ -11,7 +11,6 @@ class Blog extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = ['thumbnail','title', 'slug', 'body','category_id', 'tag_id', 'user_id'];
-//    protected $casts=['tag_id'=>'array'];
 
     public function user()
     {
@@ -26,11 +25,6 @@ class Blog extends Model
     {
         return $this->belongsTo(Tag::class);
     }
-//    public function like()
-//    {
-//        return $this->belongsTo(Like::class);
-//    }
-
     public function commentBlog()
     {
         return $this->belongsTo(CommentBlog::class);

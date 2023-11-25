@@ -35,14 +35,12 @@ class BlogController extends Controller
         return view("admin.pages.blog.blog",compact("blogs","categories","tags"));
     }
 
-
     public function create()
     {
         $categories = Category::all();
         $tags = Tag::all();
         return view("admin.pages.blog.create",compact("categories","tags"));
     }
-
 
     public function store(Request $request)
     {
@@ -78,7 +76,6 @@ class BlogController extends Controller
         }
 
     }
-
     public function blogDetail(Blog $blog)
     {
         return view("admin.pages.blog.blog_detail",compact("blog"));
@@ -89,7 +86,6 @@ class BlogController extends Controller
         $tags = Tag::all();
         return view("admin.pages.blog.edit",compact("blog","categories","tags"));
     }
-
 
     public function update(Blog $blog,Request $request){
         $request->validate([
@@ -125,7 +121,6 @@ class BlogController extends Controller
         }
     }
 
-
     public function delete(Blog $blog){
         try {
             $blog->delete();
@@ -135,5 +130,4 @@ class BlogController extends Controller
             return redirect()->back()->withErrors($e->getMessage());
         }
     }
-
 }

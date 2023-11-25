@@ -16,7 +16,6 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-//        $search = $request->get("search");
 
         $posts = Post::Search($request)
             ->Category($request)
@@ -62,7 +61,6 @@ class PostController extends Controller
             return redirect()->back()->withErrors($e->getMessage());
         }
     }
-
     public function delete(Post $post)
     {
         try {

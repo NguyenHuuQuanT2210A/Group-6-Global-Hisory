@@ -12,7 +12,6 @@ class LikeCommentBlogController extends Controller
 {
     public function likeCommentBlog(Blog $blog, CommentBlog $commentBlog)
     {
-
         $likes = LikeCommentBlog::all();
         foreach ($likes as $item){
             if ($item->user_id == Auth::user()->id && $item->like_cmt_blog == 1 && $item->blog_id == $blog->id && $item->comment_id == $commentBlog->id){
@@ -34,7 +33,6 @@ class LikeCommentBlogController extends Controller
             'comment_id' => $commentBlog->id,
             'like_cmt_blog' => true
         ]);
-
         return back();
     }
 }

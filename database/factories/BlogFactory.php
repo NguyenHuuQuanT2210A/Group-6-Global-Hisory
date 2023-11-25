@@ -24,7 +24,7 @@ class BlogFactory extends Factory
             "slug"=> Str::slug($title),
             'body' => $this->faker->text(5000),
             'category_id' => random_int(1,10),
-            'tag_id' => random_int(1,10), //phai nam trong category_id
+            'tag_id' => random_int(1,10),
             'user_id'=> random_int(2,11),
         ];
     }

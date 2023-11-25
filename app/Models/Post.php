@@ -57,7 +57,7 @@ class Post extends Model
             }elseif ($post_id == "3") {
                 $query->orderByDesc("count_comment");
             }elseif ($post_id == "4") {
-                $query->where("count_comment",0);
+                $query->where("count_comment","=",0)->get();
             }
         }
         return $query;
@@ -138,8 +138,4 @@ class Post extends Model
             case self::UNAPPROVED: return "<span class='text-danger'>Không Duyệt</span>";
         }
     }
-
-
-
-
 }

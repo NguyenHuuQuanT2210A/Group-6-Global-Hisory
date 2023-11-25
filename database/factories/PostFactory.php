@@ -24,12 +24,11 @@ class PostFactory extends Factory
         $tagNames = Tag::pluck('name')->toArray();
         $randomTagNames = Arr::random($tagNames, random_int(1, 10));
         return [
-//            "thumbnail"=> "images/blog-0".random_int(1,9).".jpg",
             'title' => $title,
             "slug"=> Str::slug($title),
             'body' => $this->faker->text(300),
             'category_id' => random_int(1,10),
-            'tag_id' => $randomTagNames, //phai nam trong category_id
+            'tag_id' => $randomTagNames,
             'user_id'=> random_int(2,11),
             'is_approved' => 1
         ];

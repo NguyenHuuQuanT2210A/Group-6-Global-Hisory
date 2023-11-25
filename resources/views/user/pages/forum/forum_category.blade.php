@@ -80,7 +80,27 @@
                                                 <span style="margin: 0 5px"><i class="far fa-heart"></i> {{ $count_like }}</span>
                                                 <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> {{ $item->view_count }}</span>
                                                 <span><i class="far fa-comment ml-2"></i> {{ $count_cmt }}</span>
-                                                <span class="text-secondary font-weight-bold" style="padding-left: 5px;font-size: 15px">{{ $item->created_at }}</span>
+                                                <span class="text-secondary font-weight-bold" style="padding-left: 5px;font-size: 15px">
+                                            <?php
+                                                        $created_at = $item->created_at;
+                                                        $time_diff = \Illuminate\Support\Carbon::parse($created_at)->diffInSeconds();
+                                                        $display_format = '';
+                                                        if ($time_diff == 0) {
+                                                            $display_format = 'now';
+                                                        } elseif ($time_diff < 60) {
+                                                            $display_format = $time_diff . ' second ago';
+                                                        } elseif ($time_diff < 3600) {
+                                                            $display_format = \Illuminate\Support\Carbon::parse($created_at)->diffInMinutes() . ' minute ago';
+                                                        } elseif ($time_diff < 86400) {
+                                                            $display_format = \Illuminate\Support\Carbon::parse($created_at)->diffInHours() . ' hour ago';
+                                                        } elseif ($time_diff < 31536000) {
+                                                            $display_format = \Illuminate\Support\Carbon::parse($created_at)->diffInDays() . ' day ago';
+                                                        } else {
+                                                            $display_format = $created_at;
+                                                        }
+                                                        echo $display_format;
+                                                        ?>
+                                        </span>
                                             </p>
                                         </div>
                                     </div>

@@ -12,7 +12,6 @@ class LikeBlog extends Model
     protected $table = "like_blogs";
     protected $fillable = ['user_id','blog_id', 'like'];
     use SoftDeletes;
-
     public function user()
     {
         return $this->belongsTo(User::class);

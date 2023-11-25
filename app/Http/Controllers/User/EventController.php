@@ -27,13 +27,13 @@ class EventController extends Controller
     }
     public function categoryEvent(Category $category)
     {
-        $category_event = Event::where("category_id",$category->id)->paginate(10);
+        $category_event = Event::where("category_id",$category->id)->orderByDesc("id")->paginate(10);
         return view("user.pages.event.category_event",compact("category_event"));
     }
 
     public function tagEvent(Tag $tag)
     {
-        $tag_event = Event::where("tag_id",$tag->id)->paginate(10);
+        $tag_event = Event::where("tag_id",$tag->id)->orderByDesc("id")->paginate(10);
         return view("user.pages.event.tag_event",compact("tag_event"));
     }
     public function blogEvent(Event $event)
@@ -48,7 +48,11 @@ class EventController extends Controller
             $event->increment('view_count');
             Session::push('viewed_event', $event->id);
         }
-
+        if ($event->qty == $event->qty_registered){
+            $event->update([
+                "status" => Event::FULL,
+            ]);
+        }
         $event_popular = Event::orderByDesc("view_count")->paginate(5);
         $event_latest = Event::orderByDesc("created_at")->paginate(4);
         return view("user.pages.event.blog_event",compact("categories","tags","event","event_popular","event_latest","like_events","likes_events_latest"));
@@ -57,7 +61,6 @@ class EventController extends Controller
 
     public function registerEvent(Event $event, Request $request)
     {
-//        dd($event->name);
 //        $rq_id = $request->ip();
         $request->validate([
             "name" =>"required",
@@ -73,7 +76,6 @@ class EventController extends Controller
                 return redirect()->back();
             }
         }
-
         try {
         $user_registered = User_Event::create([
             "name" => $request->get("name"),
@@ -90,11 +92,7 @@ class EventController extends Controller
         $event->update([
             "qty_registered" => $count,
         ]);
-        if ($event->qty == $event->qty_registered){
-            $event->update([
-                "status" => Event::FULL,
-            ]);
-        }
+
         event(new CreateNewUserEvent(($user_registered)));
             Toastr::success("You have successfully registered, the invitation has been sent to your email!","Success!");
             return redirect()->to("event/");
@@ -102,25 +100,8 @@ class EventController extends Controller
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());
         }
-//        $start = Carbon::now();
-//        $end = $start->addHours(24);
-//        if (\Carbon\Carbon::now()->gte($end)) {
-//            // Đã đạt đến 24 giờ sau
-//            if ($user_registered->confirm == false){
-//                $user_registered->delete();
-//            }
-//        }
-
     }
 
-//    public function mailConfirm(User_Event $user_Event)
-//    {
-//        dd($user_Event);
-//        $boolean = $user_Event->update([
-//           "confirm" => true
-//        ]);
-//
-//        return redirect("/");
-//    }
+
 
 }

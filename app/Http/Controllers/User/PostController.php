@@ -23,21 +23,18 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        $select = $request->get("post_id");
-
-        $search = $request->get("search");
-//        $category_id = $request->get("category_id");
-//        $tag_id = $request->get("tag_id");
-        $created_at = $request->get("created_at");
 
         $posts = Post::Search($request)
             ->SearchPost($request)
-//            ->Category($request)
-//            ->Tag($request)
             ->CreatedAt($request)
             ->where("is_approved",1 )
             ->orderByDesc("id")
             ->paginate(15);
+        foreach ($posts as $item){
+            $count = Comment::where("post_id",$item->id)->where("parent_id",0)->count();
+             $item->count_comment = $count;
+             $item->save();
+        }
         $post_related = Post::where("is_approved", 1)->orderBy("created_at")->limit(5)->get();
         $post_new = Post::where("is_approved", 1)->orderByDesc("created_at")->limit(5)->get();
         return view("user.pages.forum.index",compact("categories","tags","posts","post_related","post_new"));
@@ -45,21 +42,19 @@ class PostController extends Controller
 
     public function forumCategory(Category $category, Request $request)
     {
-        $search = $request->get("search");
-//        $category_id = $request->get("category_id");
-//        $tag_id = $request->get("tag_id");
-        $created_at = $request->get("created_at");
+
         $posts = Post::Search($request)
             ->SearchPost($request)
-//            ->Category($request)
-//            ->Tag($request)
             ->CreatedAt($request)
             ->where("category_id",$category->id)
             ->where("is_approved",1 )
             ->orderByDesc("id")
             ->paginate(15);
-//        $posts = Post::where("category_id",$category->id)->where("is_approved",1 )->paginate(15);
-
+        foreach ($posts as $item){
+            $count = Comment::where("post_id",$item->id)->where("parent_id",0)->count();
+            $item->count_comment = $count;
+            $item->save();
+        }
         $categories = Category::all();
         $tags = Tag::all();
         $post_related = Post::where("is_approved", 1)->orderBy("created_at")->limit(5)->get();
@@ -68,21 +63,18 @@ class PostController extends Controller
     }
     public function forumTag(Tag $tag, Request $request)
     {
-        $search = $request->get("search");
-//        $category_id = $request->get("category_id");
-//        $tag_id = $request->get("tag_id");
-        $created_at = $request->get("created_at");
         $posts = Post::Search($request)
             ->SearchPost($request)
-//            ->Category($request)
-//            ->Tag($request)
             ->CreatedAt($request)
             ->whereJsonContains('tag_id', $tag->name)
             ->where("is_approved",1 )
             ->orderByDesc("id")
             ->paginate(15);
-//        $posts = Post::whereJsonContains('tag_id', $tag->name)->paginate(15);
-
+        foreach ($posts as $item){
+            $count = Comment::where("post_id",$item->id)->where("parent_id",0)->count();
+            $item->count_comment = $count;
+            $item->save();
+        }
         $categories = Category::all();
         $tags = Tag::all();
         $post_related = Post::where("is_approved", 1)->orderBy("id")->limit(5)->get();
@@ -102,25 +94,14 @@ class PostController extends Controller
     public function createPostStore(Request $request)
     {
 
-//        dd($request);
         $request->validate([
-//            "thumbnail"=>"nullable|mimes:png,jpg,jpeg,gif|mimetypes:image/jpeg,image/png,image/jpg",
             "title"=>"required",
             "category_id" =>"required ",
             "tag_id" =>"required",
             "body"=>"required",
         ]);
         try{
-//            $thumbnail = null;
-//            if ($request->hasFile("thumbnail")) {
-//                $path = public_path("uploads");
-//                $file = $request->file("thumbnail");
-//                $file_name = Str::random(5).time().Str::random(5).".".$file->getClientOriginalExtension(); //$file->getClientOriginalName() lay anh goc tu may cua minh len
-//                $file->move($path, $file_name);
-//                $thumbnail = "/uploads/" . $file_name;
-//            }
             Post::create([
-//                "thumbnail"=> $thumbnail,
                 "title"=>$request->get("title"),
                 "slug"=> Str::slug($request->get("title")),
                 "category_id"=>$request->get("category_id"),
@@ -135,14 +116,12 @@ class PostController extends Controller
         }
     }
 
-
     public function editPost(Post $post)
     {
         $categories = Category::all();
         $tags = Tag::all();
         return view("user.pages.forum.edit_post",compact("post","categories","tags"));
     }
-
 
     public function updatePost(Request $request, Post $post)
     {
@@ -180,7 +159,6 @@ class PostController extends Controller
         $likes_latest = Like::where('like',1)->orderByDesc('id')->limit(1)->get();
         $categories = Category::all();
         $tags = Tag::all();
-
         $viewed_post = Session::get('viewed_post', []);
         if (!in_array($post->id, $viewed_post)) {
             $post->update([
@@ -192,15 +170,9 @@ class PostController extends Controller
 
         $cmts = Comment::where('post_id',$post->id)
             ->where('parent_id',0)->get();
-
         $url = $request->url();
         $post_related = Post::where("is_approved", 1)->orderBy("id")->limit(5)->get();
         $post_new = Post::where("is_approved", 1)->orderByDesc("id")->limit(5)->get();
-
-
         return view("user.pages.forum.single",compact("post","categories","tags","post_related","post_new","cmts","likes","likes_latest","url"));
     }
-
-
-
 }

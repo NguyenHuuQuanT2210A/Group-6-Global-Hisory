@@ -36,14 +36,12 @@ class EventController extends Controller
         return view("admin.pages.event.event",compact("events","categories","tags"));
     }
 
-
     public function create()
     {
         $categories = Category::all();
         $tags = Tag::all();
         return view("admin.pages.event.create",compact("categories","tags"));
     }
-
 
     public function store(Request $request)
     {
@@ -87,14 +85,11 @@ class EventController extends Controller
 
     }
 
-
     public function edit(Event $event ){
-//        return dd($event);
         $categories = Category::all();
         $tags = Tag::all();
         return view("admin.pages.event.edit",compact('event',"categories","tags"));
     }
-
 
     public function update(Event $event,Request $request){
         $request->validate([
@@ -137,7 +132,6 @@ class EventController extends Controller
         }
     }
 
-
     public function delete(Event $event){
         try {
             $event->delete();
@@ -153,5 +147,4 @@ class EventController extends Controller
         $user_event = User_Event::Search($request)->orderByDesc("id")->paginate(10);
         return view("admin.pages.event.user_event",compact("user_event"));
     }
-
 }

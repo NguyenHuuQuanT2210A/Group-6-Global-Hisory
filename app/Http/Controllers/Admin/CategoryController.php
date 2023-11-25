@@ -17,12 +17,10 @@ class CategoryController extends Controller
         return view("admin.pages.category.category",['categories'=>$categories]);
     }
 
-
     public function create()
     {
         return view("admin.pages.category.create");
     }
-
 
     public function store(Request $request)
     {
@@ -41,12 +39,10 @@ class CategoryController extends Controller
         }
     }
 
-
     public function edit(Category $category){
         $categories = Category::all();
         return view("admin.pages.category.edit",compact('category','categories'));
     }
-
 
     public function update(Category $category,Request $request){
         $request->validate([
@@ -64,7 +60,6 @@ class CategoryController extends Controller
         }
     }
 
-
     public function delete(Category $category){
         try {
             $category->delete();
@@ -74,5 +69,4 @@ class CategoryController extends Controller
             return redirect()->back()->withErrors($e->getMessage());
         }
     }
-
 }

@@ -102,15 +102,14 @@
                                                     </form>
                                                 @endif
                                                 <div class="share">
-{{--                                                    <input type="text" id="share-url" value="{{ $url }}" class="url-link" readonly>--}}
                                                     <i class="fa-solid fa-share-from-square" style="color: black;"></i>
                                                     Share
                                                 </div>
                                                     <div class="share-with">
                                                         <span class="triangle"></span>
-                                                        <a id="shareWithFacebook"><i class="fa-brands fa-instagram m-l-21" aria-hidden="true"></i></a>
-                                                        <a href=""><i class="fa-brands fa-facebook-f m-l-21" aria-hidden="true"></i></a>
-                                                        <a href=""><i class="fa-brands fa-twitter m-l-21" aria-hidden="true"></i></a>
+                                                        <a href="javascript:void(0)"><i class="fa-brands fa-instagram m-l-21" aria-hidden="true"></i></a>
+                                                        <a href="javascript:void(0)"><i class="fa-brands fa-facebook-f m-l-21" aria-hidden="true"></i></a>
+                                                        <a href="javascript:void(0)"><i class="fa-brands fa-twitter m-l-21" aria-hidden="true"></i></a>
                                                     </div>
                                             </div>
                                         </div>

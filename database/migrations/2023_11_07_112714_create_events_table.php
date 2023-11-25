@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-//            name, cagtegory, date, qty, address, description, status
             $table->string("thumbnail")->nullable();
             $table->string("name");
             $table->string("slug",255)->unique();
@@ -29,7 +28,6 @@ return new class extends Migration
             $table->unsignedBigInteger("tag_id");
             $table->unsignedBigInteger("user_id")->default(1);
             $table->bigInteger("count_like")->unsigned()->default(0)->index();
-//            $table->bigInteger("count_comment")->unsigned()->default(0)->index();
             $table->foreign("category_id")->references("id")->on("categories")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign("tag_id")->references("id")->on("tags")->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign("user_id")->references("id")->on("users")->cascadeOnUpdate()->cascadeOnDelete();

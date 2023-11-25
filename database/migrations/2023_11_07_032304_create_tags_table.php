@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string("name")->unique();
             $table->string("slug");
             $table->string("description");
-//            $table->unsignedBigInteger("category_id");
-//            $table->foreign("category_id")->references("id")->on("categories")->cascadeOnUpdate()->cascadeOnDelete();;
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->softDeletes();

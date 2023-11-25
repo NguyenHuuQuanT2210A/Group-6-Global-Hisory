@@ -46,7 +46,6 @@ class CommentController extends Controller
         return back();
     }
 
-
     public function deleteCommentReply(Request $request, Comment $comment)
     {
         $delte_cmt = Comment::where('parent_id',$comment->id)->get();
@@ -59,9 +58,7 @@ class CommentController extends Controller
                 $item->delete();
         }
         $comment->delete();
-
         Toastr::success("Comment reply deleted successfully!","Success");
         return back();
-
     }
 }

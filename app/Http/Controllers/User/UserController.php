@@ -25,15 +25,4 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storePost(Request $request)
-    {
-        $post = new Post;
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->user_id = Auth::id();
-        $post->is_approved = false;
-        $post->save();
-
-        return redirect()->route('home');
-    }
 }

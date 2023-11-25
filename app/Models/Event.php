@@ -32,7 +32,6 @@ class Event extends Model
 
     public function user()
     {
-        // nhieu vs nhieu
         return $this->belongsTo(User::class);
     }
 
@@ -77,8 +76,6 @@ class Event extends Model
     {
         if ($request->has("date_from") && $request->has("date_to")) {
             if ($request->get("date_from") != "" && $request->get("date_to") != ""){
-//                $fromDate = Carbon::createFromFormat('Y-m-d', $request->get("date_from"))->startOfDay();
-//                $toDate = Carbon::createFromFormat('Y-m-d', $request->get("date_to"))->endOfDay();
                 $date_from = $request->get("date_from");
                 $date_to = $request->get("date_to");
 
@@ -86,7 +83,6 @@ class Event extends Model
                     $query->whereBetween("date_from", [$date_from, $date_to])
                         ->whereBetween("date_to", [$date_from, $date_to]);
                 });
-//                dd($query->get());
             } elseif ($request->get("date_from") != "" && $request->get("date_to") == ""){
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->get("date_from"))->startOfDay();
                 $query->where("date_from",">=",$date_from);

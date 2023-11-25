@@ -13,12 +13,6 @@ class CommentBlogController extends Controller
 {
     public function postComment(Request  $request, Blog $blog)
     {
-
-//        dd($request);
-
-//        $request->validate([
-//            'comment' => 'required'
-//        ]);
         if ($request->comment == ''){
             return back()->with('error','Vui long nhap comment');
         }
@@ -30,7 +24,6 @@ class CommentBlogController extends Controller
         $blog->update([
             'count_comment' => $blog->increment('count_like')
         ]);
-//        $request->session()->flash('success','Comment added successfully.');
         Toastr::success("Comment added successfully!","Success");
 
         return  back();
@@ -39,23 +32,18 @@ class CommentBlogController extends Controller
     public function postCommentReply(Request $request, CommentBlog $commentBlog, Blog $blog)
     {
         $comment_reply = $request->comment;
-
-//        dd($request);
-//        try {
+        try {
         CommentBlog::create([
             'parent_id' => $commentBlog->id,
             'user_id' =>Auth::user()->id,
             'comment' =>$comment_reply,
             'blog_id' =>$blog->id
         ]);
-//        }catch (\Exception $ex){
-//            return back()->withErrors($ex->getMessage());
-//        }
+        }catch (\Exception $ex){
+            return back()->withErrors($ex->getMessage());
+        }
 
-//        $cmts_reply = Comment::where('parent_id',$comment->id)->get();
-//        dd($cmts_reply);
         Toastr::success("Comment reply added successfully!","Success");
-//        $request->session()->flash('success','Comment reply added successfully');
 
         return back();
     }
@@ -74,7 +62,6 @@ class CommentBlogController extends Controller
         }
         $commentBlog->delete();
         Toastr::success("Comment reply deleted successfully","Success");
-//        $request->session()->flash('success','Comment reply deleted successfully');
 
         return back();
 

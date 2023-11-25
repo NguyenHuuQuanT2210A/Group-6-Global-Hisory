@@ -12,8 +12,7 @@ class Category extends Model
     use SoftDeletes;
     protected $table = "categories";
     protected $primaryKey = "id";
-    //protected $primaryKey = "id"; // neu la id thi ko can viet lai
-    protected $fillable =  //danh  sach cac cot duoc fill du lieu vao
+    protected $fillable =
         [
             "name",
             "slug",

@@ -39,17 +39,10 @@ class AdminController extends Controller
         return view("admin.pages.users",compact("users"));
     }
 
-
     public  function category(Request $request )
     {
         $search = $request->get("search");
-
         $category = Category::Search($request)->paginate(10);
-
         return view("admin.pages.category.category",compact("category"));
-
     }
-
-
-
 }

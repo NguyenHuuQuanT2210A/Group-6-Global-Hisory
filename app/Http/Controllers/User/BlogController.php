@@ -19,7 +19,6 @@ class BlogController extends Controller
         $tags = Tag::all();
         $blogs = Blog::orderByDesc("id")->paginate(5);
         $blog_popular = Blog::orderByDesc("view_count")->limit(5)->get();
-
         return view("user.pages.blog.blog",compact("categories","blogs","tags","blog_popular"));
     }
 
@@ -52,7 +51,6 @@ class BlogController extends Controller
             $blog->increment('view_count');
             Session::push('viewed_blog', $blog->id);
         }
-
         $cmts = CommentBlog::where('blog_id',$blog->id)
             ->where('parent_id',0)->get();
         $blog_popular = Blog::orderByDesc("view_count")->limit(5)->get();
