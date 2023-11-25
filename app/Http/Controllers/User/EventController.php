@@ -40,7 +40,7 @@ class EventController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        $like_events = LikeEvent::where('like',1)->get();
+        $like_events = LikeEvent::where('like',1)->where("event_id",$event->id)->get();
         $likes_events_latest = LikeEvent::where('like',1)->orderByDesc('id')->limit(1)->get();
 
         $viewed_event = Session::get('viewed_event', []);
@@ -57,6 +57,7 @@ class EventController extends Controller
 
     public function registerEvent(Event $event, Request $request)
     {
+//        dd($event->name);
 //        $rq_id = $request->ip();
         $request->validate([
             "name" =>"required",
@@ -80,8 +81,10 @@ class EventController extends Controller
             "email" => $request->get("email"),
             "tel" => $request->get("tel"),
             "address" => $request->get("address"),
+            "name_event" => $event->name,
             "user_id" => Auth::user()->id,
-            "event_id" => $event->id
+            "event_id" => $event->id,
+
         ]);
         $count = User_Event::where('event_id', $event->id)->count();
         $event->update([
@@ -94,7 +97,7 @@ class EventController extends Controller
         }
         event(new CreateNewUserEvent(($user_registered)));
             Toastr::success("You have successfully registered, the invitation has been sent to your email!","Success!");
-            return redirect()->back();
+            return redirect()->to("event/");
 
         }catch (\Exception $e){
             return redirect()->back()->withErrors($e->getMessage());

@@ -19,7 +19,7 @@ class BlogFactory extends Factory
     {
         $title = $this->faker->unique()->jobTitle;
         return [
-            "thumbnail"=> "images/footer-".random_int(0,7).".jpg",
+            "thumbnail"=> "images/blogs/".random_int(1,30).".jpg",
             'title' => $title,
             "slug"=> Str::slug($title),
             'body' => $this->faker->text(5000),

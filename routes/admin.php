@@ -47,6 +47,7 @@ Route::prefix("/event")->group(function (){
     Route::get("/edit/{event}", [\App\Http\Controllers\Admin\EventController::class, "edit"]);
     Route::put("/edit/{event}", [\App\Http\Controllers\Admin\EventController::class, "update"]);
     Route::delete("/delete/{event}", [\App\Http\Controllers\Admin\EventController::class, "delete"]);
+    Route::get("/user_event", [\App\Http\Controllers\Admin\EventController::class, "userEvent"]);
 });
 Route::prefix("/mail")->group(function (){
     Route::get("/", [\App\Http\Controllers\Admin\MailController::class, "index"]);

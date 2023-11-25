@@ -1,8 +1,8 @@
 @extends("user.layouts.app")
 @section ("content")
     <!-- Title Page -->
-    <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/bg-title-page-02.jpg);">
-        <h2 class="tit6 t-center">
+    <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(https://media.istockphoto.com/id/1311934969/photo/contact-us.jpg?s=612x612&w=0&k=20&c=_vmYyAX0aFi-sHH8eYS-tLLNfs1ZWXnNB8M7_KWwhgg=);">
+        <h2 class="tit6 t-center" style="margin-right: 80px">
             Contact
         </h2>
     </section>

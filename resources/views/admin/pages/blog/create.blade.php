@@ -37,9 +37,9 @@
 
                         <div class="form-group">
                             <label for="thumbnail">Thumbnail Title</label>
-                            <input type="file" name="thumbnail" class="form-control" id="upload">
+                            <input type="file" name="thumbnail" value="{{ old('thumbnail') }}" class="form-control" id="upload">
                             <div id="image_show">
-                                {{old("thumbnail")}}
+                                {{ old('thumbnail') }}
                             </div>
                             <input type="hidden" id="thumb">
                             @error("thumbnail")
@@ -63,7 +63,7 @@
 
                         <div class="form-group">
                             <label class="form-control-label">Tag</label>
-                            <select class="form-control select2_demo_1" multiple="" name="tag_id">
+                            <select class="form-control select2_demo_1" name="tag_id">
                                 @foreach($tags as $tag)
                                     <option @if($tag->id==old("tag_id")) selected="selected"
                                             @endif value="{{$tag->id}}">{{$tag->name}}</option>

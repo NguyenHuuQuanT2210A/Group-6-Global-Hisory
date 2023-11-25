@@ -10,16 +10,23 @@ class User_Event extends Model
 {
     use HasFactory;
     protected $table = "user_events";
-    protected $fillable = ['user_id','event_id','name','slug','email','tel','address','confirm'];
+    protected $fillable = ['user_id','event_id','name','slug','email','tel','address','name_event'];
     use SoftDeletes;
 
     public function user()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
     public function event()
     {
-        return $this->hasMany(Event::class);
+        return $this->belongsTo(Event::class);
     }
-
+    public function scopeSearch($query,$request){
+        if($request->has("search")&& $request->get("search") != ""){
+            $search = $request->get("search");
+            $query->where("name_event","like","%$search%")
+                ->orWhere("name","like","%$search%");
+        }
+        return $query;
+    }
 }

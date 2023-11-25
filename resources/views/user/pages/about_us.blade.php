@@ -1,35 +1,7 @@
 @extends("user.layouts.app")
 
-@section("after_css")
-    <style>
-        .img-donate{
-            object-fit: cover;
 
-        }
-    </style>
-@endsection
 @section ("content")
-
-
-    {{--    <div class="px-4 px-lg-5 h-100 introduce mb-5" id="about">--}}
-    {{--        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">--}}
-    {{--            <div class="col-lg-8 align-self-end">--}}
-    {{--                <h1 class="text-white font-weight-bold mb-3">Global History</h1>--}}
-    {{--                <h3 class="text-white font-bold">The Global History Library</h3>--}}
-    {{--                <hr class="divider">--}}
-    {{--            </div>--}}
-    {{--            <div class="col-lg-8 align-self-baseline">--}}
-    {{--                <p class="text-white text-opacity-75 mb-5">We are here with the mission to provide a comprehensive and--}}
-    {{--                    diverse source--}}
-    {{--                    of historical information, encompassing both national history and other aspects of history, such as--}}
-    {{--                    landmarks, artifacts, sports, and art.</p>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-
-    {{--    start mission--}}
-
-
 
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"  style="background-image: url(https://www.nea.org/sites/default/files/styles/1920wide/public/legacy/2018/06/ap_world_history-1-e1529948595658.jpeg?itok=1BQ4XgqU);">
@@ -151,50 +123,7 @@
 
 
 
-    <!-- Banner -->
-    <div class="parallax0 parallax100" style="background-image: url(https://ss-images.saostar.vn/wwebp700/pc/1632805934126/saostar-mzcwfczbo2yjcra0.jpg);">
-        <div class="overlay0-parallax t-center size33"></div>
-    </div>
 
-
-    <!-- Chef -->
-    <section class="section-chef bgwhite p-t-115 p-b-95">
-        <div class="container t-center">
-    			<span class="tit2 t-center">
-    				Donate
-    			</span>
-
-            <h3 class="tit5 t-center m-b-50 m-t-5">
-                For Us
-            </h3>
-
-            <div class="row">
-                <div class="col-md-8 col-lg-4 m-l-r-auto p-b-30">
-                    <!-- -Block5 -->
-                    <div>
-{{--                        <form action="{{ url("payment/paypal") }}">--}}
-                        <a href="{{ url("payment/") }}"><img class="img-donate" width="390px" height="390px" src="https://i.pcmag.com/imagery/reviews/068BjcjwBw0snwHIq0KNo5m-15.fit_scale.size_1028x578.v1602794215.png"   alt="paypal"></a>
-{{--                            <button type="submit"></button>--}}
-{{--                        </form>--}}
-                    </div>
-                </div>
-
-                <div class="col-md-8 col-lg-4 m-l-r-auto p-b-30">
-                    <!-- -Block5 -->
-                    <div>
-                        <a href=""><img class="img-donate" width="390px" height="390px" src="https://i.ytimg.com/vi/i09C02151PI/maxresdefault.jpg" alt=""></a>
-                    </div>
-                </div>
-
-                <div class="col-md-8 col-lg-4 m-l-r-auto p-b-30">
-                    <!-- -Block5 -->
-                    <div>
-                        <a href=""><img class="img-donate" width="390px" height="390px"  src="https://developers.momo.vn/v3/assets/images/square-8c08a00f550e40a2efafea4a005b1232.png"  alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
 

@@ -17,17 +17,13 @@ class LikeEventController extends Controller
                 $item->update([
                     'like' => false
                 ]);
-                $event->update([
-                    'count_like' => $event->decrement('count_like')
-                ]);
+
                 return back();
             }elseif ($item->user_id == Auth::user()->id && $item->like == 0 && $item->event_id == $event->id){
                 $item->update([
                     'like' => true
                 ]);
-                $event->update([
-                    'count_like' => $event->increment('view_count')
-                ]);
+
                 return back();
             }
 
@@ -37,9 +33,6 @@ class LikeEventController extends Controller
             'user_id' => Auth::user()->id,
             'event_id' => $event->id,
             'like' => true
-        ]);
-        $event->update([
-            'count_like' => $event->increment('view_count')
         ]);
 
         return back();

@@ -4,6 +4,17 @@
         #pointer {
             cursor: pointer;
         }
+
+        .tag-box p{
+            display: inline-block;
+            padding: 2px 12px;
+            margin: 4px 3px;
+            border: 1px solid #b9b9b9;
+            border-radius: 20px;
+            background-color: red;
+            color: white;
+        }
+
     </style>
 @endsection
 
@@ -23,17 +34,21 @@
             <div class="ibox-body">
                 <h2 style="text-align: center;font-weight: bold;padding-bottom: 10px;">{{ $post->title }}</h2>
                 <div style="display: flex">
-                    <span>Category : </span>
+                    <span><b>Category : </b></span>
                     <p style="padding-left: 5px">{{ $post->category->name }}</p>
                 </div>
 
-                <div style="display: flex">
-                    <span>Tags : </span>
+                <div class="tag-box">
+                    <span><b>Tags : </b></span>
                     @foreach($post->tag_id as $tag)
-                        <p style="padding: 0 5px 0 5px">{{ $tag }}</p>
+                        <p style="padding: 3px 5px">{{ $tag }}</p>
                     @endforeach
                 </div>
-                <p>{!! $post->body !!}</p>
+                <div style="margin-top: 10px">
+                    <span><b>Body :</b></span>
+
+                   <p>{!! $post->body !!}</p>
+                </div>
             </div>
         </div>
 

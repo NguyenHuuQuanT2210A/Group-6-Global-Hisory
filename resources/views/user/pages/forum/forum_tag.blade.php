@@ -9,7 +9,7 @@
 @section("content")
 
     <!-- Title Page -->
-    <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/footer-0.jpg);">
+    <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(https://assets-global.website-files.com/6048aaba41858510b17e1809/607474d55c073509225d156e_6048aaba418585fbbf7e1d13_forums.jpeg);">
         <h2 class="tit6 t-center">
             Forum
         </h2>
@@ -60,27 +60,24 @@
                             <div class="card mb-2">
                                 <div class="card-body p-2 p-sm-3">
                                     <div class="media forum-item">
-                                        <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="60"  alt="User" /></a>
+                                        <div>
+                                            <span><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="53"  alt="User" /></span>
+                                            <small class="d-block text-center" style="padding-right: 15px;padding-top: 4px;color: #666666;">Newbie</small>
+                                        </div>
                                         <div class="media-body">
-                                            <span><a style="font-size: 17px" href="{{ url("forum/single",["post"=>$item->slug]) }}" class="text-body"><b>{{ $item->title }}</b></a></span>
+                                            <span><a style="font-size: 16px" href="{{ url("forum/single",["post"=>$item->slug]) }}" class="text-body"><b>{{ $item->title }}</b></a></span>
                                             <p class="text-secondary">
                                                 @php
-                                                    $body = $item->body; // Nội dung body
-        // Loại bỏ tất cả các thẻ HTML trừ thẻ <p>
-        $body = strip_tags($body, '<p>');
-
-        // Thay thế tất cả các dòng trống và khoảng trắng liên tiếp bằng một dòng trống duy nhất
-        $body = preg_replace('/\s+/', ' ', $body);
-
-        // Thay thế tất cả các dòng trống bằng thẻ <p>
-        $body = preg_replace('/\s*$/m', '</p>', $body);
-        $body = preg_replace('/^(.*)$/m', '<p>$1</p>', $body);
-        // Giới hạn số ký tự của nội dung
-        $limitedBody = \Illuminate\Support\Str::limit($body, 100);
+                                                    $body = $item->body;
+                                                    $body = strip_tags($body, '<p>');
+                                                    $body = preg_replace('/\s+/', ' ', $body);
+                                                    $body = preg_replace('/\s*$/m', '</p>', $body);
+                                                    $body = preg_replace('/^(.*)$/m', '<p>$1</p>', $body);
+                                                    $limitedBody = \Illuminate\Support\Str::limit($body, 100);
                                                 @endphp
                                                 {!! \Illuminate\Support\Str::limit($body , 100 ,'...') !!}
                                             </p>
-                                            <p class="text-muted"><a href="javascript:void(0)"><b>{{ $item->user->name }}</b></a>
+                                            <p class="text-muted"><a href="javascript:void(0)" style="font-size: 15px"><b>{{ $item->user->name }}</b></a>
                                                 @php
                                                     $count_like = \App\Models\Like::where("like",1)->where("post_id",$item->id)->count();
                                                     $count_cmt = \App\Models\Comment::where("post_id",$item->id)->where('parent_id',0)->count();
@@ -89,7 +86,7 @@
                                                 <span style="margin: 0 5px"><i class="far fa-heart"></i> {{ $count_like }}</span>
                                                 <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> {{ $item->view_count }}</span>
                                                 <span><i class="far fa-comment ml-2"></i> {{ $count_cmt }}</span>
-                                                <span class="text-secondary font-weight-bold" style="padding-left: 5px;">{{ $item->created_at }}</span>
+                                                <span class="text-secondary font-weight-bold" style="padding-left: 5px;font-size: 15px">{{ $item->created_at }}</span>
                                             </p>
                                         </div>
                                     </div>

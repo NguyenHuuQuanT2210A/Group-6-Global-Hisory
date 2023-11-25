@@ -12,7 +12,6 @@ use App\Http\Controllers\User\EventController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\PostController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,17 +74,8 @@ Route::prefix("event")->group(function (){
         Route::post('/register/{event}',[EventController::class,"registerEvent"]);
         Route::get('/like/{event}',[LikeEventController::class,"likeEvent"]);
     });
-    Route::get('/mail_confirm/{user_events}',[EventController::class,"mailConfirm"]);
-
 });
 
-Route::prefix("payment")->group(function (){
-    Route::get('/', [PaymentController::class,"createPayment"]);
-        Route::get('/pay', [PaymentController::class,"createPay"]);
-        Route::get('/paypal-success',[PaymentController::class,"paypalSuccess"]);
-        Route::get('/paypal-cancel',[PaymentController::class,"paypalCancel"]);
-    Route::get('/thank-you', [PaymentController::class,"thankYou"]);
-    });
 
 Route::get('/about_us',[HomeController::class,"aboutUs"]);
 Route::get('/contact',[HomeController::class,"contact"]);

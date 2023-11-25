@@ -22,7 +22,7 @@
 @section ("content")
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url({{ $event->thumbnail }});">
-        <h2 class="tit6 t-center">
+        <h2 class="tit6 t-center" style="font-family: Roboto, sans-serif;">
             {{ $event->name }}
         </h2>
     </section>
@@ -43,7 +43,7 @@
                 </a>
 
                 <span class="txt29 m-l-10 m-r-10">/</span>
-                <span class="txt29">
+                <span class="txt29" style="font-family: Roboto, sans-serif;">
 					{{ $event->name }}
 				</span>
             </div>
@@ -118,7 +118,8 @@
 
                         <div class="navigation-top">
                             <div class="d-sm-flex justify-content-between text-center">
-                                <p class="like-info"><span class="align-middle">
+                                <p class="like-info">
+                                    <span class="align-middle">
 
                                     @php
                                         $you_like = false;
@@ -162,6 +163,28 @@
                                          </a>
                                             No one has liked this yet.
                                         @endif
+
+{{--                                        <a href="{{ url("event/like",[$event->id]) }}">--}}
+{{--                                        @php--}}
+{{--                                            $you_like = false;--}}
+{{--                                        @endphp--}}
+{{--                                        @foreach($like_events as $item)--}}
+{{--                                            @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id == $item->user_id)--}}
+{{--                                                @php--}}
+{{--                                                    $you_like = true;--}}
+{{--                                                @endphp--}}
+{{--                                            @endif--}}
+{{--                                        @endforeach--}}
+{{--                                        @if(count($like_events) > 0)--}}
+{{--                                            @if($you_like)--}}
+{{--                                                <i class="fa-solid fa-heart" style="color: red;"></i>--}}
+{{--                                            @else--}}
+{{--                                                <i class="fa-solid fa-heart" style="color: #868e96;"></i>--}}
+{{--                                            @endif--}}
+{{--                                        @else--}}
+{{--                                            <i class="fa-solid fa-heart" style="color: #868e96;"></i>--}}
+{{--                                        @endif--}}
+{{--                                        </a>--}}
                                     </span>
 
                                 </p>
@@ -184,8 +207,11 @@
                             <h4 class="txt33 p-b-14">
                                 Registration is over!
                             </h4>
+{{--                            @elseif($event->date_to < \Illuminate\Support\Carbon::create(2022, 1, 1, 0, 0, 0))--}}
+{{--                                <h4 class="txt33 p-b-14">--}}
+{{--                                    Registration is over!--}}
+{{--                                </h4>--}}
                         @else
-
                         <form class="leave-comment p-t-10" action="{{ url("event/register",["event"=>$event->id]) }}" method="post">
                             @csrf
                             <h4 class="txt33 p-b-14">

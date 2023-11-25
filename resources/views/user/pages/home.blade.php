@@ -180,7 +180,7 @@
                                 <img src="https://www.fine-art-bender.com/images/european-art-history-statue.jpg" alt="IMG-MENU">
 
                                 <!-- Button2 -->
-                                <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="btn2 flex-c-m txt5 ab-c-m size4">
+                                <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="btn2 flex-c-m txt5 ab-c-m size6">
                                     {{ $item->name }}
                                 </a>
                             </div>
@@ -193,7 +193,7 @@
                                 <img src="https://study.com/cimages/course-image/history-100-western-civilization-from-prehistory-to-post-wwii_748915_large.jpeg" alt="IMG-MENU" style="height: 246.66px">
 
                                 <!-- Button2 -->
-                                <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="btn2 flex-c-m txt5 ab-c-m size5">
+                                <a href="{{ url("blog/category",["category"=>$item->slug]) }}" class="btn2 flex-c-m txt5 ab-c-m size6">
                                     {{ $item->name }}
                                 </a>
                             </div>

@@ -19,7 +19,7 @@ class EventFactory extends Factory
     {
         $name = $this->faker->unique()->name;
         return [
-            "thumbnail"=> "images/event-0".random_int(1,6).".jpg",
+            "thumbnail"=> "images/events/".random_int(10,15).".jpg",
             'name' => $name,
             "slug"=> Str::slug($name),
             'date_from' => $this->faker->dateTimeBetween('-5 years','-1 months'),

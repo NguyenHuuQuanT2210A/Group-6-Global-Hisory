@@ -8,9 +8,9 @@
 
 <section class="section-intro">
     <!-- Title Page -->
-    <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(https://www.nea.org/sites/default/files/styles/1920wide/public/legacy/2018/06/ap_world_history-1-e1529948595658.jpeg?itok=1BQ4XgqU);">
+    <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/events/13.jpg);">
         <h2 class="tit6 t-center">
-            Events
+            Exhibition
         </h2>
     </section>
 
@@ -29,7 +29,7 @@
                         <div class="wrap-text-blo1 p-t-35">
 
                             <a href="{{ url("event/single",['event'=>$item->slug]) }}">
-                                <h4 class="txt5 color0-hov trans-0-4 m-b-13">
+                                <h4 class="txt5 color0-hov trans-0-4 m-b-13" style="font-family: Roboto, sans-serif;">
                                     {{ $item->name }}
                                 </h4></a>
                             <p>

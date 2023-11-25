@@ -29,7 +29,7 @@
                                 <div class="wrap-text-blo1 p-t-35">
 
                                     <a href="{{ url("event/single",['event'=>$item->slug]) }}">
-                                        <h4 class="txt5 color0-hov trans-0-4 m-b-13">
+                                        <h4 class="txt5 color0-hov trans-0-4 m-b-13" style="font-family: Roboto, sans-serif;">
                                             {{ $item->name }}
                                         </h4></a>
                                     <p>

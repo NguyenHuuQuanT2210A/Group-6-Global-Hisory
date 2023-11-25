@@ -36,7 +36,8 @@ class CommentController extends Controller
     {
         $comment_reply = $request->comment;
         if ($comment_reply == ''){
-            return redirect()->back()->with('error','Vui long nhap comment reply');
+            Toastr::error("Vui long nhap comment reply!","Error!");
+            return redirect()->back();
         }
             Comment::create([
                 'parent_id' => $comment->id,
@@ -44,9 +45,6 @@ class CommentController extends Controller
                 'comment' =>$comment_reply,
                 'post_id' =>$post->id
             ]);
-//        $post->update([
-//            'count_comment' => $post->increment('count_comment')
-//        ]);
         Toastr::success("Comment reply added successfully!","Success");
         return back();
     }
@@ -72,6 +70,7 @@ class CommentController extends Controller
         return back();
 
     }
+    
 
 
 }

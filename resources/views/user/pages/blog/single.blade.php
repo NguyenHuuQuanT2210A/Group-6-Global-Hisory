@@ -105,7 +105,30 @@
 
                         <div class="navigation-top">
                             <div class="d-sm-flex justify-content-between text-center">
-                                <p class="like-info"><span class="align-middle">
+                                <p class="like-info">
+                                    <span class="align-middle">
+{{--                                        <a href="{{ url("blog/like",[$blog->id]) }}">--}}
+{{--                                                    @php--}}
+{{--                                                        $you_like = false;--}}
+{{--                                                    @endphp--}}
+{{--                                            @foreach($like_blogs as $item)--}}
+{{--                                                @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id == $item->user_id)--}}
+{{--                                                    @php--}}
+{{--                                                        $you_like = true;--}}
+{{--                                                    @endphp--}}
+{{--                                                @endif--}}
+{{--                                            @endforeach--}}
+{{--                                            @if(count($like_blogs) > 0)--}}
+{{--                                                @if($you_like)--}}
+{{--                                                    <i class="fa-solid fa-heart" style="color: red;"></i>--}}
+{{--                                                @else--}}
+{{--                                                    <i class="fa-solid fa-heart" style="color: #868e96;"></i>--}}
+{{--                                                @endif--}}
+{{--                                            @else--}}
+{{--                                                <i class="fa-solid fa-heart" style="color: #868e96;"></i>--}}
+{{--                                            @endif--}}
+{{--                                                </a>--}}
+
 
                                     @php
                                         $you_like = false;
@@ -189,7 +212,27 @@
                                             </a>
                                             <div class="media-body ml-3">
                                                 <a href="javascript:void(0)" class="text-secondary">{{ $cmt->user->name }}</a>
-                                                <small class="text-muted ml-2">{{ $cmt->created_at }}</small>
+                                                <small class="text-muted ml-2">
+                                                        <?php
+                                                        $created_at = $cmt->created_at;
+                                                        $time_diff = \Illuminate\Support\Carbon::parse($created_at)->diffInSeconds();
+                                                        $display_format = '';
+                                                        if ($time_diff == 0) {
+                                                            $display_format = 'now';
+                                                        } elseif ($time_diff < 60) {
+                                                            $display_format = $time_diff . ' second ago';
+                                                        } elseif ($time_diff < 3600) {
+                                                            $display_format = \Illuminate\Support\Carbon::parse($created_at)->diffInMinutes() . ' minute ago';
+                                                        } elseif ($time_diff < 86400) {
+                                                            $display_format = \Illuminate\Support\Carbon::parse($created_at)->diffInHours() . ' hour ago';
+                                                        } elseif ($time_diff < 31536000) {
+                                                            $display_format = \Illuminate\Support\Carbon::parse($created_at)->diffInDays() . ' day ago';
+                                                        } else {
+                                                            $display_format = $created_at;
+                                                        }
+                                                        echo $display_format;
+                                                        ?>
+                                                </small>
                                                 <div class="mt-2 font-size-sm">
                                                     {{ $cmt->comment }}
                                                 </div>
@@ -269,7 +312,27 @@
                                                     </a>
                                                     <div class="media-body ml-3">
                                                         <a href="javascript:void(0)" class="text-secondary">{{ $reply->user->name }}</a>
-                                                        <small class="text-muted ml-2">{{ $reply->created_at }}</small>
+                                                        <small class="text-muted ml-2">
+                                                                <?php
+                                                                $created_at = $reply->created_at;
+                                                                $time_diff = \Illuminate\Support\Carbon::parse($created_at)->diffInSeconds();
+                                                                $display_format = '';
+                                                                if ($time_diff == 0) {
+                                                                    $display_format = 'now';
+                                                                } elseif ($time_diff < 60) {
+                                                                    $display_format = $time_diff . ' second ago';
+                                                                } elseif ($time_diff < 3600) {
+                                                                    $display_format = \Illuminate\Support\Carbon::parse($created_at)->diffInMinutes() . ' minute ago';
+                                                                } elseif ($time_diff < 86400) {
+                                                                    $display_format = \Illuminate\Support\Carbon::parse($created_at)->diffInHours() . ' hour ago';
+                                                                } elseif ($time_diff < 31536000) {
+                                                                    $display_format = \Illuminate\Support\Carbon::parse($created_at)->diffInDays() . ' day ago';
+                                                                } else {
+                                                                    $display_format = $created_at;
+                                                                }
+                                                                echo $display_format;
+                                                                ?>
+                                                        </small>
                                                         <div class="mt-2 font-size-sm">
                                                             {{ $reply->comment }}
                                                         </div>
@@ -330,9 +393,6 @@
                                                     </div>
                                                 </div>
 
-
-
-
                                                 @if($reply->parent_id > 0)
                                                     @php
                                                         $cmt_reply_reply = \App\Models\CommentBlog::where("parent_id",$reply->id)->get();
@@ -345,7 +405,27 @@
                                                             </a>
                                                             <div class="media-body ml-3">
                                                                 <a href="javascript:void(0)" class="text-secondary">{{ $reply_reply->user->name }}</a>
-                                                                <small class="text-muted ml-2">{{ $reply_reply->created_at }}</small>
+                                                                <small class="text-muted ml-2">
+                                                                        <?php
+                                                                        $created_at = $reply_reply->created_at;
+                                                                        $time_diff = \Illuminate\Support\Carbon::parse($created_at)->diffInSeconds();
+                                                                        $display_format = '';
+                                                                        if ($time_diff == 0) {
+                                                                            $display_format = 'now';
+                                                                        } elseif ($time_diff < 60) {
+                                                                            $display_format = $time_diff . ' second ago';
+                                                                        } elseif ($time_diff < 3600) {
+                                                                            $display_format = \Illuminate\Support\Carbon::parse($created_at)->diffInMinutes() . ' minute ago';
+                                                                        } elseif ($time_diff < 86400) {
+                                                                            $display_format = \Illuminate\Support\Carbon::parse($created_at)->diffInHours() . ' hour ago';
+                                                                        } elseif ($time_diff < 31536000) {
+                                                                            $display_format = \Illuminate\Support\Carbon::parse($created_at)->diffInDays() . ' day ago';
+                                                                        } else {
+                                                                            $display_format = $created_at;
+                                                                        }
+                                                                        echo $display_format;
+                                                                        ?>
+                                                                </small>
                                                                 <div class="mt-2 font-size-sm">
                                                                     {{$reply_reply->comment}}
                                                                 </div>
@@ -356,7 +436,7 @@
                                                             $like_cmt_reply_replies = \App\Models\LikeCommentBlog::where('like_cmt_blog',1)->where("blog_id",$blog->id)->where("comment_id",$reply_reply->id)->get();
                                                         @endphp
 
-                                                        <a href="{{ url("forum/post/comment/like",["blog"=>$blog->id,"comment"=>$reply_reply->id]) }}">
+                                                        <a href="{{ url("blog/comment/like",["blog"=>$blog->id,"comment"=>$reply_reply->id]) }}">
                                                             @php
                                                                 $you_like_cmt_reply_reply = false;
                                                             @endphp

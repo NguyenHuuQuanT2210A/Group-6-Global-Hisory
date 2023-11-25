@@ -146,16 +146,30 @@
 
                         <div class="form-group">
                             <label class="form-control-label">Tag</label>
-                            <select class="form-control select2_demo_1" multiple="" name="tag_id">
-                                @foreach($tags as $tag)
-                                    <option @if($tag->id==$event->tag_id) selected="selected"
-                                            @endif value="{{$tag->id}}">{{$tag->name}}</option>
+                            <select class="form-control select2_demo_1" name="tag_id">
+                                <option value="">Tag</option>
+                                @foreach($tags as $item)
+                                    <option @if($item->id==$event->tag_id) selected
+                                            @endif value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
                             @error("tag_id")
                             <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
                             @enderror
                         </div>
+
+{{--                        <div class="form-group">--}}
+{{--                            <label class="form-control-label">Tag</label>--}}
+{{--                            <select class="form-control select2_demo_1" multiple="" name="tag_id">--}}
+{{--                                @foreach($tags as $tag)--}}
+{{--                                    <option @if($tag->id==$event->tag_id) selected="selected"--}}
+{{--                                            @endif value="{{$tag->id}}">{{$tag->name}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                            @error("tag_id")--}}
+{{--                            <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
 
                         <div class="form-group">
                             <div style="margin-right: 15px;display: inline-block">

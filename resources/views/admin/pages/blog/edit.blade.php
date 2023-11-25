@@ -65,9 +65,9 @@
 
                         <div class="form-group">
                             <label class="form-control-label">Tag</label>
-                            <select class="form-control select2_demo_1" multiple="" name="tag_id">
+                            <select class="form-control select2_demo_1"  name="tag_id">
                                 @foreach($tags as $tag)
-                                    <option @if($tag->id==$blog->tag_id) selected="selected"
+                                    <option @if($tag->id==$blog->tag_id) selected
                                             @endif value="{{$tag->id}}">{{$tag->name}}</option>
                                 @endforeach
                             </select>

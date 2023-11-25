@@ -30,7 +30,7 @@ class PostController extends Controller
     public function postDetail(Post $post)
     {
         $can_approved = false;
-        if ($post->is_approved == 0 || $post->is_approved == 2 || $post->is_approved == 1){
+        if ($post->is_approved == 0 || $post->is_approved == 2){
             $can_approved = true;
         }
         return view("admin.pages.post.post_detail",compact("post","can_approved"));

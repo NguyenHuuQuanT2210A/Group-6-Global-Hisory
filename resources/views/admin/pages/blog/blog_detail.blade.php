@@ -19,9 +19,19 @@
             <div class="ibox-body">
                 <h2 style="text-align: center;font-weight: bold;padding-bottom: 10px;">{{ $blog->title }}</h2>
                 <p style="text-align: center"><img src="{{ $blog->thumbnail }}" alt="Anh {{ $blog->title }}"></p>
-                <p>{{ $blog->category_id }}</p>
-                <p>{{ $blog->tag_id }}</p>
-                <p>{!! $blog->body !!}</p>
+                <div style="display: flex">
+                    <span><b>Category : </b></span>
+                <p style="margin-left: 5px">{{ $blog->category->name }}</p>
+                </div>
+                <div style="display: flex">
+                    <span ><b>Tag : </b></span>
+                    <p style="margin-left: 5px">{{ $blog->tag->name }}</p>
+                </div>
+                <div>
+                    <span><b>Body : </b></span>
+                    <p>{!! $blog->body !!}</p>
+                </div>
+
             </div>
         </div>
 

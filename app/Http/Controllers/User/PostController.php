@@ -182,7 +182,10 @@ class PostController extends Controller
 
         $viewed_post = Session::get('viewed_post', []);
         if (!in_array($post->id, $viewed_post)) {
-            $post->increment('view_count');
+            $post->update([
+                "view_count" =>$post->increment('view_count')
+            ]);
+
             Session::push('viewed_post', $post->id);
         }
 
@@ -196,5 +199,7 @@ class PostController extends Controller
 
         return view("user.pages.forum.single",compact("post","categories","tags","post_related","post_new","cmts","likes","likes_latest","url"));
     }
+
+
 
 }

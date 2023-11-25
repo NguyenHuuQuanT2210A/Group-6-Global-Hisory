@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Event;
 use App\Models\Tag;
+use App\Models\User_Event;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 class EventController extends Controller
@@ -47,10 +49,12 @@ class EventController extends Controller
     public function store(Request $request)
     {
 //        return dd($request);
-        $datetime_from = $request->input('date_from');
-        $formattedDatetime_from = date('d-m-Y H:i:s', strtotime($datetime_from));
-        $datetime_to = $request->input('date_to');
-        $formattedDatetime_to = date('d-m-Y H:i:s', strtotime($datetime_to));
+//        $datetime_from = $request->get('date_from');
+//        $formattedDatetime_from = Carbon::createFromFormat('d-m-Y H:i:s', $datetime_from)->toDateTimeString();
+//        $formattedDatetime_from = date('d-m-Y H:i:s', strtotime($datetime_from));
+//        $datetime_to = $request->get('date_to');
+//        $formattedDatetime_to = Carbon::createFromFormat('d-m-Y H:i:s', $datetime_to)->toDateTimeString();
+//        $formattedDatetime_to = date('d-m-Y H:i:s', strtotime($datetime_to));
 
         $request->validate([
             "thumbnail"=>"required|mimes:png,jpg,jpeg,gif|mimetypes:image/jpeg,image/png,image/jpg",
@@ -76,8 +80,8 @@ class EventController extends Controller
                 "thumbnail"=> $thumbnail,
                 "name"=>$request->get("name"),
                 "slug"=> Str::slug($request->get("name")),
-                "date_from"=>$formattedDatetime_from,
-                "date_to"=>$formattedDatetime_to,
+                "date_from"=>$request->get('date_from'),
+                "date_to"=>$request->get('date_to'),
                 "qty"=>$request->get("qty"),
                 "address"=>$request->get("address"),
                 "description"=>$request->get("description"),
@@ -153,8 +157,10 @@ class EventController extends Controller
         }
     }
 
-
-
-
+    public function userEvent(Request $request)
+    {
+        $user_event = User_Event::Search($request)->orderByDesc("id")->paginate(10);
+        return view("admin.pages.event.user_event",compact("user_event"));
+    }
 
 }
