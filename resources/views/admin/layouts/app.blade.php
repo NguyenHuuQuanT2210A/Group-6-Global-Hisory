@@ -12,7 +12,6 @@
 <body class="fixed-navbar">
 <div class="page-wrapper">
 
-    {{--    @include('admin.layouts.navbar')--}}
     @include('admin.layouts.header')
     @include('admin.layouts.sidebar')
 
@@ -30,12 +29,12 @@
 @include('admin.layouts.config_panel')
 <!-- END THEME CONFIG PANEL-->
 
-<!-- BEGIN PAGA BACKDROPS-->
+<!-- BEGIN PAGE BACKDROPS-->
 <div class="sidenav-backdrop backdrop"></div>
 <div class="preloader-backdrop">
     <div class="page-preloader">Loading</div>
 </div>
-<!-- END PAGA BACKDROPS-->
+<!-- END PAGE BACKDROPS-->
 
 @yield("before_js")
 @include('admin.layouts.scripts')

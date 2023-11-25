@@ -28,24 +28,6 @@
                         <option @if(app("request")->input("post_id") == "4") selected="selected" @endif value="4">No Comment</option>
                             </select>
                         </div>
-{{--                        <div class="input-group input-group-sm mr-2" style="width: 150px; float:left">--}}
-{{--                            <select name="category_id" data-value="category_id" class="form-control">--}}
-{{--                                <option value="0">Filter by category</option>--}}
-{{--                                @foreach($categories as $item)--}}
-{{--                                    <option @if($item->id==app("request")->input("category_id")) selected="selected" @endif--}}
-{{--                                    value="{{$item->id}}">{{$item->name}}</option>--}}
-{{--                                @endforeach--}}
-{{--                            </select>--}}
-{{--                        </div>--}}
-{{--                        <div class="input-group input-group-sm mr-2" style="width: 150px; float:left">--}}
-{{--                            <select  name="tag_id"  class="form-control">--}}
-{{--                                <option value="">Filter by tag</option>--}}
-{{--                                @foreach($tags as $tag)--}}
-{{--                                    <option @if($tag->name==app("request")->input("tag_id")) selected="selected" @endif--}}
-{{--                                    value="{{$tag->name}}">{{$tag->name}}</option>--}}
-{{--                                @endforeach--}}
-{{--                            </select>--}}
-{{--                        </div>--}}
                         <div class="input-group input-group-sm mr-2" style="width: 200px; float:left; height: 32px">
                             <input value="{{app("request")->input("date_from")}}" class="form-control" type="date" name="date_from" placeholder="Date"/>
                         </div>

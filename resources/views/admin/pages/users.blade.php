@@ -1,58 +1,48 @@
 @extends("admin.layouts.app")
 @section("content")
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-
-                    <div class="card-tools">
-                        <form action="{{url("/admin/user")}}" method="get">
-                            <div class="input-group input-group-sm" style="width: 150px;float:left">
-                                <input value="{{app("request")->input("search")}}" type="text" name="search"
-                                       class="form-control float-right" placeholder="Search">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
+    <div class="page-heading">
+        <h1 class="page-title">User Table</h1>
+    </div>
+    <div class="page-content fade-in-up">
+        <div class="ibox">
+            <div class="ibox-head">
+                <div class="ibox-title">User</div>
+                <div>
+                    <form action="{{url("/admin/user")}}" method="get">
+                        <div class="input-group input-group-sm" style="width: 150px;float:left">
+                            <input value="{{app("request")->input("search")}}" type="text" name="search" class="form-control float-right" placeholder="Search">
+                            <div class="input-group-append">
+                                <button style="cursor: pointer" type="submit" class="btn btn-default">
+                                    <i class="fa fa-search"></i>
+                                </button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
-                        <thead>
+            </div>
+            <div class="ibox-body" style="padding-bottom: 50px;">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($users as $item)
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Action</th>
+                            <td>#{{$loop->index+1}}</td>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->email}}</td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($users as $item)
-                            <tr>
-                                <td>#{{$loop->index+1}}</td>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->email}}</td>
-                                {{--                                <td>--}}
-                                {{--                                    <a href="{{url("admin/product/edit",['product'=>$item->id])}}" class="btn btn-outline-info">Sửa</a>--}}
-                                {{--                                    <form action="{{url("admin/product/delete",['product'=>$item->id])}}" method="POST">--}}
-                                {{--                                        @csrf--}}
-                                {{--                                        @method("DELETE")--}}
-                                {{--                                        <button onclick="return confirm('Chắc chắn muốn xoá sản phẩm: {{$item->name}}')" class="btn btn-outline-danger" type="submit">Delete</button>--}}
-                                {{--                                    </form>--}}
-                                {{--                                </td>--}}
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                    @endforeach
+                    </tbody>
+                </table>
+                <div style="float: right">
                     {!! $users->links("pagination::bootstrap-5") !!}
                 </div>
-                <!-- /.card-body -->
             </div>
-            <!-- /.card -->
         </div>
     </div>
 @endsection

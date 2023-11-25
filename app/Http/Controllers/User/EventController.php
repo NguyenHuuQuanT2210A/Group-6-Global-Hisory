@@ -22,7 +22,7 @@ class EventController extends Controller
 {
     public function event(Request $request)
     {
-        $events = Event::orderByDesc("created_at")->Search($request)->paginate(6);
+        $events = Event::orderByDesc("id")->Search($request)->paginate(6);
         return view("user.pages.event.event",compact("events"));
     }
     public function categoryEvent(Category $category)

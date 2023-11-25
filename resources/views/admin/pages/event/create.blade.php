@@ -10,13 +10,7 @@
 @endsection
 @section('content')
     <div class="page-heading">
-        <h1 class="page-title">DataTables</h1>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="index.html"><i class="la la-home font-20"></i></a>
-            </li>
-            <li class="breadcrumb-item">DataTables</li>
-        </ol>
+        <h1 class="page-title">Create Event</h1>
     </div>
 
 
@@ -76,20 +70,6 @@
                             <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
                             @enderror
                         </div>
-
-{{--                        <div class="form-group">--}}
-{{--                            <label class="form-control-label">Tag</label>--}}
-{{--                            <select class="form-control select2_demo_1" multiple="" name="tag_id">--}}
-{{--                                @foreach($tags as $tag)--}}
-{{--                                    <option @if($tag->id==old("tag_id")) selected="selected"--}}
-{{--                                            @endif value="{{$tag->id}}">{{$tag->name}}</option>--}}
-{{--                                @endforeach--}}
-{{--                            </select>--}}
-{{--                            @error("tag_id")--}}
-{{--                            <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>--}}
-{{--                            @enderror--}}
-{{--                        </div>--}}
-
                         <div class="form-group">
                             <div style="margin-right: 15px;display: inline-block">
                                 <label for="date">From Date : </label>
@@ -168,5 +148,4 @@
             });
         });
     </script>
-
 @endsection

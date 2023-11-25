@@ -4,7 +4,6 @@
         #pointer {
             cursor: pointer;
         }
-
         .tag-box p{
             display: inline-block;
             padding: 2px 12px;
@@ -17,7 +16,6 @@
 
     </style>
 @endsection
-
 @section("content")
     <div class="page-heading">
         <h1 class="page-title">Post Detail</h1>
@@ -67,16 +65,8 @@
                         class="btn btn-outline-warning" id="pointer" type="submit">Unapproved
                 </button>
             </form>
-
-            {{--            <form action="{{url("admin/post/delete",['post'=>$post->id])}}" method="POST" style="display: inline-block;margin-left: 10px">--}}
-            {{--                @csrf--}}
-            {{--                @method("DELETE")--}}
-            {{--                <button  onclick="return confirm('Chắc chắn muốn xóa Post này?')" class="btn btn-outline-danger" id="pointer" type="submit">Xóa</button>--}}
-            {{--            </form>--}}
         </div>
 
     </div>
 @endsection
-@section("after_js")
 
-@endsection

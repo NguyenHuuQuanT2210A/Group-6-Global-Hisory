@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Like;
+use App\Models\LikeComment;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ class PostController extends Controller
 //            ->Tag($request)
             ->CreatedAt($request)
             ->where("is_approved",1 )
-            ->orderByDesc("created_at")
+            ->orderByDesc("id")
             ->paginate(15);
         $post_related = Post::where("is_approved", 1)->orderBy("created_at")->limit(5)->get();
         $post_new = Post::where("is_approved", 1)->orderByDesc("created_at")->limit(5)->get();
@@ -55,7 +56,7 @@ class PostController extends Controller
             ->CreatedAt($request)
             ->where("category_id",$category->id)
             ->where("is_approved",1 )
-            ->orderByDesc("created_at")
+            ->orderByDesc("id")
             ->paginate(15);
 //        $posts = Post::where("category_id",$category->id)->where("is_approved",1 )->paginate(15);
 
@@ -78,13 +79,13 @@ class PostController extends Controller
             ->CreatedAt($request)
             ->whereJsonContains('tag_id', $tag->name)
             ->where("is_approved",1 )
-            ->orderByDesc("created_at")
+            ->orderByDesc("id")
             ->paginate(15);
 //        $posts = Post::whereJsonContains('tag_id', $tag->name)->paginate(15);
 
         $categories = Category::all();
         $tags = Tag::all();
-        $post_related = Post::where("is_approved", 1)->orderBy("created_at")->limit(5)->get();
+        $post_related = Post::where("is_approved", 1)->orderBy("id")->limit(5)->get();
         $post_new = Post::where("is_approved", 1)->orderByDesc("created_at")->limit(5)->get();
         return view("user.pages.forum.forum_tag",compact("tag","categories","tags","posts","post_related","post_new"));
     }
@@ -93,8 +94,8 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        $post_related = Post::where("is_approved", 1)->orderBy("created_at")->limit(5)->get();
-        $post_new = Post::where("is_approved", 1)->orderByDesc("created_at")->limit(5)->get();
+        $post_related = Post::where("is_approved", 1)->orderBy("id")->limit(5)->get();
+        $post_new = Post::where("is_approved", 1)->orderByDesc("id")->limit(5)->get();
         return view("user.pages.forum.create_post",compact("categories","tags","post_related","post_new"));
     }
 
@@ -193,8 +194,8 @@ class PostController extends Controller
             ->where('parent_id',0)->get();
 
         $url = $request->url();
-        $post_related = Post::where("is_approved", 1)->orderBy("created_at")->limit(5)->get();
-        $post_new = Post::where("is_approved", 1)->orderByDesc("created_at")->limit(5)->get();
+        $post_related = Post::where("is_approved", 1)->orderBy("id")->limit(5)->get();
+        $post_new = Post::where("is_approved", 1)->orderByDesc("id")->limit(5)->get();
 
 
         return view("user.pages.forum.single",compact("post","categories","tags","post_related","post_new","cmts","likes","likes_latest","url"));

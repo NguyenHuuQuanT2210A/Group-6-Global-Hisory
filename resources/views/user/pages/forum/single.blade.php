@@ -136,8 +136,8 @@
                                 @if(count($cmts) == 0)
                                     <h5 style="position: relative; top: 65px">Be the first to comment!</h5>
                                 @else
-                                    <div style="margin-left: 60px;padding-top: 20px;margin-top: 40px;border-top:1px solid rgba(0,0,0,.15) !important;">
-
+                                    <h5 style="margin: 35px 0 3px 65px"><b>{{ count($cmts)  }} Comment</b></h5>
+                                    <div style="margin-left: 70px">
 
                                         @foreach($cmts as $cmt)
                                             <div class="comment-container" style="padding-left: 10px;padding-top: 10px">
@@ -420,10 +420,9 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <div class="cmt" style="margin-top: 20px;padding-left: 70px">
+                                    <div class="cmt" style="margin-top: 30px;padding-left: 65px">
                                         <form action="{{ url('forum/post/comment',["post"=>$post->id]) }}" method="post">
                                             @csrf
-{{--                                            <h4 style="padding: 5px 0 7px 0;"><b>Comment</b></h4>--}}
                                             <div><textarea name="comment" id="editor" class="form-control" rows="5" placeholder="Enter comment here..."></textarea>
                                             </div>
                                             <div>
@@ -509,7 +508,6 @@
                 $(document).ready(function () {
                     $('.btn-reply').click(function () {
                         $(this).siblings('.comment-reply-div').toggle('swing');
-                        // $('.comment-reply-div').toggle('swing');
                     });
                 });
             </script>
@@ -522,5 +520,4 @@
                     });
                 });
             </script>
-
 @endsection

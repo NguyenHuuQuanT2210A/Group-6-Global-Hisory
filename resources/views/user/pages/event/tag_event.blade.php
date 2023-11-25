@@ -1,8 +1,6 @@
 @extends("user.layouts.app")
 @section("before_css")
-    <!-- <link rel="manifest" href="site.webmanifest"> -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-    <!-- Place favicon.ico in the root directory -->
 @endsection
 @section ("content")
 
@@ -19,8 +17,6 @@
                 <div class="row">
                     @foreach($tag_event as $item)
                         <div class="col-md-4 p-t-30">
-                            <!-- Block1 -->
-
                             <div class="blo1">
                                 <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
                                     <a href="{{ url("event/single",['event'=>$item->slug]) }}"><img src="{{ $item->thumbnail }}" style="width: 370px;height: 247px" alt="IMG-INTRO"></a>
@@ -54,20 +50,8 @@
                         </div>
                     @endforeach
                     {!! $tag_event->links("pagination::bootstrap-5") !!}
-
                 </div>
-
             </div>
         </div>
-
     </section>
-
-
-
-
-
-
-
-
-
 @endsection

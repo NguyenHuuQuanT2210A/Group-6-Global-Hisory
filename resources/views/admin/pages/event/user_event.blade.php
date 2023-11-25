@@ -1,14 +1,7 @@
 @extends("admin.layouts.app")
-
 @section("content")
     <div class="page-heading">
-        <h1 class="page-title">DataTables</h1>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="index.html"><i class="la la-home font-20"></i></a>
-            </li>
-            <li class="breadcrumb-item">DataTables</li>
-        </ol>
+        <h1 class="page-title">User Event Table</h1>
     </div>
     <div class="page-content fade-in-up">
         <div class="ibox">
@@ -50,7 +43,6 @@
                             <td>{{$item->address}}</td>
                             <td>{{$item->name_event}}</td>
                             <td>{{$item->user->name}}</td>
-
                         </tr>
                     @endforeach
                     </tbody>

@@ -7,8 +7,6 @@
             Blog
         </h2>
     </section>
-
-
     <!-- Content page -->
     <section>
         <div class="bread-crumb bo5-b p-t-17 p-b-17">
@@ -68,10 +66,6 @@
 										{{ $item->category->name }}, {{ $item->tag->name }}
 										<span class="m-r-6 m-l-4">|</span>
 									</span>
-
-{{--                                        <span>--}}
-{{--										8 Comments--}}
-{{--									</span>--}}
                                     </div>
 
                                     <p>
@@ -143,7 +137,6 @@
                                 @endforeach
                             </ul>
                         </div>
-
 
                         <!-- Archive -->
                         <div class="archive">

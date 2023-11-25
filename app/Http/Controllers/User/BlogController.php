@@ -17,7 +17,7 @@ class BlogController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        $blogs = Blog::orderByDesc("created_at")->paginate(5);
+        $blogs = Blog::orderByDesc("id")->paginate(5);
         $blog_popular = Blog::orderByDesc("view_count")->limit(5)->get();
 
         return view("user.pages.blog.blog",compact("categories","blogs","tags","blog_popular"));

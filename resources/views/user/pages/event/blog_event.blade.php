@@ -17,8 +17,6 @@
         }
     </style>
 @endsection
-
-
 @section ("content")
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url({{ $event->thumbnail }});">
@@ -26,8 +24,6 @@
             {{ $event->name }}
         </h2>
     </section>
-
-
     <!-- Content page -->
     <section>
         <div class="bread-crumb bo5-b p-t-17 p-b-17">
@@ -57,10 +53,7 @@
                         <div class="blo4 p-b-63">
                             <!-- - -->
                             <div class="bo-rad-10 pos-relative">
-{{--                                <a href="{{ url("event/single",["event"=>$event->slug]) }}">--}}
                                     <img style="width: 820px;border-radius: 10px;max-height: 600px" src="{{ $event->thumbnail }}" alt="IMG-BLOG">
-{{--                                </a>--}}
-
                                 <div class="date-blo4 flex-col-c-m">
 									<span class="txt30 m-b-4">
 										{{ date('m', strtotime($event->created_at)) }}
@@ -91,12 +84,8 @@
 
                                     <span>
 										{{ $event->category->name }}, {{ $event->tag->name }}
-{{--										<span class="m-r-6 m-l-4">|</span>--}}
 									</span>
 
-{{--                                    <span>--}}
-{{--										8 Comments--}}
-{{--									</span>--}}
                                 </div>
 
                                 <div style="padding-bottom: 20px;margin-bottom: 20px;border-bottom: 1px solid #B9B9B9">
@@ -163,28 +152,6 @@
                                          </a>
                                             No one has liked this yet.
                                         @endif
-
-{{--                                        <a href="{{ url("event/like",[$event->id]) }}">--}}
-{{--                                        @php--}}
-{{--                                            $you_like = false;--}}
-{{--                                        @endphp--}}
-{{--                                        @foreach($like_events as $item)--}}
-{{--                                            @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id == $item->user_id)--}}
-{{--                                                @php--}}
-{{--                                                    $you_like = true;--}}
-{{--                                                @endphp--}}
-{{--                                            @endif--}}
-{{--                                        @endforeach--}}
-{{--                                        @if(count($like_events) > 0)--}}
-{{--                                            @if($you_like)--}}
-{{--                                                <i class="fa-solid fa-heart" style="color: red;"></i>--}}
-{{--                                            @else--}}
-{{--                                                <i class="fa-solid fa-heart" style="color: #868e96;"></i>--}}
-{{--                                            @endif--}}
-{{--                                        @else--}}
-{{--                                            <i class="fa-solid fa-heart" style="color: #868e96;"></i>--}}
-{{--                                        @endif--}}
-{{--                                        </a>--}}
                                     </span>
 
                                 </p>

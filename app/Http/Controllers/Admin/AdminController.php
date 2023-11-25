@@ -35,10 +35,7 @@ class AdminController extends Controller
     public function user(Request $request )
     {
         $search = $request->get("search");
-
         $users = User::Search($request)->paginate(10);
-
-
         return view("admin.pages.users",compact("users"));
     }
 

@@ -2,7 +2,6 @@
 @section("after_css")
     <link href="html/dist/assets/vendors/morris.js/morris.css" rel="stylesheet" />
 @endsection
-
 @section('content')
     <div class="page-content fade-in-up">
         <div class="row">
@@ -11,8 +10,6 @@
                     <div class="ibox-body">
                         <h2 class="m-b-5 font-strong">{{ count($post) }}</h2>
                         <div class="m-b-5">POST</div>
-{{--                        <i class="ti-shopping-cart widget-stat-icon"></i>--}}
-{{--                        <div><i class="fa fa-level-up m-r-5"></i><small>25% higher</small></div>--}}
                     </div>
                 </div>
             </div>
@@ -21,8 +18,6 @@
                     <div class="ibox-body">
                         <h2 class="m-b-5 font-strong">{{ count($event) }}</h2>
                         <div class="m-b-5">EVENT</div>
-{{--                        <i class="ti-bar-chart widget-stat-icon"></i>--}}
-{{--                        <div><i class="fa fa-level-up m-r-5"></i><small>17% higher</small></div>--}}
                     </div>
                 </div>
             </div>
@@ -31,8 +26,6 @@
                     <div class="ibox-body">
                         <h2 class="m-b-5 font-strong">{{ count($user_event) }}</h2>
                         <div class="m-b-5">USER EVENT</div>
-{{--                        <i class="fa fa-money widget-stat-icon"></i>--}}
-{{--                        <div><i class="fa fa-level-up m-r-5"></i><small>22% higher</small></div>--}}
                     </div>
                 </div>
             </div>
@@ -41,8 +34,6 @@
                     <div class="ibox-body">
                         <h2 class="m-b-5 font-strong">{{ count($user) }}</h2>
                         <div class="m-b-5">USERS</div>
-{{--                        <i class="ti-user widget-stat-icon"></i>--}}
-{{--                        <div><i class="fa fa-level-down m-r-5"></i><small>-12% Lower</small></div>--}}
                     </div>
                 </div>
             </div>
@@ -54,24 +45,7 @@
                         <div class="flexbox mb-4">
                             <div>
                                 <h3 class="m-0">Post</h3>
-{{--                                <div>Your shop sales analytics</div>--}}
                             </div>
-{{--                            <div class="d-inline-flex">--}}
-{{--                                <div class="px-3" style="border-right: 1px solid rgba(0,0,0,.1);">--}}
-{{--                                    <div class="text-muted">WEEKLY INCOME</div>--}}
-{{--                                    <div>--}}
-{{--                                        <span class="h2 m-0">$850</span>--}}
-{{--                                        <span class="text-success ml-2"><i class="fa fa-level-up"></i> +25%</span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="px-3">--}}
-{{--                                    <div class="text-muted">WEEKLY SALES</div>--}}
-{{--                                    <div>--}}
-{{--                                        <span class="h2 m-0">240</span>--}}
-{{--                                        <span class="text-warning ml-2"><i class="fa fa-level-down"></i> -12%</span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                         </div>
                         <div>
                             <canvas id="bar_chart" style="height:260px;"></canvas>
@@ -110,8 +84,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 @endsection
 @section("after_js")

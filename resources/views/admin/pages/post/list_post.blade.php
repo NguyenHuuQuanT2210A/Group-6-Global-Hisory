@@ -1,14 +1,7 @@
 @extends("admin.layouts.app")
-
 @section("content")
     <div class="page-heading">
-        <h1 class="page-title">DataTables</h1>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="index.html"><i class="la la-home font-20"></i></a>
-            </li>
-            <li class="breadcrumb-item">DataTables</li>
-        </ol>
+        <h1 class="page-title">Post Table</h1>
     </div>
     <div class="page-content fade-in-up">
         <div class="ibox">
@@ -86,7 +79,6 @@
                                 <a href="{{url("admin/post/post_detail",['post'=>$item->slug])}}"
                                    class="btn btn-outline-info">Xem Chi Tiết</a>
                             </td>
-
                         </tr>
                     @endforeach
                     </tbody>
@@ -94,7 +86,6 @@
                 <div style="float: right">
                     {{ $posts->links("pagination::bootstrap-5") }}
                 </div>
-
             </div>
         </div>
     </div>

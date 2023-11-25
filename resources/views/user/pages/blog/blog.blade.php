@@ -1,14 +1,11 @@
 @extends("user.layouts.app")
 @section ("content")
-
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(images/blogs/9.jpg);">
         <h2 class="tit6 t-center">
             Blog
         </h2>
     </section>
-
-
     <!-- Content page -->
     <section>
         <div class="bread-crumb bo5-b p-t-17 p-b-17">
@@ -68,9 +65,6 @@
 										{{ $item->category->name }}, {{ $item->tag->name }}
 										<span class="m-r-6 m-l-4">|</span>
 									</span>
-{{--                                    <span>--}}
-{{--										8 Comments--}}
-{{--									</span>--}}
                                 </div>
 
                                 <p>
@@ -162,7 +156,6 @@
 									</span>
                                     </li>
                                 @endforeach
-
                             </ul>
                         </div>
                     </div>

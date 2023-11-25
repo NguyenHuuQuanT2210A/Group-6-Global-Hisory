@@ -1,8 +1,7 @@
 @extends("admin.layouts.app")
-
 @section("content")
     <div class="page-heading">
-        <h1 class="page-title">DataTables</h1>
+        <h1 class="page-title">Tag Table</h1>
     </div>
     <div class="page-content fade-in-up">
         <div class="ibox">

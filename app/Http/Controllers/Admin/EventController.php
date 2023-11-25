@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\CommentBlog;
 use App\Models\Event;
+use App\Models\LikeEvent;
 use App\Models\Tag;
 use App\Models\User_Event;
 use Brian2694\Toastr\Facades\Toastr;
@@ -24,8 +26,6 @@ class EventController extends Controller
         $date_from = $request->get("date_from");
         $date_to = $request->get("date_to");
 
-
-
         $events = Event::Search($request)
             ->Category($request)
             ->Tag($request)
@@ -33,7 +33,6 @@ class EventController extends Controller
             ->Status($request)
             ->orderByDesc("id")
             ->paginate(10);
-//        dd($events);
         return view("admin.pages.event.event",compact("events","categories","tags"));
     }
 
@@ -48,14 +47,6 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-//        return dd($request);
-//        $datetime_from = $request->get('date_from');
-//        $formattedDatetime_from = Carbon::createFromFormat('d-m-Y H:i:s', $datetime_from)->toDateTimeString();
-//        $formattedDatetime_from = date('d-m-Y H:i:s', strtotime($datetime_from));
-//        $datetime_to = $request->get('date_to');
-//        $formattedDatetime_to = Carbon::createFromFormat('d-m-Y H:i:s', $datetime_to)->toDateTimeString();
-//        $formattedDatetime_to = date('d-m-Y H:i:s', strtotime($datetime_to));
-
         $request->validate([
             "thumbnail"=>"required|mimes:png,jpg,jpeg,gif|mimetypes:image/jpeg,image/png,image/jpg",
             "name"=>"required|min:6",

@@ -13,7 +13,6 @@
             Exhibition
         </h2>
     </section>
-
     <div class="content-intro bg-white p-t-77 p-b-133">
         <div class="container">
             <div class="row">
@@ -56,10 +55,7 @@
                     {!! $events->links("pagination::bootstrap-4") !!}
                 </div>
             </div>
-
         </div>
     </div>
-
 </section>
-
 @endsection

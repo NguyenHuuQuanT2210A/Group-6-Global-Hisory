@@ -1,14 +1,7 @@
 @extends("admin.layouts.app")
-
 @section('content')
     <div class="page-heading">
-        <h1 class="page-title">DataTables</h1>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="index.html"><i class="la la-home font-20"></i></a>
-            </li>
-            <li class="breadcrumb-item">DataTables</li>
-        </ol>
+        <h1 class="page-title">Create Tag</h1>
     </div>
     <div class="page-content fade-in-up">
         <div class="ibox">
@@ -34,9 +27,7 @@
                             <p class="text-danger" style="margin: 5px 0 0 10px"><i>{{ $message }}</i></p>
                             @enderror
                         </div>
-
                     </div>
-
                     <div class="card-footer">
                         <button style="cursor: pointer" type="submit" class="btn btn-primary">Create Tag</button>
                     </div>
@@ -45,5 +36,4 @@
             </div>
         </div>
     </div>
-
 @endsection

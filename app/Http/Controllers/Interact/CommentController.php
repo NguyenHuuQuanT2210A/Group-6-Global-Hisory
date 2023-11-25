@@ -17,9 +17,6 @@ class CommentController extends Controller
             Toastr::error("Vui long nhap comment!","Error!");
             return redirect()->back();
         }
-//        $request->validate([
-//            'comment' => 'required'
-//        ]);
             Comment::create([
                 'post_id' => $post->id,
                 'user_id' => Auth::user()->id,
@@ -63,14 +60,8 @@ class CommentController extends Controller
         }
         $comment->delete();
 
-//        $post->update([
-//            'count_comment' => $post->increment('count_comment')
-//        ]);
         Toastr::success("Comment reply deleted successfully!","Success");
         return back();
 
     }
-    
-
-
 }

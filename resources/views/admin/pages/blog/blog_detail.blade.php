@@ -1,8 +1,4 @@
 @extends("admin.layouts.app")
-@section("after_css")
-
-@endsection
-
 @section("content")
     <div class="page-heading">
         <h1 class="page-title">Blog Detail</h1>
@@ -51,7 +47,4 @@
         </div>
 
     </div>
-@endsection
-@section("after_js")
-
 @endsection

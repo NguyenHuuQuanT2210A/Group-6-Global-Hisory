@@ -18,11 +18,9 @@
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url({{ $blog->thumbnail }});">
         <h2 class="tit6 t-center">
-            Blog
+            {{ $blog->title }}
         </h2>
     </section>
-
-
     <!-- Content page -->
     <section>
         <div class="bread-crumb bo5-b p-t-17 p-b-17">
@@ -48,14 +46,9 @@
             <div class="row ">
                 <div class="col-md-8 col-lg-9">
                     <div class="p-t-80 p-b-124 bo5-r p-r-50 h-full p-r-0-md bo-none-md">
-                        <!-- Block4 -->
                         <div class="blo4 p-b-63">
-                            <!-- - -->
                             <div class="bo-rad-10 pos-relative">
-{{--                                <a href="{{ url("blog/single",["blog"=>$blog->slug]) }}">--}}
                                     <img style="width: 820px;border-radius: 10px;max-height: 600px" src="{{ $blog->thumbnail }}" alt="IMG-BLOG">
-{{--                                </a>--}}
-
                                 <div class="date-blo4 flex-col-c-m">
 									<span class="txt30 m-b-4">
 										{{ date('m', strtotime($blog->created_at)) }}
@@ -107,29 +100,6 @@
                             <div class="d-sm-flex justify-content-between text-center">
                                 <p class="like-info">
                                     <span class="align-middle">
-{{--                                        <a href="{{ url("blog/like",[$blog->id]) }}">--}}
-{{--                                                    @php--}}
-{{--                                                        $you_like = false;--}}
-{{--                                                    @endphp--}}
-{{--                                            @foreach($like_blogs as $item)--}}
-{{--                                                @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id == $item->user_id)--}}
-{{--                                                    @php--}}
-{{--                                                        $you_like = true;--}}
-{{--                                                    @endphp--}}
-{{--                                                @endif--}}
-{{--                                            @endforeach--}}
-{{--                                            @if(count($like_blogs) > 0)--}}
-{{--                                                @if($you_like)--}}
-{{--                                                    <i class="fa-solid fa-heart" style="color: red;"></i>--}}
-{{--                                                @else--}}
-{{--                                                    <i class="fa-solid fa-heart" style="color: #868e96;"></i>--}}
-{{--                                                @endif--}}
-{{--                                            @else--}}
-{{--                                                <i class="fa-solid fa-heart" style="color: #868e96;"></i>--}}
-{{--                                            @endif--}}
-{{--                                                </a>--}}
-
-
                                     @php
                                         $you_like = false;
                                     @endphp
@@ -186,23 +156,25 @@
                                 </ul>
                             </div>
                         </div>
-
-                        <div class="cmt" style="margin-top: 10px">
+                        @if(count($cmts) == 0)
+                        <div class="cmt" style="margin-top: 18px">
                             <form action="{{ url('blog/post/comment',[$blog->id]) }}" method="post">
                                 @csrf
-                                <h4 style="padding: 5px 0 7px 0;"><b>Comment</b></h4>
-                                <div><textarea name="comment" id="editor" class="form-control" rows="5"></textarea>
+{{--                                <h4 style="padding: 5px 0 7px 0;"><b>Comment</b></h4>--}}
+                                <div><textarea name="comment" id="editor" class="form-control" rows="5" placeholder="Enter comment here..."></textarea>
                                 </div>
                                 <div>
                                     <button type="submit" class="cmt-btn" >Submit</button>
                                 </div>
                             </form>
                         </div>
+                        @endif
 
-
-                        @if(count($cmts) > 0)
-                            <div style="margin-top: 100px"><h4 style="padding: 0 0 2px 10px;"><b>{{ count($cmts) }} Comment</b></h4></div>
-                            <div style="border-top:1px solid rgba(0,0,0,.15) !important;border-radius:.25rem;">
+                        @if(count($cmts) == 0)
+                            <h5 style="position: relative; top: 65px">Be the first to comment!</h5>
+                        @else
+                            <div style="margin-top: 25px"><h4 style="padding: 0 0 2px 0;"><b>{{ count($cmts) }} Comment</b></h4></div>
+                            <div>
                                 @foreach($cmts as $cmt)
                                     <div class="comment-container" style="padding: 20px 0 0 10px">
                                         <div class="media forum-item">
@@ -270,7 +242,6 @@
                                                 {{ count($like_cmts) }}
 
                                                     </span>
-{{--                                                    <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                     <span class="btn-reply" style="margin-left: 10px;cursor: pointer">Reply</span>
                                                     <div class="comment-reply-div" style="position: relative;right: 45px;width: 790px;">
                                                         <div  style="display: flex;padding-left: 10px;margin-top: 5px" >
@@ -293,12 +264,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                             </div>
-
                                         </div>
-
 
                                         @if($cmt->parent_id == 0)
                                             @php
@@ -367,7 +334,7 @@
 
                                                 {{ count($like_cmt_replies) }}
                                                     </span>
-{{--                                                            <span><i class="far fa-comment ml-2"></i> 3</span>--}}
+                                                            {{--                                                            <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                             <span class="btn-reply"  style="margin-left: 10px;cursor: pointer">Reply</span>
                                                             <div class="comment-reply-div" style="position: relative;right: 55px;width: 770px;">
                                                                 <div  style="display: flex;padding-left: 20px;margin-top: 5px" >
@@ -460,7 +427,7 @@
 
                                                 {{ count($like_cmt_reply_replies) }}
                                                     </span>
-{{--                                                                    <span><i class="far fa-comment ml-2"></i> 3</span>--}}
+                                                                    {{--                                                                    <span><i class="far fa-comment ml-2"></i> 3</span>--}}
                                                                     <span class="btn-reply"  style="margin-left: 10px;cursor: pointer;">Reply</span>
                                                                     <div class="comment-reply-div" style="position: relative;right: 85px;width: 770px;">
                                                                         <div  style="display: flex;padding-left: 20px;margin-top: 5px" >
@@ -489,21 +456,25 @@
 
                                                     @endforeach
                                                 @endif
-
-
                                             @endforeach
                                         @endif
                                     </div>
                                 @endforeach
                             </div>
-                        @else
-                            <h5 style="position: relative; top: 65px">Be the first to comment!</h5>
+                            <div class="cmt" style="margin-top: 20px;">
+                                <form action="{{ url('blog/post/comment',[$blog->id]) }}" method="post">
+                                    @csrf
+                                    <div><textarea name="comment" id="editor" class="form-control" rows="5" placeholder="Enter comment here..."></textarea>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="cmt-btn" >Submit</button>
+                                    </div>
+                                </form>
+                            </div>
                         @endif
                     </div>
 
                 </div>
-
-
 
                   {{--       sidebar         --}}
                 <div class="col-md-4 col-lg-3">
@@ -592,7 +563,6 @@
 @section("after_js")
     <script>
         $('.comment-reply-div').hide();
-
         $(document).ready(function () {
             $('.btn-reply').click(function () {
                 $(this).siblings('.comment-reply-div').toggle('swing');
